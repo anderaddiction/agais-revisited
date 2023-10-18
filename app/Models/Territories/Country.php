@@ -1,0 +1,91 @@
+<?php
+
+namespace App\Models\Territories;
+
+use App\Models\Codes\PhoneCode;
+use App\Models\Documents\Document;
+use App\Models\Entities\Bank;
+use App\Models\Entities\Currency;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Presenters\Territories\CountryPresenter;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class Country extends Model
+{
+    use HasFactory, SoftDeletes;
+
+    protected $guarded = [];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
+     * Get the continent that owns the Country
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function continent(): BelongsTo
+    {
+        return $this->belongsTo(Continent::class, 'continent_id');
+    }
+
+    /**
+     * Get all of the sates for the Country
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sates(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'country_id', 'id');
+    }
+
+    /**
+     * Get all of the banks for the Country
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function banks(): HasMany
+    {
+        return $this->hasMany(Bank::class, 'bank_id', 'id');
+    }
+
+    /**
+     * Get all of the phoneCodes for the Country
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function phoneCodes(): HasMany
+    {
+        return $this->hasMany(PhoneCode::class, 'phone_code_id', 'id');
+    }
+
+    /**
+     * Get all of the documents for the Country
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function documents(): HasMany
+    {
+        return $this->hasMany(Document::class, 'document_id', 'id');
+    }
+
+    /**
+     * Get all of the currencies for the Country
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function currencies(): HasMany
+    {
+        return $this->hasMany(Currency::class, 'currency_id', 'id');
+    }
+
+    public function present()
+    {
+        return new CountryPresenter($this);
+    }
+}
