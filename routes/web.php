@@ -11,6 +11,7 @@ use App\Http\Controllers\Territories\StateController;
 use App\Http\Controllers\Documents\DocumentController;
 use App\Http\Controllers\Territories\ParishController;
 use App\Http\Controllers\Categories\CategoryController;
+use App\Http\Controllers\Scheduling\EventController;
 use App\Http\Controllers\Territories\CountryController;
 use App\Http\Controllers\Territories\ContinentController;
 use App\Http\Controllers\Territories\MunicipalityController;
@@ -71,20 +72,13 @@ Route::prefix('entities')->group(function () {
         ->names('currency');
 });
 
-//Users
-Route::prefix('users')->group(
-    function () {
-        //Categories
-        Route::resource('categories', CategoryController::class)
-            ->parameters(['category' => 'category'])
-            ->names('category');
-
-        //Roles
-        Route::resource('roles', RoleController::class)
-            ->parameters(['role' => 'role'])
-            ->names('role');
-    }
-);
+//Territories
+Route::prefix('scheduling')->group(function () {
+    //Continent
+    Route::resource('events', EventController::class)
+        ->parameters(['event' => 'event'])
+        ->names('event');
+});
 
 //Territories
 Route::prefix('territories')->group(function () {
@@ -118,3 +112,18 @@ Route::prefix('territories')->group(function () {
         ->parameters(['city' => 'city'])
         ->names('city');
 });
+
+//Users
+Route::prefix('users')->group(
+    function () {
+        //Categories
+        Route::resource('categories', CategoryController::class)
+            ->parameters(['category' => 'category'])
+            ->names('category');
+
+        //Roles
+        Route::resource('roles', RoleController::class)
+            ->parameters(['role' => 'role'])
+            ->names('role');
+    }
+);

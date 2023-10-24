@@ -41,7 +41,7 @@
                 {{-- Categories --}}
                 <li>
                     <a href="javascript: void(0);">
-                        <i class="icon nav-icon" data-eva="credit-card-outline"></i>
+                        <i class="icon nav-icon" data-eva="pricetags"></i>
                         <span class="menu-item" data-key="t-dashboards">@lang('translation.Categories')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -83,14 +83,14 @@
                     </ul>
                 </li>
 
-                {{-- Users --}}
+                {{-- Scheduling --}}
                 <li>
                     <a href="javascript: void(0);">
-                        <i class="icon nav-icon" data-eva="people-outline"></i>
-                        <span class="menu-item" data-key="t-dashboards">@lang('translation.Users')</span>
+                        <i class="icon nav-icon" data-eva="pricetags"></i>
+                        <span class="menu-item" data-key="t-dashboards">@lang('translation.Schedulings')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('role.index') }}" data-key="t-roles">@lang('translation.Roles')</a></li>
+                        <li><a href="{{ route('event.index') }}" data-key="t-categories">@lang('translation.Events')</a></li>
                     </ul>
                 </li>
 
@@ -107,6 +107,17 @@
                         <li><a href="{{ route('municipality.index') }}" data-key="t-crypto">@lang('translation.Municipalities')</a></li>
                         <li><a href="{{ route('parish.index') }}" data-key="t-crypto">@lang('translation.Parishes')</a></li>
                         <li><a href="{{ route('city.index') }}" data-key="t-crypto">@lang('translation.Cities')</a></li>
+                    </ul>
+                </li>
+
+                {{-- Users --}}
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="icon nav-icon" data-eva="people-outline"></i>
+                        <span class="menu-item" data-key="t-dashboards">@lang('translation.Users')</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('role.index') }}" data-key="t-roles">@lang('translation.Roles')</a></li>
                     </ul>
                 </li>
 

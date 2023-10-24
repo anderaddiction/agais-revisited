@@ -2,10 +2,12 @@
 
 namespace App\Models\Categories;
 
-use App\Presenters\Category\CategoryPresenter;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Scheduling\Event;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Presenters\Category\CategoryPresenter;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
@@ -16,6 +18,16 @@ class Category extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * Get all of the events for the Category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function events(): HasMany
+    {
+        return $this->hasMany(Event::class, 'event_id', 'id');
     }
 
     public function present()
