@@ -271,5 +271,8 @@ return [
     "Currencies_table" => "Tabla de Monedas del Mundo",
     "Categories" => "Categorías",
     "Categories_table" => "Tabla de Categorías",
+    "Messenger" => "Mensajería",
+    "Communications" => "Comunicaciones",
+    "Mail" => "Correo"
 
 ];

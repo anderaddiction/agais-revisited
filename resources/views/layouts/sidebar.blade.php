@@ -60,6 +60,19 @@
                     </ul>
                 </li>
 
+                {{-- Communications --}}
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i class="icon nav-icon" data-eva="message-circle-outline"></i>
+                        <span class="menu-item" data-key="t-ecommerce">@lang('translation.Communications')</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('messenger.index') }}" data-key="t-messenger">@lang('translation.Messenger')</a></li>
+                        <li><a href="ecommerce-product-detail" data-key="t-product-detail">@lang('translation.Mail')</a></li>
+
+                    </ul>
+                </li>
+
                 {{-- Documents --}}
                 <li>
                     <a href="javascript: void(0);">

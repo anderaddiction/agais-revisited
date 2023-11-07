@@ -11,6 +11,7 @@ use App\Http\Controllers\Territories\StateController;
 use App\Http\Controllers\Documents\DocumentController;
 use App\Http\Controllers\Territories\ParishController;
 use App\Http\Controllers\Categories\CategoryController;
+use App\Http\Controllers\Communications\Messenger\MessengerController;
 use App\Http\Controllers\Scheduling\EventController;
 use App\Http\Controllers\Territories\CountryController;
 use App\Http\Controllers\Territories\ContinentController;
@@ -49,6 +50,15 @@ Route::prefix('codes')->group(function () {
     Route::resource('phone-codes', PhoneCodeController::class)
         ->parameters(['phone' => 'phone'])
         ->names('phone');
+});
+
+//Communications
+Route::prefix('communications')->group(function () {
+    Route::resource('messenger', MessengerController::class)
+        ->parameters(['messenger' => 'messenger'])
+        ->names('messenger');
+    Route::get('/messenger/user/{id}', [MessengerController::class, 'findUser'])
+        ->name('find.user');
 });
 
 //Documents

@@ -21,11 +21,6 @@ class ContinentController extends Controller
         $this->middleware('auth');
     }
 
-    public function __construct()
-    {
-        return $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      */

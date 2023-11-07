@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('continents', function (Blueprint $table) {
+        Schema::create('messengers', function (Blueprint $table) {
             $table->id();
-            $table->string('code', 100)->unique();
-            $table->string('name', 255)->unique();
-            $table->string('slug', '255')->unique();
-            $table->text('note')->nullable();
-            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('continents');
+        Schema::dropIfExists('messengers');
     }
 };

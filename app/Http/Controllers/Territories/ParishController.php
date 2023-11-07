@@ -20,7 +20,7 @@ class ParishController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }s
+    }
 
     /**
      * Display a listing of the resource.
