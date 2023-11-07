@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Communications\Messenger;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Communications\Messenger\Messenger;
 
 class MessengerController extends Controller
 {
@@ -32,7 +33,18 @@ class MessengerController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+
+        $message = Messenger::create([
+            'code'          => $code = uniqueCode(),
+            'slug'          => generateUrl($code),
+            'user_id'       => auth()->id(),
+            'recipient_id'  => $request->recipient_id,
+            'body'          => $request->body
+        ]);
+
+        return response()->json([
+            'message' => $message
+        ], 200);
     }
 
     /**

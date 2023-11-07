@@ -524,7 +524,7 @@
                                             <div class="ctext-wrap-content">
                                                 <div class="conversation-name"><span class="time">10:00
                                                         AM</span></div>
-                                                <p class="mb-0">Good Morning</p>
+                                                <p class="mb-0" class="sender">Good Morning</p>
                                             </div>
                                             <div class="dropdown align-self-start">
                                                 <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -757,12 +757,22 @@
                         @csrf
                         <div class="row">
                             <div class="col">
+                                <input type="hidden" class="form-control" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                            </div>
+                            <div class="col">
+                                <input type="hidden" class="form-control" name="recipient_id" id="recipient_id" value="">
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col">
                                 <div class="position-relative">
-                                    <input type="text" class="form-control border bg-soft-light" name="body" id="boddy" placeholder="Enter Message...">
+                                    <input type="text" class="form-control border bg-soft-light" name="body" id="body" placeholder="Enter Message...">
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <button type="submit" class="btn btn-primary chat-send w-md waves-effect waves-light"><span
+                                <button type="submit" class="btn btn-primary chat-send w-md waves-effect waves-light" id="send-message" name="send-message"><span
                                         class="d-none d-sm-inline-block me-2">Send</span> <i class="mdi mdi-send float-end"></i></button>
                             </div>
                         </div>
@@ -777,11 +787,11 @@
 @section('script')
     <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
     <script>
-        //Variables
+        var token = $('meta[name="csrf-token"]').attr('content');
+        var route = $("#messenger-form").attr("action");
         $(".contact_info").click(function (e) {
             e.preventDefault();
-            //Global Variables
-            var token = $('meta[name="csrf-token"]').attr('content');
+            //Variables
             var id    = $(this).data('id');
             var route = $(this).data('route');
             $.ajax({
@@ -792,6 +802,7 @@
                 cache: false,
                 success: function (response) {
                     //Variables
+                    var contactId   = response.data.id;
                     var contactName   = response.data.name;
                     var contactAvatar = response.data.avatar;
 
@@ -802,6 +813,32 @@
                     } else {
                         $(".avatar-img").attr("src", `http://localhost:8000/assets/images/users/avatar-1.jpg`);
                     }
+                    $("#recipient_id").val(contactId);
+                }
+            });
+        });
+
+        $("#send-message").click(function (e) {
+            e.preventDefault();
+            var user_id      = $("user_id").val();
+            var body         = $("#body").val();
+            var recipient_id = $("#recipient_id").val();
+
+            //Enviamos data para almacenar el mensaje
+            $.ajax({
+                type: "POST",
+                headers: {'X-CSRF-Token': token},
+                url: route,
+                data: {
+                    "user_id"       :user_id,
+                    "body"          :body,
+                    "recipient_id"  :recipient_id
+                },
+                cache: false,
+                success: function (response) {
+                    $("#messenger-form")[0].reset();
+                    var message = response.message.body;
+
                 }
             });
         });

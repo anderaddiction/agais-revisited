@@ -68,7 +68,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('messenger.index') }}" data-key="t-messenger">@lang('translation.Messenger')</a></li>
-                        <li><a href="ecommerce-product-detail" data-key="t-product-detail">@lang('translation.Mail')</a></li>
+                        <li><a href="{{ route('mail.index') }}" data-key="t-mails">@lang('translation.Mail')</a></li>
 
                     </ul>
                 </li>

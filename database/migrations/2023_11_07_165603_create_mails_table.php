@@ -11,17 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('messengers', function (Blueprint $table) {
+        Schema::create('mails', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
-            $table->integer('user_id')->unsigned();
-            $table->integer('recipient_id')->unsigned();
+            $table->string('subject');
             $table->text('body');
+            $table->string('attached')->nullable();
             $table->string('slug')->unique();
-            $table->softDeletes();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('recipient_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('messengers');
+        Schema::dropIfExists('mails');
     }
 };

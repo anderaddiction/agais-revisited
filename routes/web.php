@@ -11,6 +11,7 @@ use App\Http\Controllers\Territories\StateController;
 use App\Http\Controllers\Documents\DocumentController;
 use App\Http\Controllers\Territories\ParishController;
 use App\Http\Controllers\Categories\CategoryController;
+use App\Http\Controllers\Communications\Mail\MailController;
 use App\Http\Controllers\Communications\Messenger\MessengerController;
 use App\Http\Controllers\Scheduling\EventController;
 use App\Http\Controllers\Territories\CountryController;
@@ -54,11 +55,17 @@ Route::prefix('codes')->group(function () {
 
 //Communications
 Route::prefix('communications')->group(function () {
+    //Messenger
     Route::resource('messenger', MessengerController::class)
         ->parameters(['messenger' => 'messenger'])
         ->names('messenger');
     Route::get('/messenger/user/{id}', [MessengerController::class, 'findUser'])
         ->name('find.user');
+
+    //Mails
+    Route::resource('mails', MailController::class)
+        ->parameters(['mail' => 'mail'])
+        ->names('mail');
 });
 
 //Documents
