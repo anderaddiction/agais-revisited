@@ -2,8 +2,10 @@
 
 namespace App\Models\Communications\Mail;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Mail extends Model
 {
@@ -17,12 +19,12 @@ class Mail extends Model
     }
 
     /**
-     * The roles that belong to the Mail
+     * The users that belong to the Mail
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function roles(): BelongsToMany
+    public function users(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class, 'role_user_table', 'user_id', 'role_id');
+        return $this->belongsToMany(User::class, 'assigned_mails', 'sender_id', 'email_id', 'recipient_id');
     }
 }

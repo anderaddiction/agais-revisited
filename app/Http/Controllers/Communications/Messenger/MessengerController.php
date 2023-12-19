@@ -15,7 +15,7 @@ class MessengerController extends Controller
     public function index()
     {
         $users = User::where('id', '!=', auth()->id())->orderBy('name', 'ASC')->get();
-        return view('auth.commmunications.messenger.index', [
+        return view('auth.communications.messenger.index', [
             "users" => $users
         ]);
     }

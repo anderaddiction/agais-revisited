@@ -11,7 +11,7 @@ class MailRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class MailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'recipient_id' => 'required',
+            'subject'      => 'required',
+            'body'         => 'required'
         ];
     }
 }
