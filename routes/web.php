@@ -13,6 +13,7 @@ use App\Http\Controllers\Territories\ParishController;
 use App\Http\Controllers\Categories\CategoryController;
 use App\Http\Controllers\Communications\Mail\MailController;
 use App\Http\Controllers\Communications\Messenger\MessengerController;
+use App\Http\Controllers\Notifications\NotificationController;
 use App\Http\Controllers\Scheduling\EventController;
 use App\Http\Controllers\Territories\CountryController;
 use App\Http\Controllers\Territories\ContinentController;
@@ -87,6 +88,12 @@ Route::prefix('entities')->group(function () {
     Route::resource('currencies', CurrencyController::class)
         ->parameters(['currency' => 'currency'])
         ->names('currency');
+});
+
+//Notifications
+Route::prefix('notifications')->group(function () {
+    //mail
+    Route::put('/mail/read/{id}', [NotificationController::class, 'readNotification'])->name('markAsReadNotification');
 });
 
 //Territories

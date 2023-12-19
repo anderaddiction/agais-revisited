@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\Communications\Mail;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Communications\Mail\MailRequest;
-use App\Models\Communications\Mail\Mail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\Communications\Mail\Mail;
+use App\Http\Requests\Communications\Mail\MailRequest;
+use App\Notifications\MailSent;
+use App\Notifications\MessageSent;
 
 class MailController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -17,11 +21,28 @@ class MailController extends Controller
     {
 
         $users = User::where('id', '!=', auth()->id())->get();
-        $mails = Mail::with(['users'])->get();
-        return view('auth.communications.mail.email-inbox', [
-            'users' => $users,
-            'mails' => $mails
-        ]);
+        $mails = DB::table('mails as mail')
+            ->select(
+                DB::raw('mail.id as mail_id'),
+                DB::raw('mail.subject'),
+                DB::raw('mail.body'),
+                DB::raw('mail.created_at'),
+                DB::raw('contact.id as contact_id'),
+                DB::raw('contact.name'),
+                DB::raw('contact.avatar'),
+                DB::raw('am.sender_id')
+            )
+            ->join('assigned_mails as am', 'am.email_id', 'mail.id')
+            ->join('users as contact', 'contact.id', 'am.recipient_id')
+            ->where('am.recipient_id', auth()->id())
+            ->get();
+
+        if ($mails) {
+            return view('auth.communications.mail.email-inbox', [
+                'users'               => $users,
+                'mails'               => $mails
+            ]);
+        }
     }
 
     /**
@@ -51,6 +72,10 @@ class MailController extends Controller
             $mail->users()->attach($mail->id, ['sender_id' => $sender,  'recipient_id' => $value]);
         }
 
+        $recipient_id = User::find($recipient);
+        foreach ($recipient_id as $contact) {
+            $contact->notify(new MailSent($mail));
+        }
         return response()->json([
             'title' => __('Message Send Corretly!'),
             'text'  => __('Do you want to send another mail?')

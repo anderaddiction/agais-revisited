@@ -16,5 +16,40 @@
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 @vite(['resources/js/agais.js'])
+<script>
+    $(document).ready(function () {
+        $("#red-marked").click(function (e) {
+            e.preventDefault();
+            var route = $(this).attr('href');
+            var id    = $(this).data('id');
+            const container = document.querySelector('#red-marked');
+            $.ajax({
+                type: "PUT",
+                url: route,
+                headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+                data: id,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response > 0) {
+                        $(".rounded-pill").html(response);
+                        //clearHTML(container);
+                        location.reload();
+                    }else if (response == 0){
+                        $(".rounded-pill").hide();
+                        clearHTML(container);
+                    }
+
+                }
+            });
+            //functions
+            function clearHTML(container) {
+                while(container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+            }
+        });
+    });
+</script>
 @yield('script')
 @yield('script-bottom')

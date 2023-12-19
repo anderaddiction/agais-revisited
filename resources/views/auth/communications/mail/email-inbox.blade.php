@@ -249,8 +249,9 @@
                                             <label for="chk1" class="toggle"></label>
                                         </div>
                                         <div class="d-flex title align-items-center">
-                                            <img src="{{ URL::asset('assets/images/users/avatar-1.jpg') }}" class="avatar-sm rounded-circle"
-                                                alt="">
+                                            <img class="avatar-sm rounded-circle"
+                                                src="@if ($mail->avatar != ''){{ URL::asset('images/' . $mail->avatar) }}@else{{ URL::asset('assets/images/users/avatar-1.jpg') }}@endif"
+                                                alt="Header Avatar">
                                             <div class="flex-1 ms-2 ps-1">
                                                 <h5 class="font-size-14 mb-0"><a href="" class="text-dark">Whitney
                                                         Peter</a></h5>
@@ -260,11 +261,11 @@
                                         <span class="star-toggle far fa-star"></span>
                                     </div>
                                     <div class="col-mail col-mail-2">
-                                        <a href="#" class="subject text-dark"> {{ $mail->subject }}
-                                            {{-- <span class="teaser text-muted fw-normal">Trip home from Colombo has been arranged,
-                                                then Jenna will come get me from Stockholm. :)</span> --}}
+                                        <a href="#" class="subject text-dark"> {!! $mail->subject !!}
+                                            <span class="teaser text-muted fw-normal">Trip home from Colombo has been arranged,
+                                                then Jenna will come get me from Stockholm. :)</span>
                                         </a>
-                                        <div class="date"><i class="mdi mdi-link-variant me-2 font-size-15 align-middle"></i> 5:01 AM</div>
+                                        <div class="date"><i class="mdi mdi-link-variant me-2 font-size-15 align-middle"></i> {{ Carbon\Carbon::parse($mail->created_at)->format('H:m A') }}</div>
                                     </div>
                                 </div>
                             </div>

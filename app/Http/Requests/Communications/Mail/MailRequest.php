@@ -22,7 +22,7 @@ class MailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'recipient_id' => 'required',
+            'recipient_id' => 'required|exists:users,id',
             'subject'      => 'required',
             'body'         => 'required'
         ];
