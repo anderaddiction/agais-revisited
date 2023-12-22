@@ -262,8 +262,7 @@
                                     </div>
                                     <div class="col-mail col-mail-2">
                                         <a href="#" class="subject text-dark"> {!! $mail->subject !!}
-                                            <span class="teaser text-muted fw-normal">Trip home from Colombo has been arranged,
-                                                then Jenna will come get me from Stockholm. :)</span>
+                                            <span class="teaser text-muted fw-normal">{!! $mail->body !!}</span>
                                         </a>
                                         <div class="date"><i class="mdi mdi-link-variant me-2 font-size-15 align-middle"></i> {{ Carbon\Carbon::parse($mail->created_at)->format('H:m A') }}</div>
                                     </div>
