@@ -249,14 +249,15 @@
                                             <label for="chk1" class="toggle"></label>
                                         </div>
                                         <div class="d-flex title align-items-center">
-                                            <img class="avatar-sm rounded-circle"
-                                                src="@if ($mail->avatar != ''){{ URL::asset('images/' . $mail->avatar) }}@else{{ URL::asset('assets/images/users/avatar-1.jpg') }}@endif"
-                                                alt="Header Avatar">
-                                            <div class="flex-1 ms-2 ps-1">
-                                                <h5 class="font-size-14 mb-0"><a href="" class="text-dark">Whitney
-                                                        Peter</a></h5>
-                                                <a href="" class="text-muted text-uppercase font-size-12">23 Threads</a>
-                                            </div>
+                                            @foreach ($senders as $sender)
+                                                <img class="avatar-sm rounded-circle"
+                                                    src="@if ($sender->avatar != ''){{ URL::asset('images/' . $sender->avatar) }}@else{{ URL::asset('assets/images/users/avatar-1.jpg') }}@endif"
+                                                    alt="Header Avatar">
+                                                <div class="flex-1 ms-2 ps-1">
+                                                    <h5 class="font-size-14 mb-0"><a href="" class="text-dark">{{ $sender->name }}</a></h5>
+                                                    <a href="" class="text-muted text-uppercase font-size-12">23 Threads</a>
+                                                </div>
+                                            @endforeach
                                         </div>
                                         <span class="star-toggle far fa-star"></span>
                                     </div>

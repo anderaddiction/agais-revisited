@@ -19,7 +19,7 @@ class MailController extends Controller
      */
     public function index()
     {
-
+        $sender_ids = array();
         $users = User::where('id', '!=', auth()->id())->get();
         $mails = DB::table('mails as mail')
             ->select(
@@ -35,12 +35,22 @@ class MailController extends Controller
             ->join('assigned_mails as am', 'am.email_id', 'mail.id')
             ->join('users as contact', 'contact.id', 'am.recipient_id')
             ->where('am.recipient_id', auth()->id())
+            ->orderBy('created_at', 'DESC')
             ->get();
+
+        foreach ($mails as $key => $value) {
+            $sender_ids[] = $value->sender_id;
+        }
+
+        $senders = User::whereIn('id', $sender_ids)->get();
+
+        //¿dd($senders);
 
         if ($mails) {
             return view('auth.communications.mail.email-inbox', [
-                'users'               => $users,
-                'mails'               => $mails
+                'users'     => $users,
+                'mails'     => $mails,
+                'senders'   => $senders
             ]);
         }
     }

@@ -5,7 +5,7 @@ namespace App\Presenters\Territories;
 use Illuminate\Support\Str;
 use App\Models\Territories\country;
 
-class countryPresenter
+class CountryPresenter
 {
     protected $country;
 
