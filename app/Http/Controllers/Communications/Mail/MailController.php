@@ -44,7 +44,7 @@ class MailController extends Controller
 
         $senders = User::whereIn('id', $sender_ids)->get();
 
-        //¿dd($senders);
+        //dd($mails);
 
         if ($mails) {
             return view('auth.communications.mail.email-inbox', [
@@ -97,7 +97,17 @@ class MailController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $mail = Mail::find($id);
+        $assigned_mail = DB::table('assigned_mails')
+            ->select('*')
+            ->where('email_id', $id)
+            ->first();
+
+        $sender = User::find($assigned_mail->sender_id);
+        return view('auth.communications.mail.email-read', [
+            'mail'   => $mail,
+            'sender' => $sender
+        ]);
     }
 
     /**

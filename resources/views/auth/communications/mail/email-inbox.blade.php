@@ -262,7 +262,7 @@
                                         <span class="star-toggle far fa-star"></span>
                                     </div>
                                     <div class="col-mail col-mail-2">
-                                        <a href="#" class="subject text-dark"> {!! $mail->subject !!}
+                                        <a href="{{ route('mail.show', $mail->mail_id) }}" class="subject text-dark"> {!! $mail->subject !!}
                                             <span class="teaser text-muted fw-normal">{!! $mail->body !!}</span>
                                         </a>
                                         <div class="date"><i class="mdi mdi-link-variant me-2 font-size-15 align-middle"></i> {{ Carbon\Carbon::parse($mail->created_at)->format('H:m A') }}</div>
