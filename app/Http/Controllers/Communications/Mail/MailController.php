@@ -97,6 +97,7 @@ class MailController extends Controller
      */
     public function show(string $id)
     {
+        $users = User::where('id', '!=', auth()->id())->get();
         $mail = Mail::find($id);
         $assigned_mail = DB::table('assigned_mails')
             ->select('*')
@@ -106,6 +107,7 @@ class MailController extends Controller
         $sender = User::find($assigned_mail->sender_id);
         return view('auth.communications.mail.email-read', [
             'mail'   => $mail,
+            'users'  => $users,
             'sender' => $sender
         ]);
     }

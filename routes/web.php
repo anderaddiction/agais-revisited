@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Entities\BankController;
 use App\Http\Controllers\Codes\PhoneCodeController;
+use App\Http\Controllers\Invoices\InvoiceController;
+use App\Http\Controllers\Scheduling\EventController;
 use App\Http\Controllers\Territories\CityController;
 use App\Http\Controllers\Users\Roles\RoleController;
 use App\Http\Controllers\Entities\CurrencyController;
@@ -11,13 +13,14 @@ use App\Http\Controllers\Territories\StateController;
 use App\Http\Controllers\Documents\DocumentController;
 use App\Http\Controllers\Territories\ParishController;
 use App\Http\Controllers\Categories\CategoryController;
-use App\Http\Controllers\Communications\Mail\MailController;
-use App\Http\Controllers\Communications\Messenger\MessengerController;
-use App\Http\Controllers\Notifications\NotificationController;
-use App\Http\Controllers\Scheduling\EventController;
 use App\Http\Controllers\Territories\CountryController;
+use App\Http\Controllers\Users\Clients\ClientController;
 use App\Http\Controllers\Territories\ContinentController;
+use App\Http\Controllers\Communications\Mail\MailController;
 use App\Http\Controllers\Territories\MunicipalityController;
+use App\Http\Controllers\Notifications\NotificationController;
+use App\Http\Controllers\Communications\Messenger\MessengerController;
+use App\Http\Controllers\Users\Clients\ClientController as ClientsClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +78,11 @@ Route::prefix('documents')->group(function () {
     Route::resource('documents', DocumentController::class)
         ->parameters(['document' => 'document'])
         ->names('document');
+
+    //Invoices
+    Route::resource('invoices', InvoiceController::class)
+        ->parameters(['invoice' => 'invoice'])
+        ->names('invoice');
 });
 
 //Entities
@@ -144,6 +152,11 @@ Route::prefix('users')->group(
         Route::resource('categories', CategoryController::class)
             ->parameters(['category' => 'category'])
             ->names('category');
+
+        //Clients
+        Route::resource('clients', ClientController::class)
+            ->parameters(['client' => 'client'])
+            ->names('client');
 
         //Roles
         Route::resource('roles', RoleController::class)

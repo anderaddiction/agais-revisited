@@ -273,6 +273,7 @@ return [
     "Categories_table" => "Tabla de Categorías",
     "Messenger" => "Mensajería",
     "Communications" => "Comunicaciones",
-    "Mail" => "Correo"
+    "Mail" => "Correo",
+    "Clients" => "Clientes"
 
 ];

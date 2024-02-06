@@ -2,6 +2,8 @@
 
 namespace App\Models\Users\Roles;
 
+use App\Models\User;
+use App\Models\Users\Clients\Client;
 use App\Presenters\Users\RolePresenter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -27,6 +29,16 @@ class Role extends Model
     public function users(): HasMany
     {
         return $this->hasMany(User::class, 'role_id', 'id');
+    }
+
+    /**
+     * Get all of the clients for the Role
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function clients(): HasMany
+    {
+        return $this->hasMany(Client::class, 'role_id', 'id');
     }
 
     public function present()

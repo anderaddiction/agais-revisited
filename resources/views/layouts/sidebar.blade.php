@@ -81,6 +81,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('document.index') }}" data-key="t-documents">@lang('translation.Documents')</a></li>
+                        <li><a href="{{ route('invoice.index') }}" data-key="t-invoice-list">@lang('translation.Invoice_List')</a></li>
                     </ul>
                 </li>
 
@@ -130,6 +131,7 @@
                         <span class="menu-item" data-key="t-dashboards">@lang('translation.Users')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('client.index') }}" data-key="t-clients">@lang('translation.Clients')</a></li>
                         <li><a href="{{ route('role.index') }}" data-key="t-roles">@lang('translation.Roles')</a></li>
                     </ul>
                 </li>
