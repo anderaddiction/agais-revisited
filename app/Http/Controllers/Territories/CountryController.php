@@ -10,6 +10,7 @@ use App\Models\Territories\Continent;
 use Yajra\DataTables\Facades\DataTables;
 use App\DataTables\Territories\CountryDataTable;
 use App\Http\Requests\Territories\CountryRequest;
+use App\Models\Users\Clients\Client;
 
 class CountryController extends Controller
 {
@@ -124,9 +125,12 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Country $country)
+    public function destroy($country)
     {
-        $country->delete();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $country);
+        Country::destroy($ids);
+        return [
+            'success' => 'Data deleted successfuly'
+        ];
     }
 }

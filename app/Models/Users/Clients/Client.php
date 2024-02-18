@@ -105,7 +105,7 @@ class Client extends Model
      */
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class, 'categoryid');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function present()

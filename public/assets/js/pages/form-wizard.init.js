@@ -20,7 +20,9 @@ function showTab(n) {
         document.getElementById("prevBtn").style.display = "inline";
     }
     if (n == (x.length - 1)) {
-        document.getElementById("nextBtn").innerHTML = "Submit";
+        //document.getElementById("nextBtn").innerHTML = "Submit";
+        document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("submitBtn").style.display = "inline";
     } else {
         document.getElementById("nextBtn").innerHTML = "Next";
     }

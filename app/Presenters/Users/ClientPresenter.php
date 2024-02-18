@@ -106,7 +106,7 @@ class ClientPresenter
 
     public function role()
     {
-        return $this->client->roles->display_name;
+        return $this->client->roles->pluck('display_name')->implode(' ');
     }
 
     public function socialMedia()
@@ -127,15 +127,15 @@ class ClientPresenter
     public function status()
     {
         if ($this->client->status == 1) {
-            return '<i class="fas fa-check-circle text-success fa-lg"></i>';
+            return '<span class="badge bg-success font-size-12">Activo</span>';
         } else {
-            return '<i class="far fa-times-circle text-danger fa-lg"></i>';
+            return '<span class="badge bg-danger font-size-12">Inactivo</span>';
         }
     }
 
     public function document()
     {
-        return $this->client->document->acronym;
+        return $this->client->document->acronym . ' ' . $this->client->id_number;
     }
 
     public function note()
@@ -150,25 +150,32 @@ class ClientPresenter
 
     public function actionButton()
     {
-        return '<div class="d-flex flex-wrap gap-2 btn-group-sm" style="display: flex; justify-content: center;" >
-                    <a href="' . route('client.show', $this->client) . '" class="btn btn-primary">
-                        <i class="mdi mdi-eye font-size-16 align-middle"></i>
-                    </a>
-                    <a href="' . route('client.edit', $this->client) . '" class="btn btn-success">
-                        <i class="bx bx-edit font-size-16 align-middle"></i>
-                    </a>
-                    <a href="' . route('client.destroy', $this->client) . '" class="btn btn-danger btn-delete">
-                        <i class="bx bx-trash font-size-16 align-middle"></i>
-                    </a>
-                </div>';
+        return '
+            <div class="dropdown align-self-start">
+                <a class="dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="bx bx-dots-vertical-rounded"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="' . route('client.show', $this->client) . '">Ver</a>
+                    <a class="dropdown-item" href="' . route('client.edit', $this->client) . '">Editar</a>
+                </div>
+            </div>
+        ';
     }
 
     public function showActionButton()
     {
-        return '<div class="d-flex flex-wrap gap-2 btn-group-sm" style="display: flex; justify-content: center;" >
-                    <a href="' . route('client.edit', $this->client) . '" class="btn btn-success">
-                        <i class="bx bx-edit font-size-16 align-middle"></i>
-                    </a>
-                </div>';
+        return '<div class="dropdown align-self-start">
+                <a class="dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="bx bx-dots-vertical-rounded"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="' . route('client.edit', $this->client) . '">Editar</a>
+                </div>
+            </div>';
     }
 }

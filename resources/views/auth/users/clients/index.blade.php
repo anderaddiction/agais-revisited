@@ -30,16 +30,12 @@
                     <table class="table mb-0 data-table" style="width:100%" id="dataTable">
                         <thead class="text-center">
                             <tr>
+                                <th style="font-size: 12px;font-weight: bold"></th>
                                 <th>{{ __('Name') }}</th>
                                 <th>{{ __('Document') }}</th>
                                 <th>{{ __('Code') }}</th>
                                 <th>{{ __('Phone') }}</th>
                                 <th>{{ __('Email') }}</th>
-                                <th>{{ __('Country') }}</th>
-                                <th>{{ __('State') }}</th>
-                                <th>{{ __('Address') }}</th>
-                                <th>{{ __('Role') }}</th>
-                                <th>{{ __('Category') }}</th>
                                 <th>{{ __('Satus') }}</th>
                                 <th>{{ __('Created At') }}</th>
                                 <th>{{ __('Action') }}</th>
@@ -56,9 +52,11 @@
     </div>
     <!-- end col -->
 </div>
+@include('auth.users.clients.partials.modal')
 <!-- end row -->
 @endsection
 @section('script')
+
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 {{-- {{ $dataTable->scripts() }} --}}
 <script type="text/javascript">
@@ -69,50 +67,30 @@
             responsive: true,
             ajax: "{{ route('client.index') }}",
             dom: 'Bfrtip',
-            columns: [{
+            columns: [
+                {   data:'id',
+                    'className':'text-left style_td item-checkbox'
+                },
+                {
                     data: 'full_name',
                     name: 'full_name',
                     'class': 'col-2'
                 },
                 {
-                    data:'document_id',
-                    name:'document_id'
+                    data:'document',
+                    name:'document'
                 },
                 {
                     data: 'code',
                     name: 'code'
                 },
                 {
-                    data: 'phone',
-                    name: 'phone'
+                    data: 'phone_one',
+                    name: 'phone_one'
                 },
                 {
                     data: 'email',
                     name: 'email'
-                },
-                {
-                    data: 'flag',
-                    name: 'flag'
-                },
-                {
-                    data: 'state',
-                    name: 'state'
-                },
-                {
-                    data: 'address',
-                    name: 'address'
-                },
-                {
-                    data: 'address',
-                    name: 'address'
-                },
-                {
-                    data: 'role',
-                    name: 'role'
-                },
-                {
-                    data: 'category',
-                    name: 'category'
                 },
                 {
                     data: 'status',
@@ -131,13 +109,90 @@
                     'class': 'col-3'
                 },
             ],
+            columnDefs:[{
+                targets:0,
+                checkboxes:{
+                    seletRow:true
+                }
+            }],
             lengthChange: false,
-            buttons: [{
+            orderable: true,
+            buttons: [
+                {
                     text: '<i class="fas fa-plus" title="Agregar"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('country.create') }}";
+                        window.location = "{{ route('client.create') }}";
                     },
                     className: 'btn-info',
+                },
+                {
+                    text: '<i class="fas fa-trash" title="Delete"></i>',
+                    action: function (e, dt, node, config) {
+                        e.preventDefault();
+                        var token = $('meta[name="csrf-token"]').attr('content');
+                        var rows = $('.data-table').DataTable().column(0).checkboxes.selected();
+                        var data = [];
+                        if (rows.length == 0)
+                        {
+                            Swal.fire({
+                            type: 'warning',
+                            icon: 'warning',
+                            title: 'Advertencia',
+                            text: 'Debe seleccionar al menos un elemento',
+                            footer: ''
+                            });
+
+                            return;
+                        }
+
+                        $.each(rows,function(index,rowId) {
+                            data.push(rowId);
+                        });
+
+                        var url = "{{ route('client.destroy', ":data") }}";
+                        url = url.replace(':data', data);
+
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'No, cancel!',
+                            confirmButtonClass: 'btn btn-success mt-2',
+                            cancelButtonClass: 'btn btn-danger ms-2 mt-2',
+                            buttonsStyling: false
+                        }).then(function (result) {
+                            if (result.value) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: url,
+                                    headers: {'X-CSRF-Token': token},
+                                    data: { data:data, _method: 'DELETE'},
+                                    success: function (response) {
+                                        $('.data-table').DataTable().ajax.reload();
+                                        Swal.fire({
+                                        title: 'Deleted!',
+                                        text: response.success,
+                                        icon: 'success',
+                                        confirmButtonColor: '#038edc',
+                                        })
+                                    }
+                                });
+                            } else if (
+                            // Read more about handling dismissals
+                            result.dismiss === Swal.DismissReason.cancel
+                            ) {
+                                Swal.fire({
+                                    title: 'Cancelled',
+                                    text: 'Your imaginary file is safe :)',
+                                    icon: 'error',
+                                    confirmButtonColor: '#038edc',
+                                })
+                            }
+                        });
+                    },
+                    className: 'btn-danger btn-massive-delete',
                 },
                 {
                     extend: 'copyHtml5',
@@ -162,7 +217,7 @@
                 {
                     text: '<i class="fas fa-undo-alt" title="Recargar"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('country.index') }}";
+                        window.location = "{{ route('client.index') }}";
                     },
                     className: 'btn-primary',
                 },
@@ -173,9 +228,41 @@
                 decimal: ',',
                 thousands: '.'
             },
+            "destroy": true,
+            "bAutoWidth": false,
+            "deferRender": true,
+            "iDisplayLength": 25,
+            "bProcessing": true,
             initComplete: function() {
                 $('.buttons-colvis').html('<i class="fas fa-eye" title="Visibilidad" /></div>')
             }
+        });
+    });
+    $(".btn-info").click(function (e) {
+        e.preventDefault();
+
+        $('#addInvoiceModal').modal('show');
+    });
+
+    //Massive Destroying
+    $(".btn-massive-delete").click(function (e) {
+        e.preventDefault();
+        var rows = $('#tbl-trabajadores-asignados').DataTable().column(0).checkboxes.selected();
+        var data = [];
+        if (rows.length == 0)
+        {
+            Swal.fire({
+                type: 'warning',
+                title: 'Advertencia',
+                text: 'Debe seleccionar al menos un elemento',
+                footer: ''
+            });
+
+            return;
+        }
+
+        $.each(rows,function(index,rowId) {
+            data.push(rowId);
         });
     });
 </script>

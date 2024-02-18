@@ -11,7 +11,7 @@ class ClientRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,29 @@ class ClientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'              => 'required',
+            'second_name'       => 'nullable',
+            'last_name'         => 'required',
+            'second_last_name'  => 'nullable',
+            'document_id'       => 'required',
+            'id_number'         => 'required',
+            'phone_one'         => 'required',
+            'phone_alt'         => 'nullable',
+            'email'             => 'required',
+            'email_alt'         => 'nullable',
+            'avatar'            => 'nullable',
+            'country_id'        => 'required',
+            'state_id'          => 'required',
+            'municipality_id'   => 'required',
+            'parish_id'         => 'required',
+            'city_id'           => 'required',
+            'address'           => 'required',
+            'role_id'           => 'required',
+            'category_id'       => 'required',
+            'social_media'      => 'nullable',
+            'note'              => 'nullable',
+            'status'            => 'required',
+            'password'          => 'required',
         ];
     }
 }
