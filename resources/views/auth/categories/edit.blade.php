@@ -15,11 +15,6 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="mt-4 mt-xl-0">
-                            @if (session()->has('success'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('success') }}
-                            </div>
-                            @endif
                             <a href="{{ route('category.index') }}">
                                 <h5 class="font-size-14 mb-4">
                                 <i class="mdi mdi-arrow-right text-primary me-1"></i>

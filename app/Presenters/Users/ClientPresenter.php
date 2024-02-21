@@ -40,7 +40,7 @@ class ClientPresenter
 
     public function fullName()
     {
-        $full_name = $this->client->name . ' ' . $this->client->second_name . ' ' . $this->client->last_name . ' ' . $this->client->second_last_namename;
+        $full_name = $this->client->name . ' ' . $this->client->second_name . ' ' . $this->client->last_name . ' ' . $this->client->second_last_name;
         return $full_name;
     }
 

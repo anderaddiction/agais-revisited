@@ -10,7 +10,7 @@
     <div class="col-md-6">
         <div class="mb-3">
             <label class="form-label" for="status">{{ __('Status') }}</label>
-            <select class="form-select required" name="status">
+            <select class="form-control required" data-trigger name="status" placeholder="This is a search placeholder">
                 <option value=" ">{{ __('Select an option') }}</option>
                 <option value="1" {{ old('status', $category->status) == '1' ? 'selected' : '' }}>@lang('Active')
                 </option>

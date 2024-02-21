@@ -74,7 +74,12 @@ class MunicipalityController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->back()->with('success', __('Data created successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -109,7 +114,12 @@ class MunicipalityController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->route('municipality.edit', $municipality)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**

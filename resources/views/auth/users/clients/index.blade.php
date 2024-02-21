@@ -41,6 +41,8 @@
                                 <th>{{ __('Phone') }}</th>
                                 <th>{{ __('Email') }}</th>
                                 <th>{{ __('Satus') }}</th>
+                                <th>{{ __('Role') }}</th>
+                                <th>{{ __('Category') }}</th>
                                 <th>{{ __('Created At') }}</th>
                                 <th>{{ __('Action') }}</th>
                             </tr>
@@ -63,11 +65,6 @@
 <!-- end row -->
 @endsection
 @section('script')
-<script src="{{ URL::asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
-<script src="{{ URL::asset('assets/js/pages/form-wizard.init.js') }}"></script>
-<script src="{{ URL::asset('assets/libs/choices.js/choices.js.min.js') }}"></script>
-<script src="{{ URL::asset('assets/libs/@simonwep/@simonwep.min.js') }}"></script>
-<script src="{{ URL::asset('assets/js/pages/form-advanced.init.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 {{-- {{ $dataTable->scripts() }} --}}
 <script type="text/javascript">
@@ -80,12 +77,11 @@
             dom: 'Bfrtip',
             columns: [
                 {   data:'id',
-                    'className':'text-left style_td item-checkbox'
+                    'className':'text-center style_td item-checkbox'
                 },
                 {
                     data: 'full_name',
                     name: 'full_name',
-                    'class': 'col-2'
                 },
                 {
                     data:'document',
@@ -108,24 +104,33 @@
                     name: 'status'
                 },
                 {
+                    data: 'role',
+                    name: 'role'
+                },
+                {
+                    data: 'category',
+                    name: 'category'
+                },
+                {
                     data: 'created_at',
                     name: 'created_at',
-                    'class': 'col-2'
                 },
                 {
                     data: 'action',
                     name: 'action',
                     orderable: true,
                     searchable: true,
-                    'class': 'col-3'
                 },
             ],
-            columnDefs:[{
-                targets:0,
-                checkboxes:{
-                    seletRow:true
+            "autoWidth": false,
+            columnDefs:[
+                {
+                    targets:0,
+                    checkboxes:{
+                        seletRow:true
+                    }
                 }
-            }],
+            ],
             lengthChange: false,
             orderable: true,
             buttons: [

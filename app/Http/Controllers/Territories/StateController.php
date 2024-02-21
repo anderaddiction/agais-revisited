@@ -75,7 +75,12 @@ class StateController extends Controller
                 + ['iso' => upperCase($request->iso)]
         );
 
-        return redirect()->back()->with('success', __('Data created successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -111,7 +116,12 @@ class StateController extends Controller
                 + ['iso' => upperCase($request->iso)]
         );
 
-        return redirect()->route('state.edit', $state)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**

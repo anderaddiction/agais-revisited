@@ -132,7 +132,12 @@ class ClientController extends Controller
         );
 
         $client->roles()->attach($request->role_id);
-        return redirect()->back()->with('success', __('Data created successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -146,17 +151,50 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Client $client)
     {
-        //
+        $categories      = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+        $categories      = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+        $countries       = Country::orderBy('name', 'ASC')->pluck('name', 'id');
+        $states          = State::orderBy('name', 'ASC')->pluck('name', 'id');
+        $municipalities  = Municipality::orderBy('name', 'ASC')->pluck('name', 'id');
+        $parishes        = Parish::orderBy('name', 'ASC')->pluck('name', 'id');
+        $cities          = City::orderBy('name', 'ASC')->pluck('name', 'id');
+        $roles           = Role::orderBy('display_name', 'ASC')->pluck('display_name', 'id');
+        $documents       = Document::orderBy('acronym', 'ASC')->pluck('acronym', 'id');
+        return view('auth.users.clients.edit', [
+            'client'         => $client,
+            'roles'          => $roles,
+            'categories'     => $categories,
+            'countries'      => $countries,
+            'states'         => $states,
+            'municipalities' => $municipalities,
+            'parishes'       => $parishes,
+            'parishes'       => $parishes,
+            'cities'         => $cities,
+            'categories'     => $categories,
+            'documents'      => $documents
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ClientRequest $request, Client $client)
     {
-        //
+        $client->update(
+            $request->except('role_id')
+                + ['slug' => generateUrl($request->name)]
+        );
+
+        $client->roles()->sync($request->role_id);
+
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**

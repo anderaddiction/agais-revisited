@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Users;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ClientRequest extends FormRequest
 {
@@ -27,10 +28,19 @@ class ClientRequest extends FormRequest
             'last_name'         => 'required',
             'second_last_name'  => 'nullable',
             'document_id'       => 'required',
-            'id_number'         => 'required',
+            'id_number'         => [
+                'required',
+                Rule::unique('clients')->ignore($this->route('client'))
+
+            ],
             'phone_one'         => 'required',
             'phone_alt'         => 'nullable',
-            'email'             => 'required',
+            'email'             =>
+            [
+                'required',
+                Rule::unique('clients')->ignore($this->route('client'))
+
+            ],
             'email_alt'         => 'nullable',
             'avatar'            => 'nullable',
             'country_id'        => 'required',

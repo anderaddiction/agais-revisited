@@ -105,7 +105,12 @@ class CategoryController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->route('category.edit', $category)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**

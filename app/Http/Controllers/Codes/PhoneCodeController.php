@@ -76,7 +76,12 @@ class PhoneCodeController extends Controller
 
         $phone->countries()->attach($request->country_id);
 
-        return redirect()->back()->with('success', __('Data created successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -113,7 +118,12 @@ class PhoneCodeController extends Controller
 
         $phone_code->countries()->sync($request->country_id);
 
-        return redirect()->route('phone.edit', $phone_code)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**

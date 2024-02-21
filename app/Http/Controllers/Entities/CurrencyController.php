@@ -77,7 +77,12 @@ class CurrencyController extends Controller
 
         $currency->countries()->attach($request->country_id);
 
-        return redirect()->back()->with('success', __('Data created successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
