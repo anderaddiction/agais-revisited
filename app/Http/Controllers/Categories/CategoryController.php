@@ -67,7 +67,12 @@ class CategoryController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->back()->with('success', __('Data stored successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -111,7 +116,7 @@ class CategoryController extends Controller
         $ids = explode(",", $category);
         Category::destroy($ids);
         return [
-            'success' => 'Data deleted successfuly'
+            'success' => __('Data deleted successfuly')
         ];
     }
 }

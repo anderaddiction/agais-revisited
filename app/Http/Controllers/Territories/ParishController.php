@@ -124,7 +124,7 @@ class ParishController extends Controller
         $ids = explode(",", $parish);
         Parish::destroy($ids);
         return [
-            'success' => 'Data deleted successfuly'
+            'success' => __('Data deleted successfuly')
         ];
     }
 }

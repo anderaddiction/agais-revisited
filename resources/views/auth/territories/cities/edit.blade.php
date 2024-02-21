@@ -26,7 +26,7 @@
                                 @lang('Back to Cities List')
                             </h5>
                             </a>
-                            <form action="{{ route('city.update', $city) }}" method="POST" rol="form" id="edit-form">
+                            <form action="{{ route('city.update', $city) }}" method="POST" rol="form" id="form">
                                 @method('PUT')
                                 @include('auth.territories.cities._form')
                                 <div class="mt-4">

@@ -26,7 +26,7 @@
                                 @lang('Back to Currencies List')
                             </h5>
                             </a>
-                            <form action="{{ route('currency.update', $currency) }}" method="POST" rol="form" id="edit-form">
+                            <form action="{{ route('currency.update', $currency) }}" method="POST" rol="form" id="form">
                                 @method('PUT')
                                 @include('auth.entities.currencies._form')
                                 <div class="mt-4">

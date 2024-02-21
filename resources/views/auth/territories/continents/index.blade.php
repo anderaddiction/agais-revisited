@@ -108,7 +108,7 @@
                             data.push(rowId);
                         });
 
-                        var url = "{{ route('continents.destroy', ":data") }}";
+                        var url = "{{ route('continent.destroy', ":data") }}";
                         url = url.replace(':data', data);
 
                         Swal.fire({

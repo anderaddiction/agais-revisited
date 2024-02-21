@@ -26,7 +26,7 @@
                                 @lang('Back to Categories List')
                             </h5>
                             </a>
-                            <form action="{{ route('category.update', $category) }}" method="POST" rol="form" id="edit-form">
+                            <form action="{{ route('category.update', $category) }}" method="POST" rol="form" id="form">
                                 @method('PUT')
                                 @include('auth.categories._form')
                                 <div class="mt-4">

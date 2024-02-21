@@ -131,7 +131,7 @@ class CountryController extends Controller
 
         return response()->json(
             [
-                'success' => 'Data updated successfuly'
+                'success' => __('Data updated successfuly')
             ],
             200
         );
@@ -147,7 +147,7 @@ class CountryController extends Controller
         $ids = explode(",", $country);
         Country::destroy($ids);
         return [
-            'success' => 'Data deleted successfuly'
+            'success' => __('Data deleted successfuly')
         ];
     }
 }

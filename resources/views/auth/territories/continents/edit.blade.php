@@ -26,7 +26,7 @@
                                 @lang('Back to Continents List')
                             </h5>
                             </a>
-                            <form action="{{ route('continent.update', $continent) }}" method="POST" rol="form" id="edit-form">
+                            <form action="{{ route('continent.update', $continent) }}" method="POST" rol="form" id="form">
                                 @method('PUT')
                                 @include('auth.territories.continents._form')
                                 <div class="mt-4">

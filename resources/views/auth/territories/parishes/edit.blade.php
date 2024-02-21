@@ -26,7 +26,7 @@
                                 @lang('Back to Parishes List')
                             </h5>
                             </a>
-                            <form action="{{ route('parish.update', $parish) }}" method="POST" rol="form" id="edit-form">
+                            <form action="{{ route('parish.update', $parish) }}" method="POST" rol="form" id="form">
                                 @method('PUT')
                                 @include('auth.territories.parishes._form')
                                 <div class="mt-4">

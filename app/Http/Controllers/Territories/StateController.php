@@ -122,7 +122,7 @@ class StateController extends Controller
         $ids = explode(",", $state);
         State::destroy($ids);
         return [
-            'success' => 'Data deleted successfuly'
+            'success' => __('Data deleted successfuly')
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Documents;
 
 use Illuminate\Http\Request;
 use App\Models\Documents\Document;
+use Illuminate\Support\Facades\DB;
 use App\Models\Territories\Country;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
@@ -122,8 +123,9 @@ class DocumentController extends Controller
     {
         $ids = explode(",", $document);
         Document::destroy($ids);
+        DB::table('assigned_documents')->whereIn('document_id', $ids)->delete();
         return [
-            'success' => 'Data deleted successfuly'
+            'success' => __('Data deleted successfuly')
         ];
     }
 }

@@ -26,7 +26,7 @@
                                 @lang('Back to Banks List')
                             </h5>
                             </a>
-                            <form action="{{ route('bank.update', $bank) }}" method="POST" rol="form" id="edit-form">
+                            <form action="{{ route('bank.update', $bank) }}" method="POST" rol="form" id="form">
                                 @method('PUT')
                                 @include('auth.entities.banks._form')
                                 <div class="mt-4">

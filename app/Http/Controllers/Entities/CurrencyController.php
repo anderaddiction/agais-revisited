@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Entities;
 
 use Illuminate\Http\Request;
 use App\Models\Entities\Currency;
+use Illuminate\Support\Facades\DB;
 use App\Models\Territories\Country;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
@@ -121,8 +122,9 @@ class CurrencyController extends Controller
      */
     public function destroy(Currency $currency)
     {
-        $currency->delete();
-        $currency->countries()->detach();
+        $ids = explode(",", $currency);
+        Currency::destroy($ids);
+        DB::table('assigned_currencies')->whereIn('currency_id', $ids)->delete();
         return redirect()->back()->with('success', __('Data deleted successfuly'));
     }
 }

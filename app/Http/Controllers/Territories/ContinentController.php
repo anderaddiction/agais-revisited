@@ -65,7 +65,12 @@ class ContinentController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->back()->with('success', __('Data stored successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -98,7 +103,12 @@ class ContinentController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->route('continent.edit', $continent)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -109,7 +119,7 @@ class ContinentController extends Controller
         $ids = explode(",", $continent);
         Continent::destroy($ids);
         return [
-            'success' => 'Data deleted successfuly'
+            'success' => __('Data deleted successfuly')
         ];
     }
 }

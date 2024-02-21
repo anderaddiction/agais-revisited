@@ -121,7 +121,7 @@ class CityController extends Controller
         $ids = explode(",", $city);
         City::destroy($ids);
         return [
-            'success' => 'Data deleted successfuly'
+            'success' => __('Data deleted successfuly')
         ];
     }
 }

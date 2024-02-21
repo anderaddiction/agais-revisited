@@ -26,7 +26,7 @@
                                 @lang('Back to Telephone List')
                             </h5>
                             </a>
-                            <form action="{{ route('phone.update', $phone_code) }}" method="POST" rol="form" id="edit-form">
+                            <form action="{{ route('phone.update', $phone_code) }}" method="POST" rol="form" id="form">
                                 @method('PUT')
                                 @include('auth.codes.telephones._form')
                                 <div class="mt-4">

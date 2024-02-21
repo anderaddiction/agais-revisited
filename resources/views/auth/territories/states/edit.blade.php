@@ -26,7 +26,7 @@
                                 @lang('Back to States List')
                             </h5>
                             </a>
-                            <form action="{{ route('state.update', $state) }}" method="POST" rol="form" id="edit-form">
+                            <form action="{{ route('state.update', $state) }}" method="POST" rol="form" id="form">
                                 @method('PUT')
                                 @include('auth.territories.states._form')
                                 <div class="mt-4">

@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Codes;
 
 use Illuminate\Http\Request;
 use App\Models\Codes\PhoneCode;
+use Illuminate\Support\Facades\DB;
 use App\Models\Territories\Country;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Codes\PhoneCodeRequest;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\Codes\PhoneCodeRequest;
 
 class PhoneCodeController extends Controller
 {
@@ -118,10 +119,11 @@ class PhoneCodeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PhoneCode $phone_code)
+    public function destroy($phone_code)
     {
-        $phone_code->delete();
-        $phone_code->countries()->detach();
+        $ids = explode(",", $phone_code);
+        PhoneCode::destroy($ids);
+        DB::table('assigned_phones')->whereIn('phone_code_id', $ids)->delete();
         return redirect()->back()->with('success', __('Data deleted successfuly'));
     }
 }

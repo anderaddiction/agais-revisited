@@ -9,6 +9,7 @@ use App\Models\Users\Roles\Role;
 use App\Models\Territories\State;
 use App\Models\Documents\Document;
 use App\Models\Territories\Parish;
+use Illuminate\Support\Facades\DB;
 use App\Models\Categories\Category;
 use App\Models\Territories\Country;
 use App\Http\Controllers\Controller;
@@ -165,8 +166,9 @@ class ClientController extends Controller
     {
         $ids = explode(",", $client);
         Client::destroy($ids);
+        DB::table('assigned_clients')->whereIn('client_id', $ids)->delete();
         return [
-            'success' => 'Data deleted successfuly'
+            'success' => __('Data deleted successfuly')
         ];
     }
 }

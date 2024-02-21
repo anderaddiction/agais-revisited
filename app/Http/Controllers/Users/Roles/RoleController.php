@@ -111,7 +111,7 @@ class RoleController extends Controller
         $ids = explode(",", $role);
         Role::destroy($ids);
         return [
-            'success' => 'Data deleted successfuly'
+            'success' => __('Data deleted successfuly')
         ];
     }
 }
