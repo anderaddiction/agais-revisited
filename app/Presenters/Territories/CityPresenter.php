@@ -56,25 +56,32 @@ class CityPresenter
 
     public function actionButton()
     {
-        return '<div class="d-flex flex-wrap gap-2 btn-group-sm" style="display: flex; justify-content: center;" >
-                    <a href="' . route('city.show', $this->city) . '" class="btn btn-primary">
-                        <i class="mdi mdi-eye font-size-16 align-middle"></i>
-                    </a>
-                    <a href="' . route('city.edit', $this->city) . '" class="btn btn-success">
-                        <i class="bx bx-edit font-size-16 align-middle"></i>
-                    </a>
-                    <a href="' . route('city.destroy', $this->city) . '" class="btn btn-danger btn-delete">
-                        <i class="bx bx-trash font-size-16 align-middle"></i>
-                    </a>
-                </div>';
+        return '
+            <div class="dropdown align-self-start">
+                <a class="dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="bx bx-dots-vertical-rounded"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="' . route('city.show', $this->city) . '">Ver</a>
+                    <a class="dropdown-item" href="' . route('city.edit', $this->city) . '">Editar</a>
+                </div>
+            </div>
+        ';
     }
 
     public function showActionButton()
     {
-        return '<div class="d-flex flex-wrap gap-2 btn-group-sm" style="display: flex; justify-content: center;" >
-                    <a href="' . route('city.edit', $this->city) . '" class="btn btn-success">
-                        <i class="bx bx-edit font-size-16 align-middle"></i>
-                    </a>
-                </div>';
+        return '<div class="dropdown align-self-start">
+                <a class="dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="bx bx-dots-vertical-rounded"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="' . route('city.edit', $this->city) . '">Editar</a>
+                </div>
+            </div>';
     }
 }
