@@ -117,9 +117,12 @@ class StateController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(State $state)
+    public function destroy($state)
     {
-        $state->delete();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $state);
+        State::destroy($ids);
+        return [
+            'success' => 'Data deleted successfuly'
+        ];
     }
 }

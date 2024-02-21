@@ -269,7 +269,8 @@
                                     </div>
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
+                        </div>
+                        <!-- /.modal -->
 
                         <!--  Small modal example -->
                         <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"

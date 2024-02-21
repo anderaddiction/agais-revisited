@@ -28,7 +28,10 @@
                             </a>
                             <form action="{{ route('role.update', $role) }}" method="POST" rol="form" id="edit-form">
                                 @method('PUT')
-                                @include('auth.roles._form', ['btnText' => __('Send')])
+                                @include('auth.roles._form')
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary w-md btn-update">{{ __('Update') }}</button>
+                                </div>
                             </form>
                         </div>
                     </div>

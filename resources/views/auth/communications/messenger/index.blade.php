@@ -757,10 +757,10 @@
                         @csrf
                         <div class="row">
                             <div class="col">
-                                <input type="hidden" class="form-control" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                                <input type="hidden" class="form-control required" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
                             </div>
                             <div class="col">
-                                <input type="hidden" class="form-control" name="recipient_id" id="recipient_id" value="">
+                                <input type="hidden" class="form-control required" name="recipient_id" id="recipient_id" value="">
                             </div>
                         </div>
 

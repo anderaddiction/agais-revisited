@@ -26,8 +26,11 @@
                                 @lang('Back to Roles List')
                             </h5>
                             </a>
-                            <form action="{{ route('role.store') }}" method="POST" rol="form" id="create-form">
-                                @include('auth.roles._form', ['btnText' => __('Send')])
+                            <form action="{{ route('role.store') }}" method="POST" rol="form" id="form">
+                                @include('auth.roles._form')
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary w-md btn-save">{{ __('Send') }}</button>
+                                </div>
                             </form>
                         </div>
                     </div>

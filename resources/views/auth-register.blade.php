@@ -30,7 +30,7 @@
                                                         </div>
                                                         <form class="mt-4 pt-2" action="index">
                                                             <div class="form-floating form-floating-custom mb-4">
-                                                                <input type="email" class="form-control" id="input-email"
+                                                                <input type="email" class="form-control required" id="input-email"
                                                                     placeholder="Enter Email" required>
                                                                 <div class="invalid-feedback">
                                                                     Please Enter Email
@@ -42,7 +42,7 @@
                                                             </div>
 
                                                             <div class="form-floating form-floating-custom mb-4">
-                                                                <input type="text" class="form-control"
+                                                                <input type="text" class="form-control required"
                                                                     id="input-username" placeholder="Enter User Name"
                                                                     required>
                                                                 <div class="invalid-feedback">
@@ -55,7 +55,7 @@
                                                             </div>
 
                                                             <div class="form-floating form-floating-custom mb-4">
-                                                                <input type="password" class="form-control"
+                                                                <input type="password" class="form-control required"
                                                                     id="input-password" placeholder="Enter Password"
                                                                     required>
                                                                 <div class="invalid-feedback">

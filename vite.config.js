@@ -8,6 +8,7 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/js/app.js',
                 'resources/js/agais.js',
+                'resources/js/forms.js',
                 'resources/js/yajra.js',
             ],
             refresh: true,

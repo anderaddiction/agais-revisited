@@ -28,7 +28,10 @@
                             </a>
                             <form action="{{ route('continent.update', $continent) }}" method="POST" rol="form" id="edit-form">
                                 @method('PUT')
-                                @include('auth.territories.continents._form', ['btnText' => __('Send')])
+                                @include('auth.territories.continents._form')
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary w-md btn-update">{{ __('Update') }}</button>
+                                </div>
                             </form>
                         </div>
                     </div>

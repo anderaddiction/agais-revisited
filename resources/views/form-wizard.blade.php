@@ -57,7 +57,7 @@
                                         <div class="mb-3">
                                             <label for="basicpill-firstname-input" class="form-label">First
                                                 Name</label>
-                                            <input type="text" class="form-control" placeholder="Enter First Name"
+                                            <input type="text" class="form-control required" placeholder="Enter First Name"
                                                 id="basicpill-firstname-input">
                                         </div>
                                     </div><!-- end col -->
@@ -65,7 +65,7 @@
                                         <div class="mb-3">
                                             <label for="basicpill-lastname-input" class="form-label">Last
                                                 Name</label>
-                                            <input type="text" class="form-control" placeholder="Enter Last Name"
+                                            <input type="text" class="form-control required" placeholder="Enter Last Name"
                                                 id="basicpill-lastname-input">
                                         </div>
                                     </div><!-- end col -->
@@ -75,14 +75,14 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-phoneno-input" class="form-label">Phone</label>
-                                            <input type="text" class="form-control" placeholder="Enter Phone"
+                                            <input type="text" class="form-control required" placeholder="Enter Phone"
                                                 id="basicpill-phoneno-input">
                                         </div>
                                     </div><!-- end col -->
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="basicpill-email-input" class="form-label">Email</label>
-                                            <input type="email" class="form-control" placeholder="Enter Email"
+                                            <input type="email" class="form-control required" placeholder="Enter Email"
                                                 id="basicpill-email-input">
                                         </div>
                                     </div><!-- end col -->
@@ -91,7 +91,7 @@
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="basicpill-address-input" class="form-label">Address</label>
-                                            <textarea id="basicpill-address-input" class="form-control"
+                                            <textarea id="basicpill-address-input" class="form-control required"
                                                 placeholder="Enter Address" rows="2"></textarea>
                                         </div>
                                     </div><!-- end col -->
@@ -113,7 +113,7 @@
                                             <div class="mb-3">
                                                 <label for="basicpill-pancard-input" class="form-label">PAN
                                                     Card</label>
-                                                <input type="text" class="form-control" placeholder="Enter Pan Card"
+                                                <input type="text" class="form-control required" placeholder="Enter Pan Card"
                                                     id="basicpill-pancard-input">
                                             </div>
                                         </div><!-- end col -->
@@ -122,7 +122,7 @@
                                             <div class="mb-3">
                                                 <label for="basicpill-vatno-input" class="form-label">VAT/TIN
                                                     No.</label>
-                                                <input type="text" class="form-control" placeholder="Enter VAT/TIN No."
+                                                <input type="text" class="form-control required" placeholder="Enter VAT/TIN No."
                                                     id="basicpill-vatno-input">
                                             </div>
                                         </div><!-- end col -->
@@ -132,7 +132,7 @@
                                             <div class="mb-3">
                                                 <label for="basicpill-cstno-input" class="form-label">CST
                                                     No.</label>
-                                                <input type="text" class="form-control" placeholder="Enter CST No."
+                                                <input type="text" class="form-control required" placeholder="Enter CST No."
                                                     id="basicpill-cstno-input">
                                             </div>
                                         </div><!-- end col -->
@@ -141,7 +141,7 @@
                                             <div class="mb-3">
                                                 <label for="basicpill-servicetax-input" class="form-label">Service Tax
                                                     No.</label>
-                                                <input type="text" class="form-control"
+                                                <input type="text" class="form-control required"
                                                     placeholder="Enter Service Tax No." id="basicpill-servicetax-input">
                                             </div>
                                         </div><!-- end col -->
@@ -151,7 +151,7 @@
                                             <div class="mb-3">
                                                 <label for="basicpill-companyuin-input" class="form-label">Company
                                                     UIN</label>
-                                                <input type="text" class="form-control" placeholder="Enter Company UIN"
+                                                <input type="text" class="form-control required" placeholder="Enter Company UIN"
                                                     id="basicpill-companyuin-input">
                                             </div>
                                         </div><!-- end col -->
@@ -160,7 +160,7 @@
                                             <div class="mb-3">
                                                 <label for="basicpill-declaration-input"
                                                     class="form-label">Declaration</label>
-                                                <input type="text" class="form-control" placeholder="Enter Declaration"
+                                                <input type="text" class="form-control required" placeholder="Enter Declaration"
                                                     id="basicpill-declaration-input">
                                             </div>
                                         </div><!-- end col -->
@@ -182,14 +182,14 @@
                                             <div class="mb-3">
                                                 <label for="basicpill-namecard-input" class="form-label">Name On
                                                     Card</label>
-                                                <input type="text" class="form-control" placeholder="Enter Name On Card"
+                                                <input type="text" class="form-control required" placeholder="Enter Name On Card"
                                                     id="basicpill-namecard-input">
                                             </div>
                                         </div><!-- end col -->
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Credit Card Type</label>
-                                                <select class="form-select">
+                                                <select class="form-select required">
                                                     <option selected>Select Card Type</option>
                                                     <option value="AE">American Express</option>
                                                     <option value="VI">Visa</option>
@@ -204,7 +204,7 @@
                                             <div class="mb-3">
                                                 <label for="basicpill-cardno-input" class="form-label">Credit Card
                                                     Number</label>
-                                                <input type="text" class="form-control"
+                                                <input type="text" class="form-control required"
                                                     placeholder="Enter Credit Card Number" id="basicpill-cardno-input">
                                             </div>
                                         </div><!-- end col -->
@@ -213,7 +213,7 @@
                                             <div class="mb-3">
                                                 <label for="basicpill-card-verification-input" class="form-label">Card
                                                     Verification Number</label>
-                                                <input type="text" class="form-control"
+                                                <input type="text" class="form-control required"
                                                     placeholder="Enter Card Verification Number"
                                                     id="basicpill-card-verification-input">
                                             </div>
@@ -223,7 +223,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label for="datepicker-basic" class="form-label">Expiration Date</label>
-                                                <input type="text" class="form-control"
+                                                <input type="text" class="form-control required"
                                                     placeholder="Enter Expiration Date" id="datepicker-basic">
                                             </div>
                                         </div>

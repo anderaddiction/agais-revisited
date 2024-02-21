@@ -116,9 +116,12 @@ class CityController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(City $city)
+    public function destroy($city)
     {
-        $city->delete();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $city);
+        City::destroy($ids);
+        return [
+            'success' => 'Data deleted successfuly'
+        ];
     }
 }

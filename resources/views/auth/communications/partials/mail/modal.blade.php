@@ -10,23 +10,23 @@
                 <form action="{{ route('mail.store') }}" method="POST" id="mail-form" rol="form" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <select class="form-control" name="recipient_id[]" id="recipient_id" placeholder="{{ __('To') }}" data-trigger multiple>
+                        <select class="form-control required" name="recipient_id[]" id="recipient_id" placeholder="{{ __('To') }}" data-trigger multiple>
                             <option value="">{{ ('To') }}</option>
                             @foreach ($users as $contact)
                             <option value="{{ $contact->id }}">{{ $contact->name }}</option>
                             @endforeach
                         </select>
-                        <div class="pristine-error text-danger"></div>
+                        <div class="pristine-error text-danger" id="Error"></div>
                     </div>
 
                     <div class="mb-3">
-                        <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject">
-                        <div class="pristine-error text-danger"></div>
+                        <input type="text" id="subject" name="subject" class="form-control required" placeholder="Subject">
+                        <div class="pristine-error text-danger" id="Error"></div>
                     </div>
                     <div class="mb-3">
                         {{-- <div id="email-editor"></div> --}}
-                        <textarea class="form-control" name="body" id="body" cols="30" rows="10" placeholder="{{ __('Body') }}"></textarea>
-                        <div class="pristine-error text-danger"></div>
+                        <textarea class="form-control required" name="body" id="body" cols="30" rows="10" placeholder="{{ __('Body') }}"></textarea>
+                        <div class="pristine-error text-danger" id="Error"></div>
                     </div>
 
                 </form>

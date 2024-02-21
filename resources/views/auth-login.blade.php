@@ -30,7 +30,7 @@
                                                         </div>
                                                         <form class="mt-4 pt-2" action="index">
                                                             <div class="form-floating form-floating-custom mb-4">
-                                                                <input type="text" class="form-control"
+                                                                <input type="text" class="form-control required"
                                                                     id="input-username" placeholder="Enter User Name">
                                                                 <label for="input-username">Username</label>
                                                                 <div class="form-floating-icon">

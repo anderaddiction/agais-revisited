@@ -28,7 +28,10 @@
                             </a>
                             <form action="{{ route('bank.update', $bank) }}" method="POST" rol="form" id="edit-form">
                                 @method('PUT')
-                                @include('auth.entities.banks._form', ['btnText' => __('Send')])
+                                @include('auth.entities.banks._form')
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary w-md btn-update">{{ __('Update') }}</button>
+                                </div>
                             </form>
                         </div>
                     </div>

@@ -29,6 +29,8 @@ class CountryController extends Controller
      */
     public function index(Request $request)
     {
+        $country    = new Country();
+        $continents  = Continent::orderBy('name', 'ASC')->pluck('name', 'id');
         if ($request->ajax()) {
             $country = Country::orderBy('countries.name', 'ASC')
                 ->with('continent')
@@ -51,7 +53,10 @@ class CountryController extends Controller
                 ->make(true);
         }
 
-        return view('auth.territories.countries.index');
+        return view('auth.territories.countries.index', [
+            'country'   => $country,
+            'continents' => $continents
+        ]);
     }
 
     /**
@@ -81,7 +86,12 @@ class CountryController extends Controller
                 + ['iso3' => upperCase($request->iso3)]
         );
 
-        return redirect()->back()->with('success', __('Data created successfuly'));
+        return response()->json(
+            [
+                'success' => 'Data created successfuly'
+            ],
+            200
+        );
     }
 
     /**
@@ -119,7 +129,14 @@ class CountryController extends Controller
                 + ['iso3' => upperCase($request->iso3)]
         );
 
-        return redirect()->route('country.edit', $country)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => 'Data updated successfuly'
+            ],
+            200
+        );
+
+        //return redirect()->route('country.edit', $country)->with('success', __('Data updated successfuly'));
     }
 
     /**

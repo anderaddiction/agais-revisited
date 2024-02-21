@@ -26,8 +26,11 @@
                                 @lang('Back to Countries List')
                             </h5>
                             </a>
-                            <form action="{{ route('country.store') }}" method="POST" rol="form" id="create-form">
-                                @include('auth.territories.countries._form', ['btnText' => __('Send')])
+                            <form action="{{ route('country.store') }}" method="POST" rol="form" id="form">
+                                @include('auth.territories.countries._form')
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary w-md btn-save">{{ __('Send') }}</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -43,4 +46,5 @@
 @endsection
 @section('script')
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+
 @endsection

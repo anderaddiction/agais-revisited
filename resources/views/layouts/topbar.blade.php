@@ -48,7 +48,7 @@
                     <form class="p-3">
                         <div class="form-group m-0">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search ..."
+                                <input type="text" class="form-control required" placeholder="Search ..."
                                     aria-label="Search Result">
 
                                 <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
@@ -179,7 +179,7 @@
 
 
             <div class="dropdown d-inline-block">
-                <input type="hidden" class="form-control" id="unread-notifications" name="unread-notifications" value="{{ Auth::user()->unreadNotifications->count() }}">
+                <input type="hidden" class="form-control required" id="unread-notifications" name="unread-notifications" value="{{ Auth::user()->unreadNotifications->count() }}">
                 <button type="button" class="btn header-item noti-icon" id="page-header-notifications-dropdown-v"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="icon-sm" data-eva="bell-outline"></i>

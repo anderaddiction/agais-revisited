@@ -69,7 +69,7 @@
                                     <div class="col-12">
                                         <div class="mb-3">
                                             <label class="form-label">Event Name</label>
-                                            <input class="form-control" placeholder="Insert Event Name" type="text"
+                                            <input class="form-control required" placeholder="Insert Event Name" type="text"
                                                 name="title" id="event-title" required value="" />
                                             <div class="invalid-feedback">Please provide a valid event name</div>
                                         </div>

@@ -23,7 +23,7 @@
                         <div class="pb-3 pb-xl-0">
                             <form class="email-search">
                                 <div class="position-relative">
-                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <input type="text" class="form-control required" placeholder="Search...">
                                     <span class="bx bx-search font-size-18"></span>
                                 </div>
                             </form>

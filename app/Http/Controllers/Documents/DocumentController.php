@@ -118,10 +118,12 @@ class DocumentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Document $document)
+    public function destroy($document)
     {
-        $document->delete();
-        $document->countries()->detach();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $document);
+        Document::destroy($ids);
+        return [
+            'success' => 'Data deleted successfuly'
+        ];
     }
 }

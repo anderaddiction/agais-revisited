@@ -30,6 +30,7 @@
                     <table class="table mb-0 data-table" style="width:100%" id="dataTable">
                         <thead class="text-center">
                             <tr>
+                                <th style="font-size: 12px;font-weight: bold"></th>
                                 <th>{{ __('Phone Code') }}</th>
                                 <th>{{ __('Code') }}</th>
                                 <th>{{ __('Country') }}</th>
@@ -64,6 +65,7 @@
             ajax: "{{ route('phone.index') }}",
             dom: 'Bfrtip',
             columns: [
+                {data: 'id', name: 'id','class': 'col-2'},
                 {data: 'phone_code', name: 'phone_code'},
                 {data: 'code', name: 'code'},
                 {data: 'country', name: 'country','class': 'col-2'},
@@ -71,6 +73,14 @@
                 {data: 'note', name: 'note'},
                 {data: 'created_at', name: 'created_at','class': 'col-2'},
                 {data: 'action', name: 'action', orderable: true, searchable: true, 'class': 'col-3'},
+            ],
+            columnDefs:[
+                {
+                    targets:0,
+                    checkboxes:{
+                        seletRow:true
+                    }
+                }
             ],
             lengthChange: false,
             buttons: [
@@ -80,6 +90,74 @@
                         window.location = "{{ route('phone.create') }}";
                     },
                     className: 'btn-info',
+                },
+                {
+                    text: '<i class="fas fa-trash" title="Delete"></i>',
+                    action: function (e, dt, node, config) {
+                        e.preventDefault();
+                        var token = $('meta[name="csrf-token"]').attr('content');
+                        var rows = $('.data-table').DataTable().column(0).checkboxes.selected();
+                        var data = [];
+                        if (rows.length == 0)
+                        {
+                            Swal.fire({
+                                type: 'warning',
+                                title: 'Advertencia',
+                                text: 'Debe seleccionar al menos un elemento',
+                                footer: ''
+                            });
+
+                            return;
+                        }
+
+                        $.each(rows,function(index,rowId) {
+                            data.push(rowId);
+                        });
+
+                        var url = "{{ route('phone.destroy', ":data") }}";
+                        url = url.replace(':data', data);
+
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'No, cancel!',
+                            confirmButtonClass: 'btn btn-success mt-2',
+                            cancelButtonClass: 'btn btn-danger ms-2 mt-2',
+                            buttonsStyling: false
+                        }).then(function (result) {
+                            if (result.value) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: url,
+                                    headers: {'X-CSRF-Token': token},
+                                    data: { data:data, _method: 'DELETE'},
+                                    success: function (response) {
+                                        $('.data-table').DataTable().ajax.reload();
+                                        Swal.fire({
+                                            title: 'Deleted!',
+                                            text: response.success,
+                                            icon: 'success',
+                                            confirmButtonColor: '#038edc',
+                                        })
+                                    }
+                                });
+                            } else if (
+                                // Read more about handling dismissals
+                                result.dismiss === Swal.DismissReason.cancel
+                            ) {
+                                Swal.fire({
+                                    title: 'Cancelled',
+                                    text: 'Your imaginary file is safe :)',
+                                    icon: 'error',
+                                    confirmButtonColor: '#038edc',
+                                })
+                            }
+                        });
+                    },
+                    className: 'btn-danger btn-massive-delete',
                 },
                 {
                     extend: 'copyHtml5',

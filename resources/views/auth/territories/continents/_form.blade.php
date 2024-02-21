@@ -3,8 +3,8 @@
     <div class="col-md-12">
         <div class="mb-3">
             <label class="form-label" for="name">{{ __('name') }}</label>
-            <input type="text" class="form-control" placeholder="{{ __('Enter name') }}" name="name" id="name" value="{{ old('name', $continent->name) }}">
-            <div class="pristine-error text-danger">{{ $errors->first('name') }}</div>
+            <input type="text" class="form-control required" placeholder="{{ __('Enter name') }}" name="name" id="name" value="{{ old('name', $continent->name) }}">
+            <div class="pristine-error text-danger" id="nameError">{{ $errors->first('name') }}</div>
         </div>
     </div>
 </div>
@@ -17,6 +17,4 @@
     </div>
 </div>
 
-<div class="mt-4">
-    <button type="submit" class="btn btn-primary w-md">{{ $btnText }}</button>
-</div>
+

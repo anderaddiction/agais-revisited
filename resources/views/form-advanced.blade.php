@@ -110,7 +110,7 @@
                                 <div class="mb-3">
                                     <label for="choices-single-default"
                                         class="form-label font-size-13 text-muted">Default</label>
-                                    <select class="form-control" data-trigger name="choices-single-default"
+                                    <select class="form-control required" data-trigger name="choices-single-default"
                                         id="choices-single-default" placeholder="This is a search placeholder">
                                         <option value="">This is a placeholder</option>
                                         <option value="Choice 1">Choice 1</option>
@@ -124,7 +124,7 @@
                                 <div class="mb-3">
                                     <label for="choices-single-groups" class="form-label font-size-13 text-muted">Option
                                         groups</label>
-                                    <select class="form-control" data-trigger name="choices-single-groups"
+                                    <select class="form-control required" data-trigger name="choices-single-groups"
                                         id="choices-single-groups">
                                         <option value="">Choose a city</option>
                                         <optgroup label="UK">
@@ -166,7 +166,7 @@
                                     <label for="choices-single-no-search" class="form-label font-size-13 text-muted">Options
                                         added
                                         via config with no search</label>
-                                    <select class="form-control" name="choices-single-no-search"
+                                    <select class="form-control required" name="choices-single-no-search"
                                         id="choices-single-no-search">
                                         <option value="0">Zero</option>
                                     </select>
@@ -178,7 +178,7 @@
                                     <label for="choices-single-no-sorting"
                                         class="form-label font-size-13 text-muted">Options added
                                         via config with no search</label>
-                                    <select class="form-control" name="choices-single-no-sorting"
+                                    <select class="form-control required" name="choices-single-no-sorting"
                                         id="choices-single-no-sorting">
                                         <option value="Madrid">Madrid</option>
                                         <option value="Toronto">Toronto</option>
@@ -215,7 +215,7 @@
                                 <div class="mb-3">
                                     <label for="choices-multiple-default"
                                         class="form-label font-size-13 text-muted">Default</label>
-                                    <select class="form-control" data-trigger name="choices-multiple-default"
+                                    <select class="form-control required" data-trigger name="choices-multiple-default"
                                         id="choices-multiple-default" placeholder="This is a placeholder" multiple>
                                         <option value="Choice 1" selected>Choice 1</option>
                                         <option value="Choice 2">Choice 2</option>
@@ -230,7 +230,7 @@
                                     <label for="choices-multiple-remove-button"
                                         class="form-label font-size-13 text-muted">With
                                         remove button</label>
-                                    <select class="form-control" name="choices-multiple-remove-button"
+                                    <select class="form-control required" name="choices-multiple-remove-button"
                                         id="choices-multiple-remove-button" placeholder="This is a placeholder" multiple>
                                         <option value="Choice 1" selected>Choice 1</option>
                                         <option value="Choice 2">Choice 2</option>
@@ -244,7 +244,7 @@
                                 <div class="mb-3">
                                     <label for="choices-multiple-groups" class="form-label font-size-13 text-muted">Option
                                         groups</label>
-                                    <select class="form-control" name="choices-multiple-groups"
+                                    <select class="form-control required" name="choices-multiple-groups"
                                         id="choices-multiple-groups" placeholder="This is a placeholder" multiple>
                                         <option value="">Choose a city</option>
                                         <optgroup label="UK">
@@ -295,7 +295,7 @@
                                     <label for="choices-text-remove-button"
                                         class="form-label font-size-13 text-muted">Limited to 5
                                         values with remove button</label>
-                                    <input class="form-control" id="choices-text-remove-button" type="text"
+                                    <input class="form-control required" id="choices-text-remove-button" type="text"
                                         value="Task-1,Task-2" placeholder="Enter something" />
                                 </div>
                             </div>
@@ -316,7 +316,7 @@
 
                         <div>
                             <label for="choices-text-disabled" class="form-label font-size-13 text-muted">Disabled</label>
-                            <input class="form-control" id="choices-text-disabled" type="text"
+                            <input class="form-control required" id="choices-text-disabled" type="text"
                                 value="josh@joshuajohnson.co.uk, joe@bloggs.co.uk" placeholder="This is a placeholder" />
                         </div>
                     </div>
@@ -385,12 +385,12 @@
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label class="form-label">Basic</label>
-                                    <input type="text" class="form-control" id="datepicker-basic">
+                                    <input type="text" class="form-control required" id="datepicker-basic">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">DateTime</label>
-                                    <input type="text" class="form-control" id="datepicker-datetime">
+                                    <input type="text" class="form-control required" id="datepicker-datetime">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Human-friendly Dates</label>
@@ -399,22 +399,22 @@
 
                                 <div class="mb-3">
                                     <label class="form-label">MinDate and MaxDate</label>
-                                    <input type="text" class="form-control" id="datepicker-minmax">
+                                    <input type="text" class="form-control required" id="datepicker-minmax">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Disabling dates</label>
-                                    <input type="text" class="form-control" id="datepicker-disable">
+                                    <input type="text" class="form-control required" id="datepicker-disable">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Selecting multiple dates</label>
-                                    <input type="text" class="form-control" id="datepicker-multiple">
+                                    <input type="text" class="form-control required" id="datepicker-multiple">
                                 </div>
 
                                 <div>
                                     <label class="form-label">Range</label>
-                                    <input type="text" class="form-control" id="datepicker-range">
+                                    <input type="text" class="form-control required" id="datepicker-range">
                                 </div>
                             </div>
 
@@ -422,12 +422,12 @@
                                 <div class="mt-3 mt-lg-0">
                                     <div class="mb-3">
                                         <label class="form-label">Timepicker</label>
-                                        <input type="text" class="form-control" id="datepicker-timepicker">
+                                        <input type="text" class="form-control required" id="datepicker-timepicker">
                                     </div>
 
                                     <div>
                                         <label class="form-label">Inline Date Picker Demo</label>
-                                        <input type="text" class="form-control" id="datepicker-inline">
+                                        <input type="text" class="form-control required" id="datepicker-inline">
                                     </div>
                                 </div>
                             </div>

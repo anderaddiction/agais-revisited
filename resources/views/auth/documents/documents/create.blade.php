@@ -26,8 +26,11 @@
                                 @lang('Back to Documents List')
                             </h5>
                             </a>
-                            <form action="{{ route('document.store') }}" method="POST" rol="form" id="create-form">
-                                @include('auth.documents.documents._form', ['btnText' => __('Send')])
+                            <form action="{{ route('document.store') }}" method="POST" rol="form" id="form">
+                                @include('auth.documents.documents._form')
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary w-md btn-save">{{ __('Send') }}</button>
+                                </div>
                             </form>
                         </div>
                     </div>

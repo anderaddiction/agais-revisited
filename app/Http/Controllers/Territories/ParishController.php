@@ -119,9 +119,12 @@ class ParishController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Parish $parish)
+    public function destroy($parish)
     {
-        $parish->delete();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $parish);
+        Parish::destroy($ids);
+        return [
+            'success' => 'Data deleted successfuly'
+        ];
     }
 }

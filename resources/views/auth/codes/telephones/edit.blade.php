@@ -28,7 +28,10 @@
                             </a>
                             <form action="{{ route('phone.update', $phone_code) }}" method="POST" rol="form" id="edit-form">
                                 @method('PUT')
-                                @include('auth.codes.telephones._form', ['btnText' => __('Send')])
+                                @include('auth.codes.telephones._form')
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary w-md btn-update">{{ __('Update') }}</button>
+                                </div>
                             </form>
                         </div>
                     </div>

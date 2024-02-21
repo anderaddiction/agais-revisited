@@ -26,8 +26,11 @@
                                 @lang('Back to Currencies List')
                             </h5>
                             </a>
-                            <form action="{{ route('currency.store') }}" method="POST" rol="form" id="create-form">
-                                @include('auth.entities.currencies._form', ['btnText' => __('Send')])
+                            <form action="{{ route('currency.store') }}" method="POST" rol="form" id="form">
+                                @include('auth.entities.currencies._form')
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary w-md btn-save">{{ __('Send') }}</button>
+                                </div>
                             </form>
                         </div>
                     </div>

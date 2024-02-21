@@ -1,6 +1,10 @@
 @extends('layouts.master')
 @section('title') @lang('translation.Clients') @endsection
 @section('css')
+<link href="{{ URL::asset('assets/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet">
+<link href="{{ URL::asset('assets/libs/choices.js/choices.js.min.css') }}" rel="stylesheet">
+<link href="{{ URL::asset('assets/libs/@simonwep/@simonwep.min.css') }}" rel="stylesheet">
+<link href="{{ URL::asset('assets/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet">
 <style>
     .dataTables_info {
         margin-top: 1%;
@@ -52,11 +56,18 @@
     </div>
     <!-- end col -->
 </div>
+{{-- <form action="{{ route('client.store') }}" method="post" enctype='multipart/form-data' rol="form" id="clinet-register">
+    @csrf
 @include('auth.users.clients.partials.modal')
+</form> --}}
 <!-- end row -->
 @endsection
 @section('script')
-
+<script src="{{ URL::asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/pages/form-wizard.init.js') }}"></script>
+<script src="{{ URL::asset('assets/libs/choices.js/choices.js.min.js') }}"></script>
+<script src="{{ URL::asset('assets/libs/@simonwep/@simonwep.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/pages/form-advanced.init.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 {{-- {{ $dataTable->scripts() }} --}}
 <script type="text/javascript">
@@ -123,7 +134,10 @@
                     action: function(e, dt, node, config) {
                         window.location = "{{ route('client.create') }}";
                     },
-                    className: 'btn-info',
+                    // action: function(e, dt, node, config) {
+                    //     $("#addInvoiceModal").modal('show');
+                    // },
+                    className: 'btn-info btn-add',
                 },
                 {
                     text: '<i class="fas fa-trash" title="Delete"></i>',
@@ -238,10 +252,16 @@
             }
         });
     });
-    $(".btn-info").click(function (e) {
+    //Submit
+    $("#submitBtn").click(function (e) {
         e.preventDefault();
-
-        $('#addInvoiceModal').modal('show');
+        var validationErrors = $('#errors').val();
+        console.log(validationErrors);
+        // if (validationErrors > 0) {
+        //     $("#addInvoiceModal").modal('show');
+        // }else{
+        //     console.log('mandamos data');
+        // }
     });
 
     //Massive Destroying

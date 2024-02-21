@@ -22,48 +22,48 @@
                     <div class="mb-3 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">Text</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                            <input class="form-control required" type="text" value="Artisanal kale" id="example-text-input">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="example-search-input" class="col-md-2 col-form-label">Search</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="search" value="How do I shoot web"
+                            <input class="form-control required" type="search" value="How do I shoot web"
                                 id="example-search-input">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="example-email-input" class="col-md-2 col-form-label">Email</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="email" value="bootstrap@example.com"
+                            <input class="form-control required" type="email" value="bootstrap@example.com"
                                 placeholder="Enter Email" id="example-email-input">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="example-url-input" class="col-md-2 col-form-label">URL</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="url" value="https://getbootstrap.com"
+                            <input class="form-control required" type="url" value="https://getbootstrap.com"
                                 placeholder="Enter URL" id="example-url-input">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="example-tel-input" class="col-md-2 col-form-label">Telephone</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="tel" value="1-(555)-555-5555" placeholder="Enter Telephone"
+                            <input class="form-control required" type="tel" value="1-(555)-555-5555" placeholder="Enter Telephone"
                                 id="example-tel-input">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="example-password-input" class="col-md-2 col-form-label">Password</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="password" value="hunter2" placeholder="Enter Password"
+                            <input class="form-control required" type="password" value="hunter2" placeholder="Enter Password"
                                 id="example-password-input">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="example-number-input" class="col-md-2 col-form-label">Number</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="number" value="42" placeholder="Enter Number"
+                            <input class="form-control required" type="number" value="42" placeholder="Enter Number"
                                 id="example-number-input">
                         </div>
                     </div>
@@ -71,32 +71,32 @@
                         <label for="example-datetime-local-input" class="col-md-2 col-form-label">Date and
                             Time</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="datetime-local" value="2019-08-19T13:45:00"
+                            <input class="form-control required" type="datetime-local" value="2019-08-19T13:45:00"
                                 id="example-datetime-local-input">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="example-date-input" class="col-md-2 col-form-label">Date</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="date" value="2019-08-19" id="example-date-input">
+                            <input class="form-control required" type="date" value="2019-08-19" id="example-date-input">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="example-month-input" class="col-md-2 col-form-label">Month</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="month" value="2019-08" id="example-month-input">
+                            <input class="form-control required" type="month" value="2019-08" id="example-month-input">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="example-week-input" class="col-md-2 col-form-label">Week</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="week" value="2019-W33" id="example-week-input">
+                            <input class="form-control required" type="week" value="2019-W33" id="example-week-input">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="example-time-input" class="col-md-2 col-form-label">Time</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="time" value="13:45:00" id="example-time-input">
+                            <input class="form-control required" type="time" value="13:45:00" id="example-time-input">
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -109,7 +109,7 @@
                     <div class="mb-3 row">
                         <label class="col-md-2 col-form-label">Select</label>
                         <div class="col-md-10">
-                            <select class="form-select">
+                            <select class="form-select required">
                                 <option>Select</option>
                                 <option>Large select</option>
                                 <option>Small select</option>
@@ -120,7 +120,7 @@
                     <div class="row">
                         <label for="exampleDataList" class="col-md-2 col-form-label">Datalist</label>
                         <div class="col-md-10">
-                            <input class="form-control" list="datalistOptions" id="exampleDataList"
+                            <input class="form-control required" list="datalistOptions" id="exampleDataList"
                                 placeholder="Type to search...">
                             <datalist id="datalistOptions">
                                 <option value="San Francisco">
@@ -153,7 +153,7 @@
                                 <form>
                                     <div class="mb-3">
                                         <label class="form-label" for="formrow-firstname-input">First Name</label>
-                                        <input type="text" class="form-control" placeholder="Enter First Name"
+                                        <input type="text" class="form-control required" placeholder="Enter First Name"
                                             id="formrow-firstname-input">
                                     </div>
 
@@ -161,14 +161,14 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="formrow-email-input">Email</label>
-                                                <input type="email" class="form-control" placeholder="Enter Email"
+                                                <input type="email" class="form-control required" placeholder="Enter Email"
                                                     id="formrow-email-input">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="formrow-password-input">Password</label>
-                                                <input type="password" class="form-control" placeholder="Enter password"
+                                                <input type="password" class="form-control required" placeholder="Enter password"
                                                     id="formrow-password-input">
                                             </div>
                                         </div>
@@ -195,14 +195,14 @@
                                         <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">First
                                             name</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" placeholder="Enter First Name"
+                                            <input type="text" class="form-control required" placeholder="Enter First Name"
                                                 id="horizontal-firstname-input">
                                         </div>
                                     </div>
                                     <div class="row mb-4">
                                         <label for="horizontal-email-input" class="col-sm-3 col-form-label">Email</label>
                                         <div class="col-sm-9">
-                                            <input type="email" class="form-control" placeholder="Enter Email"
+                                            <input type="email" class="form-control required" placeholder="Enter Email"
                                                 id="horizontal-email-input">
                                         </div>
                                     </div>
@@ -210,7 +210,7 @@
                                         <label for="horizontal-password-input"
                                             class="col-sm-3 col-form-label">Password</label>
                                         <div class="col-sm-9">
-                                            <input type="password" class="form-control" placeholder="Enter Password"
+                                            <input type="password" class="form-control required" placeholder="Enter Password"
                                                 id="horizontal-password-input">
                                         </div>
                                     </div>
@@ -241,14 +241,14 @@
                         <form class="row row-cols-lg-auto gx-3 gy-2 align-items-center">
                             <div class="col-12">
                                 <label class="visually-hidden" for="specificSizeInputName">Name</label>
-                                <input type="text" class="form-control" id="specificSizeInputName"
+                                <input type="text" class="form-control required" id="specificSizeInputName"
                                     placeholder="Enter Name">
                             </div>
                             <div class="col-12">
                                 <label class="visually-hidden" for="specificSizeInputGroupUsername">Username</label>
                                 <div class="input-group">
                                     <div class="input-group-text">@</div>
-                                    <input type="text" class="form-control" id="specificSizeInputGroupUsername"
+                                    <input type="text" class="form-control required" id="specificSizeInputGroupUsername"
                                         placeholder="Username">
                                 </div>
                             </div>
@@ -300,7 +300,7 @@
                             <div class="col-lg-6">
                                 <div>
                                     <label class="form-label">Default input</label>
-                                    <input class="form-control" type="text" placeholder="Default input">
+                                    <input class="form-control required" type="text" placeholder="Default input">
                                 </div>
                             </div>
                         </div>
@@ -571,7 +571,7 @@
 
                                 <div class="mt-3">
                                     <label for="formFile" class="form-label">Default file input example</label>
-                                    <input class="form-control" type="file" id="formFile">
+                                    <input class="form-control required" type="file" id="formFile">
                                 </div>
                             </div>
                         </div>
@@ -613,10 +613,10 @@
                                     <label class="form-label">With Label</label>
                                     <div class="input-group mb-3">
                                         <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                                        <input type="file" class="form-control" id="inputGroupFile01">
+                                        <input type="file" class="form-control required" id="inputGroupFile01">
                                     </div>
                                     <div class="input-group">
-                                        <input type="file" class="form-control" id="inputGroupFile02">
+                                        <input type="file" class="form-control required" id="inputGroupFile02">
                                         <label class="input-group-text" for="inputGroupFile02">Upload</label>
                                     </div>
                                 </div>
@@ -632,12 +632,12 @@
                                     <div class="input-group mb-3">
                                         <button class="btn btn-primary" type="button"
                                             id="inputGroupFileAddon03">Button</button>
-                                        <input type="file" class="form-control" id="inputGroupFile03"
+                                        <input type="file" class="form-control required" id="inputGroupFile03"
                                             aria-describedby="inputGroupFileAddon03" aria-label="Upload">
                                     </div>
 
                                     <div class="input-group">
-                                        <input type="file" class="form-control" id="inputGroupFile04"
+                                        <input type="file" class="form-control required" id="inputGroupFile04"
                                             aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                                         <button class="btn btn-primary" type="button"
                                             id="inputGroupFileAddon04">Button</button>

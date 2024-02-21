@@ -26,8 +26,11 @@
                                 @lang('Back to Municipalities List')
                             </h5>
                             </a>
-                            <form action="{{ route('municipality.store') }}" method="POST" rol="form" id="create-form">
-                                @include('auth.territories.municipalities._form', ['btnText' => __('Send')])
+                            <form action="{{ route('municipality.store') }}" method="POST" rol="form" id="form">
+                                @include('auth.territories.municipalities._form')
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary w-md btn-save">{{ __('Send') }}</button>
+                                </div>
                             </form>
                         </div>
                     </div>

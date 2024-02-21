@@ -104,9 +104,12 @@ class ContinentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Continent $continent)
+    public function destroy($continent)
     {
-        $continent->delete();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $continent);
+        Continent::destroy($ids);
+        return [
+            'success' => 'Data deleted successfuly'
+        ];
     }
 }

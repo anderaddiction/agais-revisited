@@ -23,7 +23,7 @@
                                 <div class="col-sm-auto">
                                     <div class="d-flex gap-1">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="datepicker-range">
+                                            <input type="text" class="form-control required" id="datepicker-range">
                                             <span class="input-group-text"><i class="bx bx-calendar-event"></i></span>
                                         </div>
                                         <div class="dropdown">
@@ -117,7 +117,7 @@
                                             <div class="mb-3">
                                                 <label for="customerinfo-name-input" class="form-label">Customer Name
                                                     :</label>
-                                                <input type="text" class="form-control" placeholder="Enter Name"
+                                                <input type="text" class="form-control required" placeholder="Enter Name"
                                                     id="customerinfo-name-input">
                                             </div>
 
@@ -125,7 +125,7 @@
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label for="customerinfo-email-input" class="form-label">Email :</label>
-                                                <input type="email" class="form-control" placeholder="Enter Email"
+                                                <input type="email" class="form-control required" placeholder="Enter Email"
                                                     id="customerinfo-email-input">
                                             </div>
                                         </div>
@@ -133,7 +133,7 @@
 
                                             <div class="mb-3">
                                                 <label for="customerinfo-phone-input" class="form-label">Phone :</label>
-                                                <input type="text" class="form-control" placeholder="Enter Phone"
+                                                <input type="text" class="form-control required" placeholder="Enter Phone"
                                                     id="customerinfo-phone-input">
                                             </div>
                                         </div>
@@ -141,7 +141,7 @@
 
                                     <div class="mb-3">
                                         <label for="customerinfo-address-input" class="form-label">Address :</label>
-                                        <textarea class="form-control" placeholder="Enter Address"
+                                        <textarea class="form-control required" placeholder="Enter Address"
                                             id="customerinfo-address-input" rows="2"></textarea>
                                     </div>
                                 </div>
@@ -160,25 +160,25 @@
 
                                             <div class="mb-3">
                                                 <label for="invoicenumberinput" class="form-label">Invoice #</label>
-                                                <input type="text" class="form-control" placeholder="Enter Invoice"
+                                                <input type="text" class="form-control required" placeholder="Enter Invoice"
                                                     id="invoicenumberinput">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Invoice Date</label>
-                                                <input type="text" class="form-control" placeholder="Enter Date"
+                                                <input type="text" class="form-control required" placeholder="Enter Date"
                                                     id="datepicker-invoice">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="invoicedescriptioninput" class="form-label">Description
                                                     (Optional)</label>
-                                                <input type="text" class="form-control" placeholder="Enter Description"
+                                                <input type="text" class="form-control required" placeholder="Enter Description"
                                                     id="invoicedescriptioninput">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Payment method :</label>
-                                                <select class="form-select">
+                                                <select class="form-select required">
                                                     <option selected>Select Payment method</option>
                                                     <option value="CR">Credit / Debit Card</option>
                                                     <option value="PY">Paypal</option>
@@ -216,31 +216,31 @@
                                                     <th scope="row">1</th>
                                                     <td>
                                                         <div>
-                                                            <input class="form-control" placeholder="Enter Name"
+                                                            <input class="form-control required" placeholder="Enter Name"
                                                                 type="text">
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <textarea class="form-control" placeholder="Enter Description"
+                                                            <textarea class="form-control required" placeholder="Enter Description"
                                                                 rows="2"></textarea>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <input class="form-control" placeholder="Enter Price"
+                                                            <input class="form-control required" placeholder="Enter Price"
                                                                 type="text">
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <input class="form-control" placeholder="Enter Quantity"
+                                                            <input class="form-control required" placeholder="Enter Quantity"
                                                                 type="text">
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <input class="form-control" type="text" value="0.00" readonly>
+                                                            <input class="form-control required" type="text" value="0.00" readonly>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -256,31 +256,31 @@
                                                     <th scope="row">2</th>
                                                     <td>
                                                         <div>
-                                                            <input class="form-control" placeholder="Enter Name"
+                                                            <input class="form-control required" placeholder="Enter Name"
                                                                 type="text">
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <textarea class="form-control" placeholder="Enter Description"
+                                                            <textarea class="form-control required" placeholder="Enter Description"
                                                                 rows="2"></textarea>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <input class="form-control" placeholder="Enter Price"
+                                                            <input class="form-control required" placeholder="Enter Price"
                                                                 type="text">
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <input class="form-control" placeholder="Enter Quantity"
+                                                            <input class="form-control required" placeholder="Enter Quantity"
                                                                 type="text">
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <input class="form-control" type="text" value="0.00" readonly>
+                                                            <input class="form-control required" type="text" value="0.00" readonly>
                                                         </div>
                                                     </td>
                                                     <td>

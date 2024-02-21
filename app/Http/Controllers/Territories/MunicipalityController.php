@@ -115,9 +115,12 @@ class MunicipalityController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Municipality $municipality)
+    public function destroy($municipality)
     {
-        $municipality->delete();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $municipality);
+        Municipality::destroy($ids);
+        return [
+            'success' => 'Data deleted successfuly'
+        ];
     }
 }
