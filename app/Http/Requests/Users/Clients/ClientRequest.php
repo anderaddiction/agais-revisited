@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Requests\Users;
+namespace App\Http\Requests\Users\Clients;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
 class ClientRequest extends FormRequest
 {

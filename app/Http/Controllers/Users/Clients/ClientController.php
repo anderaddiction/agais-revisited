@@ -16,7 +16,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Users\Clients\Client;
 use App\Models\Territories\Municipality;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\Users\ClientRequest;
+use App\Http\Requests\Users\Clients\ClientRequest;
 
 class ClientController extends Controller
 {
