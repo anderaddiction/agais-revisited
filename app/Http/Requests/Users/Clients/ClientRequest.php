@@ -42,13 +42,16 @@ class ClientRequest extends FormRequest
 
             ],
             'email_alt'         => 'nullable',
-            'avatar'            => 'nullable',
+            'avatar'            => [
+                'nullable', 'mimes:png,jpg'
+            ],
             'country_id'        => 'required',
             'state_id'          => 'required',
             'municipality_id'   => 'required',
             'parish_id'         => 'required',
             'city_id'           => 'required',
             'address'           => 'required',
+            'gender'            => 'required',
             'role_id'           => 'required',
             'category_id'       => 'required',
             'social_media'      => 'nullable',

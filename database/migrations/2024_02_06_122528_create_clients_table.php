@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('email_alt')->unique()->nullable();
+            $table->char('gender');
             $table->string('address');
             $table->integer('country_id')->unsigned();
             $table->integer('state_id')->unsigned();
@@ -35,7 +36,7 @@ return new class extends Migration
             $table->integer('category_id')->unsigned();
             $table->integer('status')->unsigned();
             $table->string('social_media')->nullable();
-            $table->text('avatar')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('slug')->unique();
             $table->text('note')->nullable();
             $table->rememberToken();

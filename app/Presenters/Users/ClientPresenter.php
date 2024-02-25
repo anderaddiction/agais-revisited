@@ -114,9 +114,23 @@ class ClientPresenter
         return $this->client->social_media;
     }
 
+    public function gender()
+    {
+        return trim($this->client->gender) == 'F' ? '<i class="bx bx-female-sign bx-sm text-danger" title="Femenino"></i>' : '<i class="bx bx-male-sign bx-sm text-info" title="Masculino"></i>';
+    }
+
     public function avatar()
     {
-        return $this->client->avatar;
+
+        if ($this->client->avatar) {
+            return '<img src="/storage/' . $this->client->avatar . '" class="avatar-sm rounded-circle" alt=""avatar>';
+        } elseif (!$this->client->avatar) {
+            if (trim($this->client->gender) == 'F') {
+                return '<img src="/storage/images/female-avatar.jpg" class="avatar-sm rounded-circle" alt="avatar">';
+            } else {
+                return '<img src="/storage/images/male-avatar.jpg" class="avatar-sm rounded-circle" alt="avatar">';
+            }
+        }
     }
 
     public function slug()

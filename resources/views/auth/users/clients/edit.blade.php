@@ -21,6 +21,7 @@
                 <div class="card-body">
                     <form action="{{ route('client.update', $client) }}" method="post" enctype='multipart/form-data' rol="form" id="form">
                         @csrf
+                        @method('PUT')
                         @include('auth.users.clients._form')
                         <div class="d-flex align-items-start gap-3 mt-4">
                             <button type="button" class="btn btn-primary w-sm" id="prevBtn" onclick="nextPrev(-1)">Previous</button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users\Clients;
 
 use Illuminate\Support\Str;
+use function Livewire\store;
 use Illuminate\Http\Request;
 use App\Models\Territories\City;
 use App\Models\Users\Roles\Role;
@@ -14,7 +15,10 @@ use App\Models\Categories\Category;
 use App\Models\Territories\Country;
 use App\Http\Controllers\Controller;
 use App\Models\Users\Clients\Client;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Territories\Municipality;
+
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Users\Clients\ClientRequest;
 
@@ -70,6 +74,12 @@ class ClientController extends Controller
                 ->addColumn('action', function ($client) {
                     return $client->present()->actionButton();
                 })
+                ->addColumn('avatar', function ($client) {
+                    return $client->present()->avatar();
+                })
+                ->addColumn('gender', function ($client) {
+                    return $client->present()->gender();
+                })
                 ->addColumn('role', function ($client) {
                     return $client->present()->role();
                 })
@@ -82,7 +92,9 @@ class ClientController extends Controller
                     'state',
                     'flag',
                     'category',
-                    'role'
+                    'role',
+                    'avatar',
+                    'gender'
                 ])
                 ->make(true);
         }
@@ -125,13 +137,21 @@ class ClientController extends Controller
      */
     public function store(ClientRequest $request)
     {
+        if ($request->hasFile('avatar')) {
+            $request->file('avatar')->store('users/clients/avatar');
+        }
+
+        $avatar = $request->hasFile('avatar') ? $request->file('avatar')->store('users/clients/avatar') : ' ';
         $client = Client::create(
-            $request->except('role_id')
-                + ['code' => uniqueCode()]
-                + ['slug' => Str::slug($request->name . '_' . $request->second_name . '_' . $request->last_name . '_' . $request->second_last_name)]
+            $request->except('role_id', 'avatar', 'password')
+                + ['code'     => uniqueCode()]
+                + ['slug'     => Str::slug($request->name . '_' . $request->second_name . '_' . $request->last_name . '_' . $request->second_last_name)]
+                + ['avatar'   => $avatar]
+                + ['password' => Hash::make($request->password)]
         );
 
         $client->roles()->attach($request->role_id);
+
         return response()->json(
             [
                 'success' => __('Data stored successfuly')
@@ -182,9 +202,18 @@ class ClientController extends Controller
      */
     public function update(ClientRequest $request, Client $client)
     {
+        if ($request->hasFile('avatar')) {
+            if ($client->avatar) {
+                Storage::delete($client->avatar);
+            }
+
+            $request->file('avatar')->store('users/clients/avatar');
+        }
+
         $client->update(
-            $request->except('role_id')
+            $request->except('role_id', 'avatar')
                 + ['slug' => generateUrl($request->name)]
+                + ['avatar' =>  $request->hasFile('avatar') ? $request->file('avatar')->store('users/clients/avatar') : $client->avatar]
         );
 
         $client->roles()->sync($request->role_id);
