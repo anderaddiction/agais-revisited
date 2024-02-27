@@ -141,7 +141,7 @@ class ClientController extends Controller
             $request->file('avatar')->store('users/clients/avatar');
         }
 
-        $avatar = $request->hasFile('avatar') ? $request->file('avatar')->store('users/clients/avatar') : ' ';
+        $avatar = $request->hasFile('avatar') ? $request->file('avatar')->store('users/clients/avatar') : null;
         $client = Client::create(
             $request->except('role_id', 'avatar', 'password')
                 + ['code'     => uniqueCode()]

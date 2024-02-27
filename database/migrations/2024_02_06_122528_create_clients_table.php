@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('email_alt')->unique()->nullable();
-            $table->char('gender');
+            $table->char('gender', 1);
             $table->string('address');
             $table->integer('country_id')->unsigned();
             $table->integer('state_id')->unsigned();

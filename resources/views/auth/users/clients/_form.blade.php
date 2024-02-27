@@ -180,7 +180,7 @@
                 <div class="col-lg-4">
                     <div class="mb-3">
                         <label for="country_id" class="form-label">{{ __('Country') }}</label>
-                        <select class="form-control required" data-trigger name="country_id" id="country_id"
+                        <select class="form-control required" name="country_id" id="country_id"
                             placeholder="{{ __('Select an opcion') }}">
                             <option value="">{{ 'Select an option' }}</option>
                             @foreach ($countries as $id => $name)
@@ -198,14 +198,14 @@
                 <div class="col-lg-4">
                     <div class="mb-3">
                         <label for="state_id" class="form-label">{{ __('States') }}</label>
-                        <select class="form-control required" data-trigger name="state_id" id="state_id"
+                        <select class="form-control required" name="state_id" id="state_id"
                             placeholder="{{ __('Select an opcion') }}">
-                            <option value="">{{ 'Select an option' }}</option>
-                            @foreach ($states as $id => $name)
+
+                            {{-- @foreach ($states as $id => $name)
                                 <option value="{{ $id }}"
                                     {{ $id == old('state_id', $client->state_id) ? 'selected' : '' }}>
                                     {{ $name }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                         <div class="pristine-error text-danger" id="state_idError">{{ $errors->first('state_id') }}
                         </div>
@@ -215,14 +215,14 @@
                 <div class="col-lg-4">
                     <div class="mb-3">
                         <label for="municipality_id" class="form-label">{{ __('Municipalities') }}</label>
-                        <select class="form-control required" data-trigger name="municipality_id"
-                            id="municipality_id" placeholder="{{ __('Select an opcion') }}">
-                            <option value="">{{ 'Select an option' }}</option>
+                        <select class="form-control required" name="municipality_id" id="municipality_id"
+                            placeholder="{{ __('Select an opcion') }}">
+                            {{-- <option value="">{{ 'Select an option' }}</option>
                             @foreach ($municipalities as $id => $name)
                                 <option value="{{ $id }}"
                                     {{ $id == old('municipality_id', $client->municipality_id) ? 'selected' : '' }}>
                                     {{ $name }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                         <div class="pristine-error text-danger" id="municipality_idError">
                             {{ $errors->first('municipality_id') }}</div>
@@ -234,15 +234,16 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="mb-3">
+                        {{-- data-trigger --}}
                         <label for="state_id" class="form-label">{{ __('Parishes') }}</label>
-                        <select class="form-control required" data-trigger name="parish_id" id="parish_id"
+                        <select class="form-control required" name="parish_id" id="parish_id"
                             placeholder="{{ __('Select an opcion') }}">
-                            <option value="">{{ 'Select an option' }}</option>
+                            {{-- <option value="">{{ 'Select an option' }}</option>
                             @foreach ($parishes as $id => $name)
                                 <option value="{{ $id }}"
                                     {{ $id == old('parish_id', $client->parish_id) ? 'selected' : '' }}>
                                     {{ $name }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                         <div class="pristine-error text-danger" id="parish_idError">{{ $errors->first('parish_id') }}
                         </div>
@@ -252,14 +253,14 @@
                 <div class="col-lg-6">
                     <div class="mb-3">
                         <label for="state_id" class="form-label">{{ __('Cities') }}</label>
-                        <select class="form-control required" data-trigger name="city_id" id="city_id"
+                        <select class="form-control required" name="city_id" id="city_id"
                             placeholder="{{ __('Select an opcion') }}">
-                            <option value="">{{ 'Select an option' }}</option>
+                            {{-- <option value="">{{ 'Select an option' }}</option>
                             @foreach ($cities as $id => $name)
                                 <option value="{{ $id }}"
                                     {{ $id == old('city_id', $client->city_id) ? 'selected' : '' }}>
                                     {{ $name }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                         <div class="pristine-error text-danger" id="city_idError">{{ $errors->first('city_id') }}
                         </div>
