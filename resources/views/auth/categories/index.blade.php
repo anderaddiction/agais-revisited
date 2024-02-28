@@ -1,54 +1,49 @@
 @extends('layouts.master')
-@section('title') @lang('translation.Categories') @endsection
+@section('title')
+    @lang('translation.Categories')
+@endsection
 @section('css')
-<style>
-    .dataTables_info {
-        margin-top: 1%;
-        margin-bottom: 1%;
-    }
+    <style>
+        .dataTables_info {
+            margin-top: 1%;
+            margin-bottom: 1%;
+        }
 
-    #dataTable_filter {
-        float: right;
-    }
-</style>
+        #dataTable_filter {
+            float: right;
+        }
+    </style>
 @endsection
 @section('content')
-@section('pagetitle') @lang('translation.Categories') @endsection
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">@lang('translation.Categories_table')</h4>
-            </div><!-- end card header -->
-            <div class="card-body">
-                @if (session()->has('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('success') }}
-                </div>
-                @endif
-                <div class="table-responsive">
-                    <table class="table mb-0 data-table" style="width:100%" id="dataTable">
-                        <thead class="text-center">
-                            <tr>
-                                <th style="font-size: 12px;font-weight: bold"></th>
-                                <th>{{ __('Name') }}</th>
-                                <th>{{ __('Code') }}</th>
-                                <th>{{ __('Status') }}</th>
-                                <th>{{ __('Note') }}</th>
-                                <th>{{ __('Created At') }}</th>
-                                <th>{{ __('Action') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center align-middle">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- end card body -->
+@section('pagetitle')
+    @lang('translation.Categories')
+@endsection
+<div class="row align-items-center">
+    <div class="col-md-6">
+        <div class="mb-3">
+            <h4 class="card-title">@lang('translation.Category_table') </h4>
         </div>
-        <!-- end card -->
     </div>
-    <!-- end col -->
+    <div class="table-responsive">
+        <table class="table align-middle project-list-table table-nowrap table-hover data-table" style="width:100%"
+            id="dataTable">
+            <thead class="text-center">
+                <tr>
+                    <th style="font-size: 12px;font-weight: bold"></th>
+                    <th>{{ __('Name') }}</th>
+                    <th>{{ __('Code') }}</th>
+                    <th>{{ __('Status') }}</th>
+                    <th>{{ __('Note') }}</th>
+                    <th>{{ __('Created At') }}</th>
+                    <th>{{ __('Action') }}</th>
+                </tr>
+            </thead>
+            <tbody class="text-center align-middle">
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- end col -->
 </div>
 <!-- end row -->
 @endsection
@@ -56,48 +51,69 @@
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 {{-- {{ $dataTable->scripts() }} --}}
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         var table = $('.data-table').DataTable({
             processing: false,
             serverSide: true,
             responsive: true,
             ajax: "{{ route('category.index') }}",
             dom: 'Bfrtip',
-            columns: [
-                {data: 'id', name: 'id','class': 'col-2'},
-                {data: 'name', name: 'name', 'class': 'col-3'},
-                {data: 'code', name: 'code'},
-                {data: 'status', name: 'status'},
-                {data: 'note', name: 'note'},
-                {data: 'created_at', name: 'created_at', 'class': 'col-3'},
-                {data: 'action', name: 'action', orderable: true, searchable: true},
-            ],
-            columnDefs:[
+            columns: [{
+                    data: 'id',
+                    name: 'id',
+                    'class': 'col-2'
+                },
                 {
-                    targets:0,
-                    checkboxes:{
-                        seletRow:true
-                    }
+                    data: 'name',
+                    name: 'name',
+                    'class': 'col-3'
+                },
+                {
+                    data: 'code',
+                    name: 'code'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'note',
+                    name: 'note'
+                },
+                {
+                    data: 'created_at',
+                    name: 'created_at',
+                    'class': 'col-3'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: true,
+                    searchable: true
+                },
+            ],
+            columnDefs: [{
+                targets: 0,
+                checkboxes: {
+                    seletRow: true
                 }
-            ],
+            }],
             lengthChange: false,
-            buttons: [
-                {
+            buttons: [{
                     text: '<i class="fas fa-plus" title="Agregar"></i>',
-                    action: function ( e, dt, node, config ) {
+                    action: function(e, dt, node, config) {
                         window.location = "{{ route('category.create') }}";
                     },
                     className: 'btn-info',
                 },
                 {
                     text: '<i class="fas fa-trash" title="Delete"></i>',
-                    action: function (e, dt, node, config) {
+                    action: function(e, dt, node, config) {
                         e.preventDefault();
                         var token = $('meta[name="csrf-token"]').attr('content');
                         var rows = $('.data-table').DataTable().column(0).checkboxes.selected();
                         var data = [];
-                        if (rows.length == 0)
-                        {
+                        if (rows.length == 0) {
                             Swal.fire({
                                 type: 'warning',
                                 title: 'Advertencia',
@@ -108,11 +124,11 @@
                             return;
                         }
 
-                        $.each(rows,function(index,rowId) {
+                        $.each(rows, function(index, rowId) {
                             data.push(rowId);
                         });
 
-                        var url = "{{ route('category.destroy', ":data") }}";
+                        var url = "{{ route('category.destroy', ':data') }}";
                         url = url.replace(':data', data);
 
                         Swal.fire({
@@ -125,15 +141,21 @@
                             confirmButtonClass: 'btn btn-success mt-2',
                             cancelButtonClass: 'btn btn-danger ms-2 mt-2',
                             buttonsStyling: false
-                        }).then(function (result) {
+                        }).then(function(result) {
                             if (result.value) {
                                 $.ajax({
                                     type: "POST",
                                     url: url,
-                                    headers: {'X-CSRF-Token': token},
-                                    data: { data:data, _method: 'DELETE'},
-                                    success: function (response) {
-                                        $('.data-table').DataTable().ajax.reload();
+                                    headers: {
+                                        'X-CSRF-Token': token
+                                    },
+                                    data: {
+                                        data: data,
+                                        _method: 'DELETE'
+                                    },
+                                    success: function(response) {
+                                        $('.data-table').DataTable().ajax
+                                            .reload();
                                         Swal.fire({
                                             title: 'Deleted!',
                                             text: response.success,
@@ -179,7 +201,7 @@
                 },
                 {
                     text: '<i class="fas fa-undo-alt" title="Recargar"></i>',
-                    action: function ( e, dt, node, config ) {
+                    action: function(e, dt, node, config) {
                         window.location = "{{ route('category.index') }}";
                     },
                     className: 'btn-primary',
@@ -187,7 +209,7 @@
                 'colvis'
             ],
             language: {
-                url:'https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
+                url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
                 decimal: ',',
                 thousands: '.'
             },
