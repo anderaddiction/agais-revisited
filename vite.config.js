@@ -10,6 +10,7 @@ export default defineConfig({
                 "resources/js/agais.js",
                 "resources/js/forms.js",
                 "resources/js/dropdowns.js",
+                "resources/js/choices.js",
                 "resources/js/yajra.js",
             ],
             refresh: true,

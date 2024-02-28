@@ -3,19 +3,19 @@
     <div class="col-md-6">
         <div class="mb-3">
             <label class="form-label" for="name">{{ __('Name') }}</label>
-            <input type="text" class="form-control required" placeholder="{{ __('Enter name') }}" name="name" id="name"
-                value="{{ old('name', $city->name) }}">
+            <input type="text" class="form-control required" placeholder="{{ __('Enter name') }}" name="name"
+                id="name" value="{{ old('name', $city->name) }}">
             <div class="pristine-error text-danger" id="nameError">{{ $errors->first('name') }}</div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="mb-3">
             <label class="form-label" for="state_id">{{ __('State') }}</label>
-            <select class="form-select required" id="state_id" name="state_id">
+            <select class="form-select required" data-trigger id="state_id" name="state_id">
                 <option value="">{{ __('Select an option') }}</option>
                 @foreach ($states as $id => $name)
-                <option value="{{ $id }}" {{ $id==old('state_id',$city->state_id) ? 'selected' : '' }}
-                    >{{ $name }}</option>
+                    <option value="{{ $id }}" {{ $id == old('state_id', $city->state_id) ? 'selected' : '' }}>
+                        {{ $name }}</option>
                 @endforeach
             </select>
             <div class="pristine-error text-danger" id="state_idError">{{ $errors->first('state_id') }}</div>
@@ -30,5 +30,3 @@
         </div>
     </div>
 </div>
-
-

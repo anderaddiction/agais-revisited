@@ -5,8 +5,6 @@
 @section('css')
     <link href="{{ URL::asset('assets/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('assets/libs/choices.js/choices.js.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/libs/@simonwep/@simonwep.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet">
 @endsection
 @section('content')
 
@@ -26,11 +24,6 @@
             <div class="card-body">
                 <form action="{{ route('client.store') }}" method="post" enctype='multipart/form-data' rol="form"
                     id="form">
-                    <input type="hidden" name="state" id="state" data-route="{{ route('getStates') }}">
-                    <input type="hidden" name="municipality" id="municipality"
-                        data-route="{{ route('getMunicipalities') }}">
-                    <input type="hidden" name="parish" id="parish" data-route="{{ route('getParishes') }}">
-                    <input type="hidden" name="city" id="city" data-route="{{ route('getCities') }}">
                     @csrf
                     @include('auth.users.clients._form')
                     {{-- <div class="mt-4">
@@ -55,8 +48,6 @@
 <script src="{{ URL::asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/pages/form-wizard.init.js') }}"></script>
 <script src="{{ URL::asset('assets/libs/choices.js/choices.js.min.js') }}"></script>
-<script src="{{ URL::asset('assets/libs/@simonwep/@simonwep.min.js') }}"></script>
-<script src="{{ URL::asset('assets/js/pages/form-advanced.init.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 @vite(['resources/js/dropdowns.js'])
 @endsection

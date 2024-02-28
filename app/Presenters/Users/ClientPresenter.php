@@ -122,7 +122,6 @@ class ClientPresenter
     public function avatar()
     {
         if (!empty($this->client->avatar)) {
-            return $this->client->avatar;
             return '<img src="/storage/' . $this->client->avatar . '" class="avatar-sm rounded-circle" alt=""avatar>';
         } elseif (empty($this->client->avatar)) {
             if ($this->client->gender == 'F') {

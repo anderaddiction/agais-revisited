@@ -22,10 +22,7 @@ class TerritoriesComboboxController extends Controller
     {
         if ($request->ajax()) {
             $states = State::where('country_id', $request->id)->get();
-
-            if (count($states) > 0) {
-                return response()->json($states, 200);
-            }
+            return response()->json($states, 200);
         }
     }
 
@@ -33,10 +30,7 @@ class TerritoriesComboboxController extends Controller
     {
         if ($request->ajax()) {
             $municipalities = Municipality::where('state_id', $request->id)->get();
-
-            if (count($municipalities) > 0) {
-                return response()->json($municipalities, 200);
-            }
+            return response()->json($municipalities, 200);
         }
     }
 
@@ -44,10 +38,7 @@ class TerritoriesComboboxController extends Controller
     {
         if ($request->ajax()) {
             $parishes = Parish::where('municipality_id', $request->id)->get();
-
-            if (count($parishes) > 0) {
-                return response()->json($parishes, 200);
-            }
+            return response()->json($parishes, 200);
         }
     }
 
@@ -55,10 +46,7 @@ class TerritoriesComboboxController extends Controller
     {
         if ($request->ajax()) {
             $cities = City::where('state_id', $request->id)->get();
-
-            if (count($cities) > 0) {
-                return response()->json($cities, 200);
-            }
+            return response()->json($cities, 200);
         }
     }
 }
