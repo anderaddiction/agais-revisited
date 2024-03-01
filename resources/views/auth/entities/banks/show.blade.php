@@ -1,15 +1,18 @@
 @extends('layouts.master')
-@section('title') @lang('translation.Banks') @endsection
+@section('title')
+    @lang('translation.Banks')
+@endsection
 @section('css')
-
 @endsection
 @section('content')
-@section('pagetitle') @lang('translation.Banks') @endsection
+@section('pagetitle')
+    @lang('translation.Banks')
+@endsection
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">@lang('translation.Banks_table')</h4>
+                <h4 class="card-title">{{ __('Banks_Table') }}</h4>
             </div><!-- end card header -->
             <div class="card-body">
                 <a href="{{ route('bank.index') }}">
@@ -23,7 +26,7 @@
                         <thead class="text-center" style="width: 100%;">
                             <tr>
                                 <th class="col-2">{{ __('Name') }}</th>
-                                <th >{{ __('Code') }}</th>
+                                <th>{{ __('Code') }}</th>
                                 <th class="col-2">{{ __('Bank Type') }}</th>
                                 <th class="col-2">{{ __('Capital type') }}</th>
                                 <th class="col-2">{{ __('Country') }}</th>

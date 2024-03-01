@@ -124,4 +124,38 @@ class CategoryController extends Controller
             'success' => __('Data deleted successfuly')
         ];
     }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $category = Category::onlyTrashed()
+                ->orderBy('name', 'DESC')
+                ->get();
+            return DataTables::of($category)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($category) {
+                    return $category->present()->created_at();
+                })
+                ->addColumn('action', function ($category) {
+                    return $category->present()->actionButton();
+                })
+                ->addColumn('status', function ($category) {
+                    return $category->present()->status();
+                })
+                ->rawColumns(['action', 'created_at', 'status'])
+                ->make(true);
+        }
+
+        return view('auth.categories.trashed');
+    }
+
+    public function restore($category)
+    {
+        $ids = explode(",", $category);
+        $category_ids = array_map('intval', $ids);
+        Category::whereIn('id', $category_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
+    }
 }

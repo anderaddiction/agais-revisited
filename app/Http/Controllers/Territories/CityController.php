@@ -134,4 +134,42 @@ class CityController extends Controller
             'success' => __('Data deleted successfuly')
         ];
     }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $city = City::onlyTrashed()
+                ->orderBy('name', 'DESC')
+                ->with('state')
+                ->get();
+            return DataTables::of($city)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($city) {
+                    return $city->present()->created_at();
+                })
+                ->addColumn('state', function ($city) {
+                    return $city->present()->state();
+                })
+                ->addColumn('country', function ($city) {
+                    return $city->present()->flag();
+                })
+                ->addColumn('action', function ($city) {
+                    return $city->present()->actionButton();
+                })
+                ->rawColumns(['action', 'country', 'state'])
+                ->make(true);
+        }
+
+        return view('auth.territories.cities.trashed');
+    }
+
+    public function restore($city)
+    {
+        $ids = explode(",", $city);
+        $city_ids = array_map('intval', $ids);
+        City::whereIn('id', $city_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
+    }
 }

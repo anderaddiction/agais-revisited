@@ -243,7 +243,7 @@ return [
     "Continents" => "Continentes",
     "Territories" => "Territorios",
     "Administration" => "Administración",
-    "continents_table" => "Tabla de Continentes",
+    "Continents_table" => "Tabla de Continentes",
     "Contries_table" => "Tabla de Países",
     "Countries" => "Países",
     "Countries_table" => "Tabla de Países",
@@ -274,6 +274,9 @@ return [
     "Messenger" => "Mensajería",
     "Communications" => "Comunicaciones",
     "Mail" => "Correo",
-    "Clients" => "Clientes"
-
+    "Clients" => "Clientes",
+    "Trashed" => "Papelera",
+    "Events" => "Eventos",
+    "Schedulings" => "Programación",
+    "Select an option" => "Seleccione una opción"
 ];

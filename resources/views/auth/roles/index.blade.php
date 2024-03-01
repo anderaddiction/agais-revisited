@@ -18,42 +18,31 @@
 @section('pagetitle')
     @lang('translation.Roles')
 @endsection
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">@lang('translation.Roles_table')</h4>
-            </div><!-- end card header -->
-            <div class="card-body">
-                @if (session()->has('success'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('success') }}
-                    </div>
-                @endif
-                <div class="table-responsive">
-                    <table class="table align-middle project-list-table table-nowrap table-hover data-table"
-                        style="width:100%" <thead class="text-center">
-                        <tr>
-                            <th style="font-size: 12px;font-weight: bold"></th>
-                            <th>{{ __('Name') }}</th>
-                            <th>{{ __('Code') }}</th>
-                            <th>{{ __('Display Name') }}</th>
-                            <th>{{ __('Status') }}</th>
-                            <th>{{ __('Note') }}</th>
-                            <th>{{ __('Created At') }}</th>
-                            <th>{{ __('Action') }}</th>
-                        </tr>
-                        </thead>
-                        <tbody class="text-center align-middle">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- end card body -->
+<div class="row align-items-center">
+    <div class="col-md-6">
+        <div class="mb-3">
+            <h4 class="card-title">{{ __('Roles_Table') }}</h4>
         </div>
-        <!-- end card -->
     </div>
-    <!-- end col -->
+    <div class="table-responsive">
+        <table class="table align-middle project-list-table table-nowrap table-hover data-table" style="width:100%"
+            id="dataTable">
+            <thead class="text-center">
+                <tr>
+                    <th style="font-size: 12px;font-weight: bold"></th>
+                    <th>{{ __('Name') }}</th>
+                    <th>{{ __('Code') }}</th>
+                    <th>{{ __('Display Name') }}</th>
+                    <th>{{ __('Status') }}</th>
+                    <th>{{ __('Note') }}</th>
+                    <th>{{ __('Created At') }}</th>
+                    <th>{{ __('Action') }}</th>
+                </tr>
+            </thead>
+            <tbody class="text-center align-middle">
+            </tbody>
+        </table>
+    </div>
 </div>
 <!-- end row -->
 @endsection
@@ -66,6 +55,7 @@
             processing: false,
             serverSide: true,
             responsive: true,
+            pageLength: 20,
             ajax: "{{ route('role.index') }}",
             dom: 'Bfrtip',
             columns: [{

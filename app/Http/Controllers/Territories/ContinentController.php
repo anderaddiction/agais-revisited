@@ -122,4 +122,35 @@ class ContinentController extends Controller
             'success' => __('Data deleted successfuly')
         ];
     }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $continent = Continent::orderBy('name', 'DESC')
+                ->onlyTrashed()
+                ->get();
+            return DataTables::of($continent)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($continent) {
+                    return $continent->present()->created_at();
+                })
+                ->addColumn('action', function ($continent) {
+                    return $continent->present()->actionButton();
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('auth.territories.continents.trashed');
+    }
+
+    public function restore($continent)
+    {
+        $ids = explode(",", $continent);
+        $continent_ids = array_map('intval', $ids);
+        Continent::whereIn('id', $continent_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
+    }
 }

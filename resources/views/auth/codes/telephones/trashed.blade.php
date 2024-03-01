@@ -21,7 +21,7 @@
 <div class="row align-items-center">
     <div class="col-md-6">
         <div class="mb-3">
-            <h4 class="card-title">{{ __('Phone_Code_Table') }}</h4>
+            <h4 class="card-title">{{ __('Phone_Code_Trashed_Table') }}</h4>
         </div>
     </div>
     <div class="table-responsive">
@@ -57,7 +57,7 @@
             serverSide: true,
             responsive: true,
             pageLength: 20,
-            ajax: "{{ route('phone.index') }}",
+            ajax: "{{ route('phone.trashed') }}",
             dom: 'Bfrtip',
             columns: [{
                     data: 'id',
@@ -113,7 +113,7 @@
                     className: 'btn-info',
                 },
                 {
-                    text: '<i class="fas fa-trash" title="Delete"></i>',
+                    text: '<i class="fas fa-undo" title="Restore"></i>',
                     action: function(e, dt, node, config) {
                         e.preventDefault();
                         var token = $('meta[name="csrf-token"]').attr('content');
@@ -134,15 +134,15 @@
                             data.push(rowId);
                         });
 
-                        var url = "{{ route('phone.destroy', ':data') }}";
+                        var url = "{{ route('phone.restore', ':data') }}";
                         url = url.replace(':data', data);
 
                         Swal.fire({
                             title: 'Are you sure?',
-                            text: "You won't be able to revert this!",
+                            text: "You always be able to revert this!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonText: 'Yes, delete it!',
+                            confirmButtonText: 'Yes, restored it!',
                             cancelButtonText: 'No, cancel!',
                             confirmButtonClass: 'btn btn-success mt-2',
                             cancelButtonClass: 'btn btn-danger ms-2 mt-2',
@@ -150,20 +150,20 @@
                         }).then(function(result) {
                             if (result.value) {
                                 $.ajax({
-                                    type: "POST",
+                                    type: "GET",
                                     url: url,
                                     headers: {
                                         'X-CSRF-Token': token
                                     },
                                     data: {
                                         data: data,
-                                        _method: 'DELETE'
+                                        _method: 'GET'
                                     },
                                     success: function(response) {
                                         $('.data-table').DataTable().ajax
                                             .reload();
                                         Swal.fire({
-                                            title: 'Deleted!',
+                                            title: 'Restored!',
                                             text: response.success,
                                             icon: 'success',
                                             confirmButtonColor: '#038edc',
@@ -183,7 +183,7 @@
                             }
                         });
                     },
-                    className: 'btn-danger btn-massive-delete',
+                    className: 'btn-success btn-massive-delete',
                 },
                 {
                     extend: 'copyHtml5',
@@ -207,6 +207,13 @@
                 },
                 {
                     text: '<i class="fas fa-undo-alt" title="Recargar"></i>',
+                    action: function(e, dt, node, config) {
+                        window.location = "{{ route('phone.trashed') }}";
+                    },
+                    className: 'btn-primary',
+                },
+                {
+                    text: '<i class="fas fa-backward " title="Volver al listado de códigos teléfonicos"></i>',
                     action: function(e, dt, node, config) {
                         window.location = "{{ route('phone.index') }}";
                     },

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    @lang('translation.Telephone')
+    @lang('translation.Continents')
 @endsection
 @section('css')
     <style>
@@ -16,24 +16,22 @@
 @endsection
 @section('content')
 @section('pagetitle')
-    @lang('translation.Telephone')
+    @lang('translation.Continents')
 @endsection
 <div class="row align-items-center">
     <div class="col-md-6">
         <div class="mb-3">
-            <h4 class="card-title">{{ __('Phone_Code_Table') }}</h4>
+            <h4 class="card-title">{{ __('Continents_Trashed_Table') }}</h4>
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table align-middle project-list-table table-nowrap table-hover data-table" style="width:100%">
+        <table class="table align-middle project-list-table table-nowrap table-hover data-table" style="width:100%"
+            id="dataTable">
             <thead class="text-center">
                 <tr>
                     <th style="font-size: 12px;font-weight: bold"></th>
-                    <th>{{ __('Phone Code') }}</th>
+                    <th>{{ __('Name') }}</th>
                     <th>{{ __('Code') }}</th>
-                    <th>{{ __('Country') }}</th>
-                    <th>{{ __('Status') }}</th>
-                    <th>{{ __('Note') }}</th>
                     <th>{{ __('Created At') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
@@ -42,8 +40,6 @@
             </tbody>
         </table>
     </div>
-</div>
-<!-- end card body -->
 </div>
 <!-- end row -->
 @endsection
@@ -57,7 +53,7 @@
             serverSide: true,
             responsive: true,
             pageLength: 20,
-            ajax: "{{ route('phone.index') }}",
+            ajax: "{{ route('continent.trashed') }}",
             dom: 'Bfrtip',
             columns: [{
                     data: 'id',
@@ -65,37 +61,24 @@
                     'class': 'col-2'
                 },
                 {
-                    data: 'phone_code',
-                    name: 'phone_code'
+                    data: 'name',
+                    name: 'name',
+                    'class': 'col-4'
                 },
                 {
                     data: 'code',
                     name: 'code'
                 },
                 {
-                    data: 'country',
-                    name: 'country',
-                    'class': 'col-2'
-                },
-                {
-                    data: 'status',
-                    name: 'status'
-                },
-                {
-                    data: 'note',
-                    name: 'note'
-                },
-                {
                     data: 'created_at',
                     name: 'created_at',
-                    'class': 'col-2'
+                    'class': 'col-4'
                 },
                 {
                     data: 'action',
                     name: 'action',
                     orderable: true,
-                    searchable: true,
-                    'class': 'col-3'
+                    searchable: true
                 },
             ],
             columnDefs: [{
@@ -108,12 +91,12 @@
             buttons: [{
                     text: '<i class="fas fa-plus" title="Agregar"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('phone.create') }}";
+                        window.location = "{{ route('continent.create') }}";
                     },
                     className: 'btn-info',
                 },
                 {
-                    text: '<i class="fas fa-trash" title="Delete"></i>',
+                    text: '<i class="fas fa-undo" title="Restore"></i>',
                     action: function(e, dt, node, config) {
                         e.preventDefault();
                         var token = $('meta[name="csrf-token"]').attr('content');
@@ -134,15 +117,15 @@
                             data.push(rowId);
                         });
 
-                        var url = "{{ route('phone.destroy', ':data') }}";
+                        var url = "{{ route('continent.restore', ':data') }}";
                         url = url.replace(':data', data);
 
                         Swal.fire({
                             title: 'Are you sure?',
-                            text: "You won't be able to revert this!",
+                            text: "You always be able to revert this!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonText: 'Yes, delete it!',
+                            confirmButtonText: 'Yes, restored it!',
                             cancelButtonText: 'No, cancel!',
                             confirmButtonClass: 'btn btn-success mt-2',
                             cancelButtonClass: 'btn btn-danger ms-2 mt-2',
@@ -150,20 +133,20 @@
                         }).then(function(result) {
                             if (result.value) {
                                 $.ajax({
-                                    type: "POST",
+                                    type: "GET",
                                     url: url,
                                     headers: {
                                         'X-CSRF-Token': token
                                     },
                                     data: {
                                         data: data,
-                                        _method: 'DELETE'
+                                        _method: 'GET'
                                     },
                                     success: function(response) {
                                         $('.data-table').DataTable().ajax
                                             .reload();
                                         Swal.fire({
-                                            title: 'Deleted!',
+                                            title: 'Restored!',
                                             text: response.success,
                                             icon: 'success',
                                             confirmButtonColor: '#038edc',
@@ -183,7 +166,7 @@
                             }
                         });
                     },
-                    className: 'btn-danger btn-massive-delete',
+                    className: 'btn-success btn-massive-delete',
                 },
                 {
                     extend: 'copyHtml5',
@@ -208,12 +191,18 @@
                 {
                     text: '<i class="fas fa-undo-alt" title="Recargar"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('phone.index') }}";
+                        window.location = "{{ route('continent.trashed') }}";
                     },
                     className: 'btn-primary',
                 },
-                'colvis',
-
+                {
+                    text: '<i class="fas fa-backward " title="Volver al listado de países"></i>',
+                    action: function(e, dt, node, config) {
+                        window.location = "{{ route('continent.index') }}";
+                    },
+                    className: 'btn-primary',
+                },
+                'colvis'
             ],
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',

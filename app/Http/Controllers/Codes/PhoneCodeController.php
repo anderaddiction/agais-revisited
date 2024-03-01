@@ -136,4 +136,42 @@ class PhoneCodeController extends Controller
         DB::table('assigned_phones')->whereIn('phone_code_id', $ids)->delete();
         return redirect()->back()->with('success', __('Data deleted successfuly'));
     }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $phone = PhoneCode::onlyTrashed()
+                ->orderBy('phone_code', 'DESC')
+                ->with('countries')
+                ->get();
+            return DataTables::of($phone)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($phone) {
+                    return $phone->present()->created_at();
+                })
+                ->addColumn('country', function ($phone) {
+                    return $phone->present()->flag();
+                })
+                ->addColumn('status', function ($phone) {
+                    return $phone->present()->status();
+                })
+                ->addColumn('action', function ($phone) {
+                    return $phone->present()->actionButton();
+                })
+                ->rawColumns(['action', 'country', 'status'])
+                ->make(true);
+        }
+
+        return view('auth.codes.telephones.trashed');
+    }
+
+    public function restore($phone_code)
+    {
+        $ids = explode(",", $phone_code);
+        $phone_code_ids = array_map('intval', $ids);
+        PhoneCode::whereIn('id', $phone_code_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
+    }
 }

@@ -21,7 +21,7 @@
 <div class="row align-items-center">
     <div class="col-md-6">
         <div class="mb-3">
-            <h4 class="card-title">@lang('translation.Category_table') </h4>
+            <h4 class="card-title">{{ __('States_Table') }}</h4>
         </div>
     </div>
     <div class="table-responsive">
@@ -54,6 +54,7 @@
             processing: false,
             serverSide: true,
             responsive: true,
+            pageLength: 20,
             ajax: "{{ route('state.index') }}",
             dom: 'Bfrtip',
             columns: [{
@@ -127,7 +128,7 @@
                             data.push(rowId);
                         });
 
-                        var url = "{{ route('parish.destroy', ':data') }}";
+                        var url = "{{ route('state.destroy', ':data') }}";
                         url = url.replace(':data', data);
 
                         Swal.fire({

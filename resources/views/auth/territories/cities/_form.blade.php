@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="mb-3">
-            <label class="form-label" for="name">{{ __('Name') }}</label>
+            <label class="form-label" for="name">{{ __('Name') }} <span class="text-danger">*</span></label>
             <input type="text" class="form-control required" placeholder="{{ __('Enter name') }}" name="name"
                 id="name" value="{{ old('name', $city->name) }}">
             <div class="pristine-error text-danger" id="nameError">{{ $errors->first('name') }}</div>
@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-6">
         <div class="mb-3">
-            <label class="form-label" for="state_id">{{ __('State') }}</label>
+            <label class="form-label" for="state_id">{{ __('State') }} <span class="text-danger">*</span></label>
             <select class="form-select required" data-trigger id="state_id" name="state_id">
                 <option value="">{{ __('Select an option') }}</option>
                 @foreach ($states as $id => $name)

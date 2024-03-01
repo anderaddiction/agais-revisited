@@ -1,15 +1,18 @@
 @extends('layouts.master')
-@section('title') @lang('translation.Currencies') @endsection
+@section('title')
+    @lang('translation.Currencies')
+@endsection
 @section('css')
-
 @endsection
 @section('content')
-@section('pagetitle') @lang('translation.Currencies') @endsection
+@section('pagetitle')
+    @lang('translation.Currencies')
+@endsection
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">@lang('translation.Currencies_table')</h4>
+                <h4 class="card-title">{{ __('Currencies_Table') }}</h4>
             </div><!-- end card header -->
             <div class="card-body">
                 <a href="{{ route('currency.index') }}">
@@ -23,7 +26,7 @@
                         <thead class="text-center" style="width: 100%;">
                             <tr>
                                 <th class="col-2">{{ __('Name') }}</th>
-                                <th >{{ __('Code') }}</th>
+                                <th>{{ __('Code') }}</th>
                                 <th>{{ __('Symbol') }}</th>
                                 <th>{{ __('ISO') }}</th>
                                 <th class="col-2">{{ __('Country') }}</th>

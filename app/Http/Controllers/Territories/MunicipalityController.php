@@ -133,4 +133,45 @@ class MunicipalityController extends Controller
             'success' => __('Data deleted successfuly')
         ];
     }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $municipality = Municipality::orderBy('name', 'DESC')
+                ->with('state')
+                ->onlyTrashed()
+                ->get();
+            return DataTables::of($municipality)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($municipality) {
+                    return $municipality->present()->created_at();
+                })
+                ->addColumn('action', function ($municipality) {
+                    return $municipality->present()->actionButton();
+                })
+                ->addColumn('state', function ($municipality) {
+                    return $municipality->present()->state();
+                })
+                ->addColumn('country', function ($municipality) {
+                    return $municipality->present()->flag();
+                })
+                ->rawColumns(['action', 'flag', 'country', 'state'])
+                ->make(true);
+        }
+
+        return view('auth.territories.municipalities.trashed');
+    }
+
+    public function restore($municipality)
+    {
+        $ids = explode(",", $municipality);
+        $municipality_ids = array_map('intval', $ids);
+        Municipality::whereIn('id', $municipality_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
+    }
 }

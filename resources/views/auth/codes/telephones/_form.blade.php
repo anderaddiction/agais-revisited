@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-md-4">
         <div class="mb-3">
-            <label class="form-label" for="phone_code">{{ __('Phone Code') }}</label>
+            <label class="form-label" for="phone_code">{{ __('Phone Code') }} <span class="text-danger">*</span></label>
             <input type="text" class="form-control required" placeholder="{{ __('Enter phone code') }}" name="phone_code"
                 id="phone_code" value="{{ old('phone_code', $phone_code->phone_code) }}">
             <div class="pristine-error text-danger" id="phone_codeError">{{ $errors->first('phone_code') }}</div>
@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-4">
         <div class="mb-3">
-            <label class="form-label" for="country_id">{{ __('Country') }}</label>
+            <label class="form-label" for="country_id">{{ __('Country') }} <span class="text-danger">*</span></label>
             <select class="form-select required" id="country_id" data-trigger name="country_id[]"
                 placeholder="{{ __('Select an option') }}" multiple>
                 <option value="">{{ __('Select an option') }}</option>
@@ -26,7 +26,7 @@
     </div>
     <div class="col-md-4">
         <div class="mb-3">
-            <label class="form-label" for="status">{{ __('Status') }}</label>
+            <label class="form-label" for="status">{{ __('Status') }} <span class="text-danger">*</span></label>
             <select class="form-select required" name="status" id="status">
                 <option value=" ">{{ __('Select an option') }}</option>
                 <option value="1" {{ old('status', $phone_code->status) == '1' ? 'selected' : '' }}>

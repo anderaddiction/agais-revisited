@@ -137,4 +137,45 @@ class ParishController extends Controller
             'success' => __('Data deleted successfuly')
         ];
     }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $parish = Parish::onlyTrashed()
+                ->orderBy('name', 'DESC')
+                ->with('municipality')
+                ->get();
+            return DataTables::of($parish)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($parish) {
+                    return $parish->present()->created_at();
+                })
+                ->addColumn('action', function ($parish) {
+                    return $parish->present()->actionButton();
+                })
+                ->addColumn('state', function ($parish) {
+                    return $parish->present()->state();
+                })
+                ->addColumn('municipality', function ($parish) {
+                    return $parish->present()->municipality();
+                })
+                ->addColumn('country', function ($parish) {
+                    return $parish->present()->flag();
+                })
+                ->rawColumns(['action', 'municipality', 'state', 'country'])
+                ->make(true);
+        }
+
+        return view('auth.territories.parishes.trashed');
+    }
+
+    public function restore($parish)
+    {
+        $ids = explode(",", $parish);
+        $parish_ids = array_map('intval', $ids);
+        Parish::whereIn('id', $parish_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
+    }
 }

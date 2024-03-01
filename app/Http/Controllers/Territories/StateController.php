@@ -135,4 +135,42 @@ class StateController extends Controller
             'success' => __('Data deleted successfuly')
         ];
     }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $state = State::onlyTrashed()
+                ->orderBy('name', 'DESC')
+                ->with('country')
+                ->get();
+            return DataTables::of($state)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($state) {
+                    return $state->present()->created_at();
+                })
+                ->addColumn('action', function ($state) {
+                    return $state->present()->actionButton();
+                })
+                ->addColumn('continent', function ($state) {
+                    return $state->present()->continent();
+                })
+                ->addColumn('flag', function ($state) {
+                    return $state->present()->flag();
+                })
+                ->rawColumns(['action', 'flag', 'continent'])
+                ->make(true);
+        }
+
+        return view('auth.territories.states.trashed');
+    }
+
+    public function restore($state)
+    {
+        $ids = explode(",", $state);
+        $state_ids = array_map('intval', $ids);
+        State::whereIn('id', $state_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
+    }
 }

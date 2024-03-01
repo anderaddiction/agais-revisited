@@ -21,7 +21,7 @@
 <div class="row align-items-center">
     <div class="col-md-6">
         <div class="mb-3">
-            <h4 class="card-title">@lang('translation.Category_table') </h4>
+            <h4 class="card-title">{{ __('Countries_Table') }}</h4>
         </div>
     </div>
     <div class="table-responsive">
@@ -53,9 +53,10 @@
 <script type="text/javascript">
     $(function() {
         var table = $('.data-table').DataTable({
-            processing: false,
+            processing: true,
             serverSide: true,
             responsive: true,
+            pageLength: 20,
             ajax: "{{ route('country.index') }}",
             dom: 'Bfrtip',
             columns: [{

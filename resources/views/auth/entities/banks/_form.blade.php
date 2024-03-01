@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-md-4">
         <div class="mb-3">
-            <label class="form-label" for="name">{{ __('Name') }}</label>
+            <label class="form-label" for="name">{{ __('Name') }} <span class="text-danger">*</span></label>
             <input type="text" class="form-control required" placeholder="{{ __('Enter name') }}" name="name"
                 id="name" value="{{ old('name', $bank->name) }}">
             <div class="pristine-error text-danger" id="nameError">{{ $errors->first('name') }}</div>
@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-4">
         <div class="mb-3">
-            <label class="form-label" for="country_id">{{ __('Country') }}</label>
+            <label class="form-label" for="country_id">{{ __('Country') }} <span class="text-danger">*</span></label>
             <select class="form-select required" id="country_id" data-trigger name="country_id[]"
                 placeholder="{{ __('Select an option') }}" multiple>
                 <option value="">{{ __('Select an option') }}</option>
@@ -27,7 +27,8 @@
     </div>
     <div class="col-md-4">
         <div class="mb-3">
-            <label class="form-label" for="capital_type">{{ __('Capital type') }}</label>
+            <label class="form-label" for="capital_type">{{ __('Capital type') }} <span
+                    class="text-danger">*</span></label>
             <select class="form-select required" id="capital_type" name="capital_type">
                 <option value="">{{ __('Select an option') }}</option>
                 <option value="1" {{ old('capital_type', $bank->capital_type) == '1' ? 'selected' : '' }}>
@@ -44,7 +45,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="mb-3">
-            <label class="form-label" for="bank_type">{{ __('Bank Type') }}</label>
+            <label class="form-label" for="bank_type">{{ __('Bank Type') }} <span class="text-danger">*</span></label>
             <select class="form-select required" id="bank_type" name="bank_type">
                 <option value="">{{ __('Select an option') }}</option>
                 <option value="1" {{ old('bank_type', $bank->bank_type) == '1' ? 'selected' : '' }}>
@@ -62,7 +63,7 @@
     </div>
     <div class="col-md-6">
         <div class="mb-3">
-            <label class="form-label" for="status">{{ __('Status') }}</label>
+            <label class="form-label" for="status">{{ __('Status') }} <span class="text-danger">*</span></label>
             <select class="form-select required" name="status" id="status">
                 <option value=" ">{{ __('Select an option') }}</option>
                 <option value="1" {{ old('status', $bank->status) == '1' ? 'selected' : '' }}>@lang('Active')

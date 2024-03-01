@@ -21,7 +21,7 @@
 <div class="row align-items-center">
     <div class="col-md-6">
         <div class="mb-3">
-            <h4 class="card-title">@lang('translation.Category_table') </h4>
+            <h4 class="card-title">{{ __('Cities_Table') }}</h4>
         </div>
     </div>
     <div class="table-responsive">
@@ -54,6 +54,7 @@
             processing: false,
             serverSide: true,
             responsive: true,
+            pageLength: 20,
             ajax: "{{ route('city.index') }}",
             dom: 'Bfrtip',
             columns: [{
