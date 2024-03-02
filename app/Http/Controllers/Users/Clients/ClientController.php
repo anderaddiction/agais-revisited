@@ -238,4 +238,90 @@ class ClientController extends Controller
             'success' => __('Data deleted successfuly')
         ];
     }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $client = Client::onlyTrashed()
+                ->orderBy('created_at', 'DESC')
+                ->with(
+                    'document',
+                    'country',
+                    'state',
+                    'municipality',
+                    'parish',
+                    'city',
+                    'roles',
+                    'category'
+                )
+                ->get();
+            return DataTables::of($client)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($client) {
+                    return $client->present()->created_at();
+                })
+                ->addColumn('full_name', function ($client) {
+                    return $client->present()->fullName();
+                })
+                ->addColumn('role', function ($client) {
+                    return $client->present()->fullName();
+                })
+                ->addColumn('status', function ($client) {
+                    return $client->present()->status();
+                })
+                ->addColumn('document', function ($client) {
+                    return $client->present()->document();
+                })
+                ->addColumn('country', function ($client) {
+                    return $client->present()->country();
+                })
+                ->addColumn('state', function ($client) {
+                    return $client->present()->state();
+                })
+                ->addColumn('flag', function ($client) {
+                    return $client->present()->flag();
+                })
+                ->addColumn('category', function ($client) {
+                    return $client->present()->category();
+                })
+                ->addColumn('action', function ($client) {
+                    return $client->present()->actionButton();
+                })
+                ->addColumn('avatar', function ($client) {
+                    return $client->present()->avatar();
+                })
+                ->addColumn('gender', function ($client) {
+                    return $client->present()->gender();
+                })
+                ->addColumn('role', function ($client) {
+                    return $client->present()->role();
+                })
+                ->rawColumns([
+                    'action',
+                    'documents',
+                    'full_name',
+                    'status',
+                    'country',
+                    'state',
+                    'flag',
+                    'category',
+                    'role',
+                    'avatar',
+                    'gender'
+                ])
+                ->make(true);
+        }
+
+        return view('auth.users.clients.trashed');
+    }
+
+    public function restore($client)
+    {
+        $ids = explode(",", $client);
+        $client_ids = array_map('intval', $ids);
+        Client::whereIn('id', $client_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
+    }
 }

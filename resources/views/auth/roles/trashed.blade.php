@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    @lang('translation.States')
+    @lang('translation.Roles')
 @endsection
 @section('css')
     <style>
@@ -16,12 +16,12 @@
 @endsection
 @section('content')
 @section('pagetitle')
-    @lang('translation.States')
+    @lang('translation.Roles')
 @endsection
 <div class="row align-items-center">
     <div class="col-md-6">
         <div class="mb-3">
-            <h4 class="card-title">{{ __('States_Table') }}</h4>
+            <h4 class="card-title">{{ __('Roles_Trashed_Table') }}</h4>
         </div>
     </div>
     <div class="table-responsive">
@@ -32,8 +32,9 @@
                     <th style="font-size: 12px;font-weight: bold"></th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Code') }}</th>
-                    <th>{{ __('ISO') }}</th>
-                    <th>{{ __('Flag') }}</th>
+                    <th>{{ __('Display Name') }}</th>
+                    <th>{{ __('Status') }}</th>
+                    <th>{{ __('Note') }}</th>
                     <th>{{ __('Created At') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
@@ -47,7 +48,7 @@
 @endsection
 @section('script')
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
-{{-- {{ $dataTable->scripts(attributes: ['type' => 'module']) }} --}}
+{{-- {{ $dataTable->scripts() }} --}}
 <script type="text/javascript">
     $(function() {
         var table = $('.data-table').DataTable({
@@ -55,7 +56,7 @@
             serverSide: true,
             responsive: true,
             pageLength: 20,
-            ajax: "{{ route('state.trashed') }}",
+            ajax: "{{ route('role.trashed') }}",
             dom: 'Bfrtip',
             columns: [{
                     data: 'id',
@@ -72,12 +73,16 @@
                     name: 'code'
                 },
                 {
-                    data: 'iso',
-                    name: 'iso'
+                    data: 'display_name',
+                    name: 'display_name'
                 },
                 {
-                    data: 'flag',
-                    name: 'flag'
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'note',
+                    name: 'note'
                 },
                 {
                     data: 'created_at',
@@ -102,7 +107,7 @@
             buttons: [{
                     text: '<i class="fas fa-plus" title="Agregar"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('state.create') }}";
+                        window.location = "{{ route('role.create') }}";
                     },
                     className: 'btn-info',
                 },
@@ -128,7 +133,7 @@
                             data.push(rowId);
                         });
 
-                        var url = "{{ route('state.restore', ':data') }}";
+                        var url = "{{ route('role.restore', ':data') }}";
                         url = url.replace(':data', data);
 
                         Swal.fire({
@@ -202,14 +207,14 @@
                 {
                     text: '<i class="fas fa-undo" title="Recargar"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('state.trashed') }}";
+                        window.location = "{{ route('role.trashed') }}";
                     },
                     className: 'btn-primary',
                 },
                 {
-                    text: '<i class="fas fa-backward " title="Volver al listado de estados"></i>',
+                    text: '<i class="fas fa-backward " title="Volver al listado de roles"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('state.index') }}";
+                        window.location = "{{ route('role.index') }}";
                     },
                     className: 'btn-primary',
                 },

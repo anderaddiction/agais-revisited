@@ -138,4 +138,42 @@ class DocumentController extends Controller
             'success' => __('Data deleted successfuly')
         ];
     }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $document = Document::onlyTrashed()
+                ->orderBy('name', 'DESC')
+                ->with('countries')
+                ->get();
+            return DataTables::of($document)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($document) {
+                    return $document->present()->created_at();
+                })
+                ->addColumn('country', function ($document) {
+                    return $document->present()->flag();
+                })
+                ->addColumn('action', function ($document) {
+                    return $document->present()->actionButton();
+                })
+                ->addColumn('status', function ($document) {
+                    return $document->present()->status();
+                })
+                ->rawColumns(['action', 'country', 'status'])
+                ->make(true);
+        }
+
+        return view('auth.documents.documents.trashed');
+    }
+
+    public function restore($document)
+    {
+        $ids = explode(",", $document);
+        $document_ids = array_map('intval', $ids);
+        Document::whereIn('id', $document_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
+    }
 }

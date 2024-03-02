@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    @lang('translation.States')
+    @lang('translation.Banks')
 @endsection
 @section('css')
     <style>
@@ -16,12 +16,12 @@
 @endsection
 @section('content')
 @section('pagetitle')
-    @lang('translation.States')
+    @lang('translation.Banks')
 @endsection
 <div class="row align-items-center">
     <div class="col-md-6">
         <div class="mb-3">
-            <h4 class="card-title">{{ __('States_Table') }}</h4>
+            <h4 class="card-title">{{ __('Banks_Trashed_Table') }}</h4>
         </div>
     </div>
     <div class="table-responsive">
@@ -32,14 +32,16 @@
                     <th style="font-size: 12px;font-weight: bold"></th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Code') }}</th>
-                    <th>{{ __('ISO') }}</th>
-                    <th>{{ __('Flag') }}</th>
+                    <th>{{ __('Bank Type') }}</th>
+                    <th>{{ __('Capital type') }}</th>
+                    <th>{{ __('Country') }}</th>
+                    <th>{{ __('Status') }}</th>
+                    <th>{{ __('Note') }}</th>
                     <th>{{ __('Created At') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
-            <tbody class="text-center align-middle">
-            </tbody>
+            <tbody class="text-center align-middle"></tbody>
         </table>
     </div>
 </div>
@@ -47,7 +49,7 @@
 @endsection
 @section('script')
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
-{{-- {{ $dataTable->scripts(attributes: ['type' => 'module']) }} --}}
+{{-- {{ $dataTable->scripts() }} --}}
 <script type="text/javascript">
     $(function() {
         var table = $('.data-table').DataTable({
@@ -55,7 +57,7 @@
             serverSide: true,
             responsive: true,
             pageLength: 20,
-            ajax: "{{ route('state.trashed') }}",
+            ajax: "{{ route('bank.trashed') }}",
             dom: 'Bfrtip',
             columns: [{
                     data: 'id',
@@ -72,17 +74,32 @@
                     name: 'code'
                 },
                 {
-                    data: 'iso',
-                    name: 'iso'
+                    data: 'bank_type',
+                    name: 'bank_type',
+                    'class': 'col-2'
                 },
                 {
-                    data: 'flag',
-                    name: 'flag'
+                    data: 'capital_type',
+                    name: 'capital_type',
+                    'class': 'col-2'
+                },
+                {
+                    data: 'country',
+                    name: 'country',
+                    'class': 'col-2'
+                },
+                {
+                    data: 'status',
+                    name: 'status',
+                    'class': 'col-1'
+                },
+                {
+                    data: 'note',
+                    name: 'note'
                 },
                 {
                     data: 'created_at',
-                    name: 'created_at',
-                    'class': 'col-2'
+                    name: 'created_at'
                 },
                 {
                     data: 'action',
@@ -93,16 +110,25 @@
                 },
             ],
             columnDefs: [{
-                targets: 0,
-                checkboxes: {
-                    seletRow: true
+                    targets: 0,
+                    checkboxes: {
+                        seletRow: true
+                    }
+                },
+                {
+                    responsivePriority: 1,
+                    targets: 0
+                },
+                {
+                    responsivePriority: 2,
+                    targets: -1
                 }
-            }],
+            ],
             lengthChange: false,
             buttons: [{
                     text: '<i class="fas fa-plus" title="Agregar"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('state.create') }}";
+                        window.location = "{{ route('bank.create') }}";
                     },
                     className: 'btn-info',
                 },
@@ -128,7 +154,7 @@
                             data.push(rowId);
                         });
 
-                        var url = "{{ route('state.restore', ':data') }}";
+                        var url = "{{ route('bank.restore', ':data') }}";
                         url = url.replace(':data', data);
 
                         Swal.fire({
@@ -202,14 +228,14 @@
                 {
                     text: '<i class="fas fa-undo" title="Recargar"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('state.trashed') }}";
+                        window.location = "{{ route('bank.trashed') }}";
                     },
                     className: 'btn-primary',
                 },
                 {
-                    text: '<i class="fas fa-backward " title="Volver al listado de estados"></i>',
+                    text: '<i class="fas fa-backward " title="Volver al listado de bancos"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('state.index') }}";
+                        window.location = "{{ route('bank.index') }}";
                     },
                     className: 'btn-primary',
                 },

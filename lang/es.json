@@ -459,6 +459,16 @@
     "Enter Password" : "Ingrese contraseña",
     "Enter Note" : "Ingrese observación",
     "All field with * is required" : "Todos los campos con * son obligatorios",
-    "Phone_Code_Trashed_Table" : "Papelera de Códigos Telefónicos"
-
+    "Phone_Code_Trashed_Table" : "Papelera de Códigos Telefónicos",
+    "Documents_Trashed_Table" : "Papelera de Documentos",
+    "Banks_Trashed_Table" : "Papelera de Bancos",
+    "Currencies_Trashed_Table" : "Papelera de Monedas del Mundo",
+    "Clients_Trashed_Table" : "Papelera de Clientes",
+    "Roles_Trashed_Table" : "Papelera de Roles",
+    "Roles_Table" : "Tabla de Roles",
+    "Enter phone code" : "Ingrese código teléfonico",
+    "Enter symbol" : "Ingrese simbología",
+    "Enter ISO2": "Ingrese código ISO2",
+    "Enter ISO3": "Ingrese código ISO3",
+    "Enter ISO": "Ingrese código ISO"
 }

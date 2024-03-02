@@ -105,7 +105,12 @@ class RoleController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->route('role.edit', $role)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -117,6 +122,40 @@ class RoleController extends Controller
         Role::destroy($ids);
         return [
             'success' => __('Data deleted successfuly')
+        ];
+    }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $role = Role::onlyTrashed()
+                ->orderBy('name', 'DESC')
+                ->get();
+            return DataTables::of($role)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($role) {
+                    return $role->present()->created_at();
+                })
+                ->addColumn('action', function ($role) {
+                    return $role->present()->actionButton();
+                })
+                ->addColumn('status', function ($role) {
+                    return $role->present()->status();
+                })
+                ->rawColumns(['action', 'status',])
+                ->make(true);
+        }
+
+        return view('auth.roles.trashed');
+    }
+
+    public function restore($role)
+    {
+        $ids = explode(",", $role);
+        $role_ids = array_map('intval', $ids);
+        Role::whereIn('id', $role_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
         ];
     }
 }

@@ -135,8 +135,6 @@ class CountryController extends Controller
             ],
             200
         );
-
-        //return redirect()->route('country.edit', $country)->with('success', __('Data updated successfuly'));
     }
 
     /**

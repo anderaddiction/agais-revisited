@@ -125,11 +125,49 @@ class CurrencyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Currency $currency)
+    public function destroy($currency)
     {
         $ids = explode(",", $currency);
         Currency::destroy($ids);
         DB::table('assigned_currencies')->whereIn('currency_id', $ids)->delete();
         return redirect()->back()->with('success', __('Data deleted successfuly'));
+    }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $currency = Currency::onlyTrashed()
+                ->orderBy('name', 'DESC')
+                ->with('countries')
+                ->get();
+            return DataTables::of($currency)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($currency) {
+                    return $currency->present()->created_at();
+                })
+                ->addColumn('country', function ($currency) {
+                    return $currency->present()->flag();
+                })
+                ->addColumn('status', function ($currency) {
+                    return $currency->present()->status();
+                })
+                ->addColumn('action', function ($currency) {
+                    return $currency->present()->actionButton();
+                })
+                ->rawColumns(['action', 'country', 'status'])
+                ->make(true);
+        }
+
+        return view('auth.entities.currencies.trashed');
+    }
+
+    public function restore($currency)
+    {
+        $ids = explode(",", $currency);
+        $currency_ids = array_map('intval', $ids);
+        Currency::whereIn('id', $currency_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
     }
 }

@@ -40,16 +40,11 @@
 
                 {{-- Categories --}}
                 <li>
-                    <a href="javascript: void(0);">
+                    <a href="{{ route('category.index') }}">
                         <i class="icon nav-icon" data-eva="pricetags"></i>
                         <span class="menu-item" data-key="t-dashboards">@lang('translation.Categories')</span>
+                        <span class="badge rounded-pill badge-soft-danger" data-key="t-hot">Hot</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="true">
-                        <li><a href="{{ route('category.index') }}" data-key="t-categories">@lang('translation.Categories')</a></li>
-                        <li><a href="{{ route('category.trashed') }}"
-                                data-key="t-category-trashed">@lang('translation.Trashed')</a>
-                        </li>
-                    </ul>
                 </li>
 
                 {{-- Codes --}}
@@ -60,8 +55,6 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
                         <li><a href="{{ route('phone.index') }}" data-key="t-telephones">@lang('translation.Telephones')</a></li>
-                        <li><a href="{{ route('phone.trashed') }}" data-key="t-telephone-trashed">@lang('translation.Trashed')</a>
-                        </li>
                     </ul>
                 </li>
 
@@ -121,67 +114,16 @@
                         <span class="menu-item" data-key="t-territories">@lang('translation.Territories')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li>
-                            <a href="javascript: void(0);"
-                                class="has-arrow"data-key="t-continents">@lang('translation.Continents')</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('continent.index') }}"
-                                        data-key="t-continents">@lang('translation.Continents')</a>
-                                </li>
-                                <li><a href="{{ route('continent.trashed') }}"
-                                        data-key="t-continents">@lang('translation.Trashed')</a>
-                                </li>
-                            </ul>
+                        <li><a href="{{ route('continent.index') }}" data-key="t-continents">@lang('translation.Continents')</a>
                         </li>
-                        <li>
-                            <a href="javascript: void(0);"
-                                class="has-arrow"data-key="t-countries">@lang('translation.Countries')</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('country.index') }}"
-                                        data-key="t-countries-list">@lang('translation.Countries')</a></li>
-                                <li><a href="{{ route('country.trashed') }}"
-                                        data-key="t-country-trashed">@lang('translation.Trashed')</a></li>
-                            </ul>
+                        <li><a href="{{ route('country.index') }}" data-key="t-countries-list">@lang('translation.Countries')</a>
                         </li>
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow"data-key="t-states">@lang('translation.States')</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('state.index') }}"
-                                        data-key="t-states-list">@lang('translation.States')</a>
-                                </li>
-                                <li><a href="{{ route('state.trashed') }}"
-                                        data-key="t-state-trashed">@lang('translation.Trashed')</a></li>
-                            </ul>
+                        <li><a href="{{ route('state.index') }}" data-key="t-states-list">@lang('translation.States')</a>
                         </li>
-                        <li>
-                            <a href="javascript: void(0);"
-                                class="has-arrow"data-key="t-municipalities">@lang('translation.Municipalities')</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('municipality.index') }}"
-                                        data-key="t-municipalities-list">@lang('translation.Municipalities')</a>
-                                <li><a href="{{ route('municipality.trashed') }}"
-                                        data-key="t-municipalities-trashed">@lang('translation.Trashed')</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript: void(0);"
-                                class="has-arrow"data-key="t-parishes">@lang('translation.Parishes')</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('parish.index') }}"
-                                        data-key="t-parishes-list">@lang('translation.Parishes')</a>
-                                <li><a href="{{ route('parish.trashed') }}"
-                                        data-key="t-parishes-trashed">@lang('translation.Trashed')</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow"data-key="t-ities">@lang('translation.Cities')</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('city.index') }}"
-                                        data-key="t-cities-list">@lang('translation.Cities')</a>
-                                <li><a href="{{ route('city.trashed') }}"
-                                        data-key="t-cities-trashed">@lang('translation.Trashed')</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="{{ route('municipality.index') }}"
+                                data-key="t-municipalities-list">@lang('translation.Municipalities')</a>
+                        <li><a href="{{ route('parish.index') }}" data-key="t-parishes-list">@lang('translation.Parishes')</a>
+                        <li><a href="{{ route('city.index') }}" data-key="t-cities-list">@lang('translation.Cities')</a>
                     </ul>
                 </li>
 

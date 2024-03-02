@@ -117,7 +117,7 @@
                     className: 'btn-info',
                 },
                 {
-                    text: '<i class="fas fa-trash" title="Delete"></i>',
+                    text: '<i class="fas fa-trash" title="Eliminar"></i>',
                     action: function(e, dt, node, config) {
                         e.preventDefault();
                         var token = $('meta[name="csrf-token"]').attr('content');
@@ -190,6 +190,13 @@
                     className: 'btn-danger btn-massive-delete',
                 },
                 {
+                    text: '<i class="fas fa-recycle" title="Papelera"></i>',
+                    action: function(e, dt, node, config) {
+                        window.location = "{{ route('country.trashed') }}";
+                    },
+                    className: 'btn-success',
+                },
+                {
                     extend: 'copyHtml5',
                     text: '<i class="fas fa-copy" title="Agregar"></i>',
                     titleAttr: 'Copy'
@@ -210,7 +217,7 @@
                     titleAttr: 'Pdf'
                 },
                 {
-                    text: '<i class="fas fa-undo-alt" title="Recargar"></i>',
+                    text: '<i class="fas fa-undo" title="Recargar"></i>',
                     action: function(e, dt, node, config) {
                         window.location = "{{ route('country.index') }}";
                     },

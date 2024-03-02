@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    @lang('translation.States')
+    @lang('translation.Documents')
 @endsection
 @section('css')
     <style>
@@ -16,24 +16,25 @@
 @endsection
 @section('content')
 @section('pagetitle')
-    @lang('translation.States')
+    @lang('translation.Documents')
 @endsection
 <div class="row align-items-center">
     <div class="col-md-6">
         <div class="mb-3">
-            <h4 class="card-title">{{ __('States_Table') }}</h4>
+            <h4 class="card-title">{{ __('Documents_Trashed_Table') }}</h4>
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table align-middle project-list-table table-nowrap table-hover data-table" style="width:100%"
-            id="dataTable">
+        <table class="table align-middle project-list-table table-nowrap table-hover data-table" style="width:100%">
             <thead class="text-center">
                 <tr>
                     <th style="font-size: 12px;font-weight: bold"></th>
-                    <th>{{ __('Name') }}</th>
+                    <th class="col-4">{{ __('Name') }}</th>
+                    <th>{{ __('Acronym') }}</th>
                     <th>{{ __('Code') }}</th>
-                    <th>{{ __('ISO') }}</th>
-                    <th>{{ __('Flag') }}</th>
+                    <th>{{ __('Country') }}</th>
+                    <th>{{ __('status') }}</th>
+                    <th>{{ __('Note') }}</th>
                     <th>{{ __('Created At') }}</th>
                     <th>{{ __('Action') }}</th>
                 </tr>
@@ -47,7 +48,7 @@
 @endsection
 @section('script')
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
-{{-- {{ $dataTable->scripts(attributes: ['type' => 'module']) }} --}}
+{{-- {{ $dataTable->scripts() }} --}}
 <script type="text/javascript">
     $(function() {
         var table = $('.data-table').DataTable({
@@ -55,7 +56,7 @@
             serverSide: true,
             responsive: true,
             pageLength: 20,
-            ajax: "{{ route('state.trashed') }}",
+            ajax: "{{ route('document.trashed') }}",
             dom: 'Bfrtip',
             columns: [{
                     data: 'id',
@@ -64,20 +65,28 @@
                 },
                 {
                     data: 'name',
-                    name: 'name',
-                    'class': 'col-2'
+                    name: 'name'
+                },
+                {
+                    data: 'acronym',
+                    name: 'acronym'
                 },
                 {
                     data: 'code',
                     name: 'code'
                 },
                 {
-                    data: 'iso',
-                    name: 'iso'
+                    data: 'country',
+                    name: 'country',
+                    'class': 'col-2'
                 },
                 {
-                    data: 'flag',
-                    name: 'flag'
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'note',
+                    name: 'note'
                 },
                 {
                     data: 'created_at',
@@ -102,7 +111,7 @@
             buttons: [{
                     text: '<i class="fas fa-plus" title="Agregar"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('state.create') }}";
+                        window.location = "{{ route('document.create') }}";
                     },
                     className: 'btn-info',
                 },
@@ -128,7 +137,7 @@
                             data.push(rowId);
                         });
 
-                        var url = "{{ route('state.restore', ':data') }}";
+                        var url = "{{ route('document.restore', ':data') }}";
                         url = url.replace(':data', data);
 
                         Swal.fire({
@@ -202,14 +211,14 @@
                 {
                     text: '<i class="fas fa-undo" title="Recargar"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('state.trashed') }}";
+                        window.location = "{{ route('document.trashed') }}";
                     },
                     className: 'btn-primary',
                 },
                 {
-                    text: '<i class="fas fa-backward " title="Volver al listado de estados"></i>',
+                    text: '<i class="fas fa-backward " title="Volver al listado de documentos"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('state.index') }}";
+                        window.location = "{{ route('document.index') }}";
                     },
                     className: 'btn-primary',
                 },

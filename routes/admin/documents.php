@@ -6,7 +6,15 @@ use App\Http\Controllers\Documents\DocumentController;
 
 //Documents
 Route::prefix('documents')->group(function () {
-    //Phone Codes
+    // Documents Trashed
+    Route::get('documents/trashed', [DocumentController::class, 'trashed'])
+        ->name('document.trashed');
+
+    // Documents Restore
+    Route::get('documents/trashed/{id}', [DocumentController::class, 'restore'])
+        ->name('document.restore');
+
+    //Documents
     Route::resource('documents', DocumentController::class)
         ->parameters(['document' => 'document'])
         ->names('document');

@@ -109,7 +109,7 @@
                     className: 'btn-info',
                 },
                 {
-                    text: '<i class="fas fa-undo" title="Restore"></i>',
+                    text: '<i class="fas fa-trash-restore" title="Restore"></i>',
                     action: function(e, dt, node, config) {
                         e.preventDefault();
                         var token = $('meta[name="csrf-token"]').attr('content');
@@ -202,7 +202,7 @@
                     titleAttr: 'Pdf'
                 },
                 {
-                    text: '<i class="fas fa-undo-alt" title="Recargar"></i>',
+                    text: '<i class="fas fa-undo" title="Recargar"></i>',
                     action: function(e, dt, node, config) {
                         window.location = "{{ route('category.trashed') }}";
                     },
