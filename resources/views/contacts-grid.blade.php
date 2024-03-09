@@ -490,14 +490,14 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="AddNew-Username">Username</label>
-                                <input type="text" class="form-control" placeholder="Enter Username"
+                                <input type="text" class="form-control required" placeholder="Enter Username"
                                     id="AddNew-Username">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Position</label>
-                                <select class="form-select">
+                                <select class="form-select required">
                                     <option selected>Select Position</option>
                                     <option>Full Stack Developer</option>
                                     <option>Frontend Developer</option>
@@ -509,13 +509,13 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="AddNew-Email">Email</label>
-                                <input type="text" class="form-control" placeholder="Enter Email" id="AddNew-Email">
+                                <input type="text" class="form-control required" placeholder="Enter Email" id="AddNew-Email">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="AddNew-Phone">Phone</label>
-                                <input type="text" class="form-control" placeholder="Enter Phone" id="AddNew-Phone">
+                                <input type="text" class="form-control required" placeholder="Enter Phone" id="AddNew-Phone">
                             </div>
                         </div>
                     </div>

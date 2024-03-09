@@ -1,15 +1,18 @@
 @extends('layouts.master')
-@section('title') @lang('translation.Telephone') @endsection
+@section('title')
+    @lang('translation.Telephone')
+@endsection
 @section('css')
-
 @endsection
 @section('content')
-@section('pagetitle') @lang('translation.Telephone') @endsection
+@section('pagetitle')
+    @lang('translation.Telephone')
+@endsection
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">@lang('translation.Telephone_table')</h4>
+                <h4 class="card-title">{{ __('Telephone_Table') }}</h4>
             </div><!-- end card header -->
             <div class="card-body">
                 <a href="{{ route('phone.index') }}">

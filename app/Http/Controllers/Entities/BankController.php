@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Entities;
 
 use Illuminate\Http\Request;
 use App\Models\Entities\Bank;
+use function PHPSTORM_META\map;
+use Illuminate\Support\Facades\DB;
 use App\Models\Territories\Country;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
+
 use App\DataTables\Entities\BankDataTable;
 use App\Http\Requests\Entities\BankRequest;
 
@@ -83,7 +86,12 @@ class BankController extends Controller
 
         $bank->countries()->attach($request->country_id);
 
-        return redirect()->back()->with('success', __('Data created successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -120,16 +128,69 @@ class BankController extends Controller
 
         $bank->countries()->sync($request->country_id);
 
-        return redirect()->route('bank.edit', $bank)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bank $bank)
+    public function destroy($bank)
     {
-        $bank->delete();
-        $bank->countries()->detach();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $bank);
+        Bank::destroy($ids);
+        DB::table('bank_country_table')->whereIn('bank_id', $ids)->delete();
+
+        return [
+            'success' => __('Data deleted successfuly')
+        ];
+    }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $bank = Bank::onlyTrashed()
+                ->orderBy('name', 'DESC')
+                ->with('countries')
+                ->get();
+            return DataTables::of($bank)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($bank) {
+                    return $bank->present()->created_at();
+                })
+                ->addColumn('capital_type', function ($bank) {
+                    return $bank->present()->capitalType();
+                })
+                ->addColumn('bank_type', function ($bank) {
+                    return $bank->present()->bankType();
+                })
+                ->addColumn('country', function ($bank) {
+                    return $bank->present()->flag();
+                })
+                ->addColumn('status', function ($bank) {
+                    return $bank->present()->status();
+                })
+                ->addColumn('action', function ($bank) {
+                    return $bank->present()->actionButton();
+                })
+                ->rawColumns(['action', 'country', 'capital_type', 'bank_type', 'status'])
+                ->make(true);
+        }
+
+        return view('auth.entities.banks.trashed');
+    }
+
+    public function restore($bank)
+    {
+        $ids = explode(",", $bank);
+        $bank_ids = array_map('intval', $ids);
+        Bank::whereIn('id', $bank_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
     }
 }

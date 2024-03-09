@@ -75,7 +75,12 @@ class CityController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->back()->with('success', __('Data created successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -110,15 +115,61 @@ class CityController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->route('city.edit', $city)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(City $city)
+    public function destroy($city)
     {
-        $city->delete();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $city);
+        City::destroy($ids);
+        return [
+            'success' => __('Data deleted successfuly')
+        ];
+    }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $city = City::onlyTrashed()
+                ->orderBy('name', 'DESC')
+                ->with('state')
+                ->get();
+            return DataTables::of($city)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($city) {
+                    return $city->present()->created_at();
+                })
+                ->addColumn('state', function ($city) {
+                    return $city->present()->state();
+                })
+                ->addColumn('country', function ($city) {
+                    return $city->present()->flag();
+                })
+                ->addColumn('action', function ($city) {
+                    return $city->present()->actionButton();
+                })
+                ->rawColumns(['action', 'country', 'state'])
+                ->make(true);
+        }
+
+        return view('auth.territories.cities.trashed');
+    }
+
+    public function restore($city)
+    {
+        $ids = explode(",", $city);
+        $city_ids = array_map('intval', $ids);
+        City::whereIn('id', $city_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
     }
 }

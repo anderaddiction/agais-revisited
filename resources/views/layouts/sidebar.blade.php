@@ -40,13 +40,11 @@
 
                 {{-- Categories --}}
                 <li>
-                    <a href="javascript: void(0);">
+                    <a href="{{ route('category.index') }}">
                         <i class="icon nav-icon" data-eva="pricetags"></i>
                         <span class="menu-item" data-key="t-dashboards">@lang('translation.Categories')</span>
+                        <span class="badge rounded-pill badge-soft-danger" data-key="t-hot">Hot</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('category.index') }}" data-key="t-categories">@lang('translation.Categories')</a></li>
-                    </ul>
                 </li>
 
                 {{-- Codes --}}
@@ -55,7 +53,7 @@
                         <i class="icon nav-icon" data-eva="code-outline"></i>
                         <span class="menu-item" data-key="t-dashboards">@lang('translation.Codes')</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
+                    <ul class="sub-menu" aria-expanded="true">
                         <li><a href="{{ route('phone.index') }}" data-key="t-telephones">@lang('translation.Telephones')</a></li>
                     </ul>
                 </li>
@@ -81,6 +79,8 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('document.index') }}" data-key="t-documents">@lang('translation.Documents')</a></li>
+                        <li><a href="{{ route('invoice.index') }}" data-key="t-invoice-list">@lang('translation.Invoice_List')</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -111,15 +111,19 @@
                 <li>
                     <a href="javascript: void(0);">
                         <i class="icon nav-icon" data-eva="globe-2-outline"></i>
-                        <span class="menu-item" data-key="t-dashboards">@lang('translation.Territories')</span>
+                        <span class="menu-item" data-key="t-territories">@lang('translation.Territories')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('continent.index') }}" data-key="t-continents">@lang('translation.Continents')</a></li>
-                        <li><a href="{{ route('country.index') }}" data-key="t-countries">@lang('translation.Countries')</a></li>
-                        <li><a href="{{ route('state.index') }}" data-key="t-crypto">@lang('translation.States')</a></li>
-                        <li><a href="{{ route('municipality.index') }}" data-key="t-crypto">@lang('translation.Municipalities')</a></li>
-                        <li><a href="{{ route('parish.index') }}" data-key="t-crypto">@lang('translation.Parishes')</a></li>
-                        <li><a href="{{ route('city.index') }}" data-key="t-crypto">@lang('translation.Cities')</a></li>
+                        <li><a href="{{ route('continent.index') }}" data-key="t-continents">@lang('translation.Continents')</a>
+                        </li>
+                        <li><a href="{{ route('country.index') }}" data-key="t-countries-list">@lang('translation.Countries')</a>
+                        </li>
+                        <li><a href="{{ route('state.index') }}" data-key="t-states-list">@lang('translation.States')</a>
+                        </li>
+                        <li><a href="{{ route('municipality.index') }}"
+                                data-key="t-municipalities-list">@lang('translation.Municipalities')</a>
+                        <li><a href="{{ route('parish.index') }}" data-key="t-parishes-list">@lang('translation.Parishes')</a>
+                        <li><a href="{{ route('city.index') }}" data-key="t-cities-list">@lang('translation.Cities')</a>
                     </ul>
                 </li>
 
@@ -130,6 +134,7 @@
                         <span class="menu-item" data-key="t-dashboards">@lang('translation.Users')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('client.index') }}" data-key="t-clients">@lang('translation.Clients')</a></li>
                         <li><a href="{{ route('role.index') }}" data-key="t-roles">@lang('translation.Roles')</a></li>
                     </ul>
                 </li>
@@ -201,12 +206,16 @@
                         <li>
                             <a href="javascript: void(0);">
                                 <span data-key="t-email-templates">@lang('translation.Templates')</span>
-                                <span class="badge rounded-pill badge-soft-success" data-key="t-new">@lang('translation.New')</span>
+                                <span class="badge rounded-pill badge-soft-success"
+                                    data-key="t-new">@lang('translation.New')</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="email-template-basic" data-key="t-basic-action">@lang('translation.Basic_Action')</a></li>
-                                <li><a href="email-template-alert" data-key="t-alert-email">@lang('translation.Alert_Email')</a></li>
-                                <li><a href="email-template-billing" data-key="t-bill-email">@lang('translation.Billing_Email')</a></li>
+                                <li><a href="email-template-basic" data-key="t-basic-action">@lang('translation.Basic_Action')</a>
+                                </li>
+                                <li><a href="email-template-alert" data-key="t-alert-email">@lang('translation.Alert_Email')</a>
+                                </li>
+                                <li><a href="email-template-billing" data-key="t-bill-email">@lang('translation.Billing_Email')</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -271,8 +280,11 @@
                         <li><a href="auth-lock-screen" data-key="t-lock-screen">@lang('translation.Lock_Screen')</a></li>
                         <li><a href="auth-logout" data-key="t-logout">@lang('translation.Logout')</a></li>
                         <li><a href="auth-confirm-mail" data-key="t-confirm-mail">@lang('translation.Confirm_Mail')</a></li>
-                        <li><a href="auth-email-verification" data-key="t-email-verification">@lang('translation.Email_verification')</a></li>
-                        <li><a href="auth-two-step-verification" data-key="t-two-step-verification">@lang('translation.Two_step_verification')</a></li>
+                        <li><a href="auth-email-verification" data-key="t-email-verification">@lang('translation.Email_verification')</a>
+                        </li>
+                        <li><a href="auth-two-step-verification"
+                                data-key="t-two-step-verification">@lang('translation.Two_step_verification')</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -358,7 +370,8 @@
                         <span class="menu-item" data-key="t-charts">@lang('translation.Charts')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="javascript: void(0);" class="has-arrow" data-key="t-apex-charts">@lang('translation.Apex_Charts')</a>
+                        <li><a href="javascript: void(0);" class="has-arrow"
+                                data-key="t-apex-charts">@lang('translation.Apex_Charts')</a>
                             <ul class="sub-menu" aria-expanded="true">
                                 <li><a href="charts-line" data-key="t-line">@lang('translation.Line')</a></li>
                                 <li><a href="charts-area" data-key="t-area">@lang('translation.Area')</a></li>
@@ -416,7 +429,8 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
                         <li><a href="javascript: void(0);" data-key="t-level-1.1">@lang('translation.Level_1.1')</a></li>
-                        <li><a href="javascript: void(0);" class="has-arrow" data-key="t-level-1.2">@lang('translation.Level_1.2')</a>
+                        <li><a href="javascript: void(0);" class="has-arrow"
+                                data-key="t-level-1.2">@lang('translation.Level_1.2')</a>
                             <ul class="sub-menu" aria-expanded="true">
                                 <li><a href="javascript: void(0);" data-key="t-level-2.1">@lang('translation.Level_2.1')</a></li>
                                 <li><a href="javascript: void(0);" data-key="t-level-2.2">@lang('translation.Level_2.2')</a></li>
@@ -430,7 +444,11 @@
         <!-- Sidebar -->
 
         <div class="p-3 px-4 sidebar-footer">
-            <p class="mb-1 main-title"><script>document.write(new Date().getFullYear())</script> &copy; Borex.</p>
+            <p class="mb-1 main-title">
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> &copy; Borex.
+            </p>
             <p class="mb-0">Design & Develop by Themesbrand</p>
         </div>
     </div>

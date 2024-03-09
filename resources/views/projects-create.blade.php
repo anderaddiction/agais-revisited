@@ -22,14 +22,14 @@
                         <div class="row mb-4">
                             <label for="projectname" class="col-form-label col-lg-2">Project Name</label>
                             <div class="col-lg-10">
-                                <input id="projectname" name="projectname" type="text" class="form-control"
+                                <input id="projectname" name="projectname" type="text" class="form-control required"
                                     placeholder="Enter Project Name...">
                             </div>
                         </div>
                         <div class="row mb-4">
                             <label for="projectdesc" class="col-form-label col-lg-2">Project Description</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control" id="projectdesc" rows="3"
+                                <textarea class="form-control required" id="projectdesc" rows="3"
                                     placeholder="Enter Project Description..."></textarea>
                             </div>
                         </div>
@@ -40,9 +40,9 @@
                                 <div class="input-daterange input-group" id="project-date-inputgroup"
                                     data-provide="datepicker" data-date-format="dd M, yyyy"
                                     data-date-container='#project-date-inputgroup' data-date-autoclose="true">
-                                    <input type="text" class="form-control" id="datepicker-datetime-start"
+                                    <input type="text" class="form-control required" id="datepicker-datetime-start"
                                         placeholder="Start Date" name="start" />
-                                    <input type="text" class="form-control" id="datepicker-datetime-end"
+                                    <input type="text" class="form-control required" id="datepicker-datetime-end"
                                         placeholder="End Date" name="end" />
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                             <label for="projectbudget" class="col-form-label col-lg-2">Budget</label>
                             <div class="col-lg-10">
                                 <input id="projectbudget" name="projectbudget" type="text"
-                                    placeholder="Enter Project Budget..." class="form-control">
+                                    placeholder="Enter Project Budget..." class="form-control required">
                             </div>
                         </div>
                     </form>

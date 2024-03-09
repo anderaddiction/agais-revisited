@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Documents;
 
 use Illuminate\Http\Request;
 use App\Models\Documents\Document;
+use Illuminate\Support\Facades\DB;
 use App\Models\Territories\Country;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
@@ -75,7 +76,12 @@ class DocumentController extends Controller
 
         $document->countries()->attach($request->country_id);
 
-        return redirect()->back()->with('success', __('Data created successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -112,16 +118,62 @@ class DocumentController extends Controller
 
         $document->countries()->sync($request->country_id);
 
-        return redirect()->route('document.edit', $document)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Document $document)
+    public function destroy($document)
     {
-        $document->delete();
-        $document->countries()->detach();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $document);
+        Document::destroy($ids);
+        DB::table('assigned_documents')->whereIn('document_id', $ids)->delete();
+        return [
+            'success' => __('Data deleted successfuly')
+        ];
+    }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $document = Document::onlyTrashed()
+                ->orderBy('name', 'DESC')
+                ->with('countries')
+                ->get();
+            return DataTables::of($document)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($document) {
+                    return $document->present()->created_at();
+                })
+                ->addColumn('country', function ($document) {
+                    return $document->present()->flag();
+                })
+                ->addColumn('action', function ($document) {
+                    return $document->present()->actionButton();
+                })
+                ->addColumn('status', function ($document) {
+                    return $document->present()->status();
+                })
+                ->rawColumns(['action', 'country', 'status'])
+                ->make(true);
+        }
+
+        return view('auth.documents.documents.trashed');
+    }
+
+    public function restore($document)
+    {
+        $ids = explode(",", $document);
+        $document_ids = array_map('intval', $ids);
+        Document::whereIn('id', $document_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
     }
 }

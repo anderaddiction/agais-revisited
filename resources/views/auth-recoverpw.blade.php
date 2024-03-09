@@ -34,7 +34,7 @@
                                                         </div>
                                                         <form class="mt-4 pt-2" action="index">
                                                             <div class="form-floating form-floating-custom mb-4">
-                                                                <input type="email" class="form-control" id="input-email"
+                                                                <input type="email" class="form-control required" id="input-email"
                                                                     placeholder="Enter Email" required>
                                                                 <div class="invalid-feedback">
                                                                     Please Enter Email

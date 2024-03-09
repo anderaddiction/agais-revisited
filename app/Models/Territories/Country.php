@@ -6,6 +6,7 @@ use App\Models\Codes\PhoneCode;
 use App\Models\Documents\Document;
 use App\Models\Entities\Bank;
 use App\Models\Entities\Currency;
+use App\Models\Users\Clients\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Presenters\Territories\CountryPresenter;
@@ -19,10 +20,10 @@ class Country extends Model
 
     protected $guarded = [];
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 
     /**
      * Get the continent that owns the Country
@@ -82,6 +83,16 @@ class Country extends Model
     public function currencies(): HasMany
     {
         return $this->hasMany(Currency::class, 'currency_id', 'id');
+    }
+
+    /**
+     * Get all of the clients for the Country
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function clients(): HasMany
+    {
+        return $this->hasMany(Client::class, 'country_id', 'id');
     }
 
     public function present()

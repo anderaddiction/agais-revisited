@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Codes;
 
 use Illuminate\Http\Request;
 use App\Models\Codes\PhoneCode;
+use Illuminate\Support\Facades\DB;
 use App\Models\Territories\Country;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Codes\PhoneCodeRequest;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\Codes\PhoneCodeRequest;
 
 class PhoneCodeController extends Controller
 {
@@ -75,7 +76,12 @@ class PhoneCodeController extends Controller
 
         $phone->countries()->attach($request->country_id);
 
-        return redirect()->back()->with('success', __('Data created successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -112,16 +118,60 @@ class PhoneCodeController extends Controller
 
         $phone_code->countries()->sync($request->country_id);
 
-        return redirect()->route('phone.edit', $phone_code)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PhoneCode $phone_code)
+    public function destroy($phone_code)
     {
-        $phone_code->delete();
-        $phone_code->countries()->detach();
+        $ids = explode(",", $phone_code);
+        PhoneCode::destroy($ids);
+        DB::table('assigned_phones')->whereIn('phone_code_id', $ids)->delete();
         return redirect()->back()->with('success', __('Data deleted successfuly'));
+    }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $phone = PhoneCode::onlyTrashed()
+                ->orderBy('phone_code', 'DESC')
+                ->with('countries')
+                ->get();
+            return DataTables::of($phone)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($phone) {
+                    return $phone->present()->created_at();
+                })
+                ->addColumn('country', function ($phone) {
+                    return $phone->present()->flag();
+                })
+                ->addColumn('status', function ($phone) {
+                    return $phone->present()->status();
+                })
+                ->addColumn('action', function ($phone) {
+                    return $phone->present()->actionButton();
+                })
+                ->rawColumns(['action', 'country', 'status'])
+                ->make(true);
+        }
+
+        return view('auth.codes.telephones.trashed');
+    }
+
+    public function restore($phone_code)
+    {
+        $ids = explode(",", $phone_code);
+        $phone_code_ids = array_map('intval', $ids);
+        PhoneCode::whereIn('id', $phone_code_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
     }
 }

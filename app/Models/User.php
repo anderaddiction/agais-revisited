@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\Users\Roles\Role;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Communications\Mail\Mail;
 use Illuminate\Notifications\Notifiable;

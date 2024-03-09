@@ -67,7 +67,12 @@ class CategoryController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->back()->with('success', __('Data stored successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -100,15 +105,57 @@ class CategoryController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->route('category.edit', $category)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy($category)
     {
-        $category->delete();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $category);
+        Category::destroy($ids);
+        return [
+            'success' => __('Data deleted successfuly')
+        ];
+    }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $category = Category::onlyTrashed()
+                ->orderBy('name', 'DESC')
+                ->get();
+            return DataTables::of($category)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($category) {
+                    return $category->present()->created_at();
+                })
+                ->addColumn('action', function ($category) {
+                    return $category->present()->actionButton();
+                })
+                ->addColumn('status', function ($category) {
+                    return $category->present()->status();
+                })
+                ->rawColumns(['action', 'created_at', 'status'])
+                ->make(true);
+        }
+
+        return view('auth.categories.trashed');
+    }
+
+    public function restore($category)
+    {
+        $ids = explode(",", $category);
+        $category_ids = array_map('intval', $ids);
+        Category::whereIn('id', $category_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
     }
 }

@@ -22,22 +22,22 @@ new gridjs.Grid({
           })
         },
         {
-          name: 'Order ID',
+          name: 'Ordersss ID',
           formatter: (function (cell) {
             return gridjs.html('<span class="fw-semibold">' + cell + '</span>');
           })
         },
-         "Date", "Billing Name", "Amount", 
+         "Date", "Billing Name", "Amount",
         {
           name: 'Status',
           formatter: (function (cell) {
             switch (cell) {
               case "Paid":
                 return gridjs.html('<span class="badge badge-pill badge-soft-success font-size-12">' + cell + '</span>');
-  
+
               case "Pending":
                 return gridjs.html('<span class="badge badge-pill badge-soft-warning font-size-12">' + cell + '</span>');
-  
+
               default:
                 return gridjs.html('<span class="badge badge-pill badge-soft-success font-size-12">' + cell + '</span>');
             }
@@ -59,7 +59,7 @@ new gridjs.Grid({
     sort: true,
     search: true,
     data: [
-      ["", "#DS0215",  "07 Oct, 2021",  "Connie Franco",    "$26.30",  "Paid",      "View Details" ],
+      ["", "#DS0215",  "07 Oct, 2021",  "Conniesss Franco",    "$26.30",  "Paid",      "View Details" ],
       ["", "#DS0214",  "05 Oct, 2021",  "Paul Reynolds",    "$24.20",  "Paid",      "View Details"],
       ["", "#DS0214",  "06 Oct, 2021",  "Ronald Patterson", "$65.32",  "Pending",   "View Details"],
       ["", "#DS0212",  "07 Oct, 2021",  "Adella Perez",     "$53.32",  "Paid",      "View Details"],
@@ -77,10 +77,10 @@ new gridjs.Grid({
       ["", "#SK4125",  "07 Oct, 2021",  "Barbara Torres",   "$42.63",  "Paid",      "View Details"],
       ["", "#SK6523",  "08 Oct, 2021",  "Daniel Rigney",    "$32.54",  "Pending",   "View Details"],
       ["", "#SK6563",  "09 Oct, 2021",  "Kenneth Linck",    "$52.62",  "Pending",   "View Details"],
-  
+
     ]
   }).render(document.getElementById("table-invoices-list"));
-  
+
 
 // Range datepicker
 flatpickr('#datepicker-range', {
@@ -90,7 +90,7 @@ flatpickr('#datepicker-range', {
 // Invoice date
 
 flatpickr('#datepicker-invoice');
-    
+
 // form step wizard
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab

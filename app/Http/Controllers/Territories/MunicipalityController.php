@@ -74,7 +74,12 @@ class MunicipalityController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->back()->with('success', __('Data created successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -109,15 +114,64 @@ class MunicipalityController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->route('municipality.edit', $municipality)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Municipality $municipality)
+    public function destroy($municipality)
     {
-        $municipality->delete();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $municipality);
+        Municipality::destroy($ids);
+        return [
+            'success' => __('Data deleted successfuly')
+        ];
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $municipality = Municipality::orderBy('name', 'DESC')
+                ->with('state')
+                ->onlyTrashed()
+                ->get();
+            return DataTables::of($municipality)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($municipality) {
+                    return $municipality->present()->created_at();
+                })
+                ->addColumn('action', function ($municipality) {
+                    return $municipality->present()->actionButton();
+                })
+                ->addColumn('state', function ($municipality) {
+                    return $municipality->present()->state();
+                })
+                ->addColumn('country', function ($municipality) {
+                    return $municipality->present()->flag();
+                })
+                ->rawColumns(['action', 'flag', 'country', 'state'])
+                ->make(true);
+        }
+
+        return view('auth.territories.municipalities.trashed');
+    }
+
+    public function restore($municipality)
+    {
+        $ids = explode(",", $municipality);
+        $municipality_ids = array_map('intval', $ids);
+        Municipality::whereIn('id', $municipality_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
     }
 }
