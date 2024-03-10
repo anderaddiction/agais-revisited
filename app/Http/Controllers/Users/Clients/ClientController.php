@@ -21,6 +21,7 @@ use App\Models\Territories\Municipality;
 
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Users\Clients\ClientRequest;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 class ClientController extends Controller
 {
@@ -163,16 +164,33 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request, Client $client)
     {
-        //
+        if ($request->ajax()) {
+            return response()->json([
+                'client'       => $client,
+                'category'     => $client->category->name,
+                'role'         => $client->roles->pluck('display_name')->implode(' '),
+                'country'      => $client->country->name,
+                'state'        => $client->state->name,
+                'municipality' => $client->municipality->name,
+                'parish'       => $client->parish->name,
+                'city'         => $client->city->name,
+                'document'     => $client->document
+            ], 200);
+        } else {
+            return view('auth.users.clients.index', [
+                'client' => $client
+            ]);
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Client $client)
+    public function edit(Request $request, Client $client)
     {
+
         $categories      = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $categories      = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $countries       = Country::orderBy('name', 'ASC')->pluck('name', 'id');
@@ -182,6 +200,13 @@ class ClientController extends Controller
         $cities          = City::orderBy('name', 'ASC')->pluck('name', 'id');
         $roles           = Role::orderBy('display_name', 'ASC')->pluck('display_name', 'id');
         $documents       = Document::orderBy('acronym', 'ASC')->pluck('acronym', 'id');
+
+        //En caso de que la peticion sea via ajax
+        if ($request->ajax()) {
+            $view = 'clients/' . $client->id . '/edit';
+            return response()->json(array('success' => true, 'html' => $view));
+        }
+
         return view('auth.users.clients.edit', [
             'client'         => $client,
             'roles'          => $roles,
@@ -231,6 +256,7 @@ class ClientController extends Controller
      */
     public function destroy($client)
     {
+        return $client;
         $ids = explode(",", $client);
         Client::destroy($ids);
         DB::table('assigned_clients')->whereIn('client_id', $ids)->delete();

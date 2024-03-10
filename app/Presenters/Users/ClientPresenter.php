@@ -163,6 +163,8 @@ class ClientPresenter
 
     public function actionButton()
     {
+        // <a class="dropdown-item show-btn" href="javascript:void(0)" data-route="' . route('client.show', $this->client) . '" data-bs-toggle="modal"
+        //                     data-bs-target=".bs-example-modal-xl">Ver</a>
         return '
             <div class="dropdown align-self-start">
                 <a class="dropdown-toggle" href="#" role="button"
@@ -171,7 +173,7 @@ class ClientPresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('client.show', $this->client) . '">Ver</a>
+                    <button type="button" class="dropdown-item show-btn" data-route="' . route('client.show', $this->client) . '">Ver</button>
                     <a class="dropdown-item" href="' . route('client.edit', $this->client) . '">Editar</a>
                 </div>
             </div>

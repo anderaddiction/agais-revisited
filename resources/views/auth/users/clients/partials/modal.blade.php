@@ -1,377 +1,128 @@
-<!-- Modal -->
-<div class="modal fade" id="addInvoiceModal" tabindex="-1" aria-labelledby="addInvoiceModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addInvoiceModalLabel">Add Invoice</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4">
-                <div>
-                    <input type="text" name="errors" id="errors" value="{{ $errors }}">
-                    <ul class="wizard-nav mb-5">
-                        <li class="wizard-list-item">
-                            <div class="list-item">
-                                <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ('Client Details') }}">
-                                    <i class="bx bx-user-circle"></i>
-                                </div>
+<!--  Extra Large modal example -->
+<div class="row">
+    <div class="col-xl-3 col-sm-6">
+        <div class="modal fade bs-example-modal-xl" id="client-modal">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="dropdown float-end">
+                            <a class="text-muted dropdown-toggle font-size-16" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true">
+                                <i class="bx bx-dots-horizontal-rounded"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item dropdown-edit" href="#">{{ __('Edit') }}</a>
+                                <a class="dropdown-item dropdown-delete" href="#">{{ __('Remove') }}</a>
+                                <a class="dropdown-item" data-bs-dismiss="modal" aria-label="Close"
+                                    href="#">{{ __('Close') }}</a>
                             </div>
-                        </li>
-                        <li class="wizard-list-item">
-                            <div class="list-item">
-                                <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Client Address">
-                                    <i class="bx bx-map"></i>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="wizard-list-item">
-                            <div class="list-item">
-                                <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Client Roles">
-                                    <i class="bx bx-purchase-tag-alt"></i>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <!-- wizard-nav -->
-
-                    <div class="wizard-tab">
-                        <div class="text-center mb-4">
-                            <h5>{{ __('Client Details') }}</h5>
-                            <p class="card-title-desc">{{ __('Fill all information below') }}</p>
                         </div>
-                        <div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">{{ __('First Name') }}</label>
-                                        <input type="text" class="form-control required" placeholder="{{ __('Enter First Name') }}" id="name"
-                                            name="name" value="{{ old('name', $client->name) }}">
-                                        <div class="pristine-error text-danger" id="nameError">{{ $errors->first('name') }}</div>
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                                <div class="col-lg-3">
-                                    <div class="mb-3">
-                                        <label for="second_name" class="form-label">{{ __('Second Name') }}</label>
-                                        <input type="text" class="form-control required" placeholder="{{ __('Enter Second Name') }}" id="second_name"
-                                            name="second_name" value="{{ old('second_name'. $client->second_name) }}">
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                                <div class="col-lg-3">
-                                    <div class="mb-3">
-                                        <label for="last_name" class="form-label">{{ __('Last Name') }}</label>
-                                        <input type="text" class="form-control required" placeholder="{{ __('Enter Last Name') }}" id="last_name"
-                                            name="last_name" value="{{ old('last_name', $client->last_name) }}">
-                                        <div class="pristine-error text-danger" id="Error">{{ $errors->first('last_name') }}</div>
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                                <div class="col-lg-3">
-                                    <div class="mb-3">
-                                        <label for="second_last_name" class="form-label">{{ __('Second Last Name') }}</label>
-                                        <input type="text" class="form-control required" placeholder="{{ __('Enter Second Last Name') }}"
-                                            id="second_last_name" name="second_last_name"
-                                            value="{{ old('second_last_name', $client->second_last_name) }}">
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                            </div>
-                            <!-- end row -->
-
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="row">
-                                        <label for="" class="form-label">{{ __('Identification') }}</label>
-                                        <div class="col-lg-5">
-                                            <div class="mb-3">
-                                                <select class="form-control required" data-trigger name="document_id" id="document_id"
-                                                    placeholder="This is a search placeholder">
-                                                    @foreach ($documents as $id => $name)
-                                                    <option value="{{ $id }}" {{ $id==old('document_id',$client->document_id) ? 'selected' :
-                                                        '' }}
-                                                        >{{ $name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                <div class="pristine-error text-danger" id="Error">{{ $errors->first('identification') }}</div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <input type="text" class="form-control required" placeholder="{{ __('Enter Identification') }}"
-                                                    id="id_number" name="id_number" value="{{ old('id_number', $client->id_number) }}">
-                                                <div class="pristine-error text-danger" id="Error">{{ $errors->first('id_number') }}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
-                                        <label for="phone_one" class="form-label">{{ __('Phone') }}</label>
-                                        <input type="tel" class="form-control required" placeholder="Enter Phone" id="phone_one" name="phone_one"
-                                            value="{{ old('phone_one', $client->phone_one) }}">
-                                        <div class="pristine-error text-danger" id="Error">{{ $errors->first('phone_one') }}</div>
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
-                                        <label for="phone_alt" class="form-label">{{ __('Phone Alt') }}</label>
-                                        <input type="tel" class="form-control required" placeholder="Enter Phone" id="phone_alt" name="phone_alt"
-                                            value="{{ old('', $client->phone_alt) }}">
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                            </div>
-                            <!-- end row -->
-
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">{{ __('Email') }}</label>
-                                        <input type="email" class="form-control required" placeholder="{{ __('Enter Email') }}" id="email"
-                                            name="email" value="{{ old('email', $client->email) }}">
-                                        <div class="pristine-error text-danger" id="Error">{{ $errors->first('email') }}</div>
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
-                                        <label for="email_alt" class="form-label">{{ __('Email Alt.') }}</label>
-                                        <input type="email" class="form-control required" placeholder="{{ __('Enter Email Alt.') }}" id="email_alt"
-                                            name="email_alt" value="{{ old('email_alt', $client->email_alt) }}">
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
-                                        <label for="avatar" class="form-label">{{ ('Avatar') }}</label>
-                                        <input class="form-control required" type="file" id="avatar" name="avatar"
-                                            value="{{ old('', $client->avatar) }}">
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                            </div>
-                            <!-- end row -->
-                        </div>
-
-                    </div>
-                    <!-- wizard-tab -->
-
-                    <div class="wizard-tab">
-                        <div>
-                            <div class="text-center mb-4">
-                                <h5>{{ __('Client Address') }}</h5>
-                                <p class="card-title-desc">Fill all information below</p>
-                            </div>
+                        <div class="d-flex align-items-center">
                             <div>
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label for="country_id" class="form-label">{{ __('Country') }}</label>
-                                            <select class="form-control required" data-trigger name="country_id" id="country_id"
-                                                placeholder="This is a search placeholder">
-                                                <option value="">{{ ('Select an option') }}</option>
-                                                @foreach ($countries as $id => $name)
-                                                <option value="{{ $id }}" {{ $id==old('country_id',$client->country_id) ? 'selected' :
-                                                    '' }}
-                                                    >{{ $name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="pristine-error text-danger" id="Error">{{ $errors->first('country_id') }}</div>
-                                        </div>
-                                    </div>
-                                    <!-- end col -->
-
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label for="state_id" class="form-label">{{ __('States') }}</label>
-                                            <select class="form-control required" data-trigger name="state_id" id="state_id"
-                                                placeholder="This is a search placeholder">
-                                                <option value="">{{ ('Select an option') }}</option>
-                                                @foreach ($states as $id => $name)
-                                                <option value="{{ $id }}" {{ $id==old('state_id',$client->state_id) ? 'selected' :
-                                                    '' }}
-                                                    >{{ $name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="pristine-error text-danger" id="state_idError">{{ $errors->first('state_id') }}</div>
-                                        </div>
-                                    </div>
-                                    <!-- end col -->
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label for="state_id" class="form-label">{{ __('Municipalities') }}</label>
-                                            <select class="form-control required" data-trigger name="municipality_id" id="municipality_id"
-                                                placeholder="This is a search placeholder">
-                                                <option value="">{{ ('Select an option') }}</option>
-                                                @foreach ($municipalities as $id => $name)
-                                                <option value="{{ $id }}" {{ $id==old('municipality_id',$client->municipality_id) ?
-                                                    'selected' :
-                                                    '' }}
-                                                    >{{ $name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="pristine-error text-danger" id="Error">{{ $errors->first('municipality_id') }}</div>
-                                        </div>
-                                    </div>
-                                    <!-- end col -->
-                                </div>
-                                <!-- end row -->
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="state_id" class="form-label">{{ __('Parishes') }}</label>
-                                            <select class="form-control required" data-trigger name="parish_id" id="parish_id"
-                                                placeholder="This is a search placeholder">
-                                                <option value="">{{ ('Select an option') }}</option>
-                                                @foreach ($parishes as $id => $name)
-                                                <option value="{{ $id }}" {{ $id==old('parish_id',$client->parish_id) ? 'selected' :
-                                                    '' }}
-                                                    >{{ $name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="pristine-error text-danger" id="Error">{{ $errors->first('parish_id') }}</div>
-                                        </div>
-                                    </div>
-                                    <!-- end col -->
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="state_id" class="form-label">{{ __('Cities') }}</label>
-                                            <select class="form-control required" data-trigger name="city_id" id="city_id"
-                                                placeholder="This is a search placeholder">
-                                                <option value="">{{ ('Select an option') }}</option>
-                                                @foreach ($cities as $id => $name)
-                                                <option value="{{ $id }}" {{ $id==old('city_id',$client->city_id) ? 'selected' :
-                                                    '' }}
-                                                    >{{ $name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="pristine-error text-danger" id="Error">{{ $errors->first('city_id') }}</div>
-                                        </div>
-                                    </div>
-                                    <!-- end col -->
-                                </div>
-                                <!-- end row -->
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="address" class="form-label">{{ __('Address') }}</label>
-                                            <textarea id="address" name="address" class="form-control required"
-                                                placeholder="{{ __('Enter Address') }}" rows="2"
-                                                value="{{ old('address', $client->address) }}">{{ $client->address }}</textarea>
-                                            <div class="pristine-error text-danger" id="Error">{{ $errors->first('address') }}</div>
-                                        </div>
-                                    </div>
-                                    <!-- end col -->
-                                </div>
-                                <!-- end row -->
-                            </div><!-- end form -->
-                        </div>
-                    </div>
-                    <!-- wizard-tab -->
-
-                    <div class="wizard-tab">
-                        <div>
-                            <div class="text-center mb-4">
-                                <h5>{{ __('Client Roles') }}</h5>
-                                <p class="card-title-desc">{{ __('Fill all information below') }}</p>
+                                <img src="{{ URL::asset('assets/images/users/avatar-2.jpg') }}" alt=""
+                                    class="avatar-md rounded-circle img-thumbnail" id="getAvatar">
                             </div>
-                            <div>
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label for="role_id" class="form-label">{{ __('Roles') }}</label>
-                                            <select class="form-control required" data-trigger name="role_id" id="role_id"
-                                                placeholder="This is a search placeholder">
-                                                <option value="">{{ ('Select an option') }}</option>
-                                                @foreach ($roles as $id => $name)
-                                                <option {{ collect(old('role_id', $client->roles->pluck('id')))->contains($id) ?
-                                                    'selected' : '' }} value="{{ $id }}">{{ $name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!-- end col -->
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label for="category_id" class="form-label">{{ __('Categories') }}</label>
-                                            <select class="form-control required" data-trigger name="category_id" id="category_id"
-                                                placeholder="{{ __('This is a search placeholder') }}">
-                                                <option value="">{{ ('Select an option') }}</option>
-                                                @foreach ($categories as $id => $name)
-                                                <option {{ collect(old('category_id', $client->roles->pluck('id')))->contains($id) ?
-                                                    'selected' : '' }} value="{{ $id }}">{{ $name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="pristine-error text-danger" id="Error">{{ $errors->first('category_id') }}</div>
-                                        </div>
-                                    </div>
-                                    <!-- end col -->
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label for="password" class="form-label">{{ __('Password') }}</label>
-                                            <input type="password" class="form-control required" placeholder="{{ __('Enter Password') }}"
-                                                id="password" name="password" value="{{ old('password', $client->password) }}">
-                                        </div>
-                                    </div>
-                                    <!-- end col -->
-                                </div>
-                                <!-- end row -->
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="status">{{ __('Status') }}</label>
-                                            <select class="form-select required" data-trigger name="status" id="status">
-                                                <option value=" ">{{ __('Select an option') }}</option>
-                                                <option value="1" {{ old('status', $client->status) == '1' ? 'selected' : ''
-                                                    }}>@lang('Active')
-                                                </option>
-                                                <option value="0" {{ old('status', $client->status) == '0' ? 'selected' : ''
-                                                    }}>@lang('Inactive')
-                                                </option>
-                                            </select>
-                                            <div class="pristine-error text-danger" id="statusError">{{ $errors->first('status') }}</div>
-                                        </div>
-                                    </div>
-                                    <!-- end col -->
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="social_media" class="form-label">{{ __('Social Media') }}</label>
-                                            <input type="text" class="form-control required" placeholder="{{ __('Social Media') }}" id="social_media"
-                                                name="social_media" value="{{ old('social_media', $client->social_media) }}">
-                                        </div>
-                                    </div>
-                                    <!-- end col -->
-                                </div>
-                                <!-- end row -->
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label for="note" class="form-label">{{ __('Note') }}</label>
-                                            <textarea id="note" name="note" class="form-control required" placeholder="{{ __('Enter Note') }}"
-                                                rows="2"
-                                                value="{{ old('note', $client->address) }}">{{ old('note', $client->note) }}</textarea>
-                                        </div>
-                                    </div>
-                                    <!-- end col -->
-                                </div>
-                                <!-- end row -->
+                            <div class="flex-1 ms-3">
+                                <h5 class="font-size-16 mb-1"><a href="#" class="text-dark getName"></a>
+                                </h5>
+                                <span class="mb-0" id="getStatus" title="{{ __('Status') }}"></span>
+                                <span class="badge badge-soft-success mb-0" id="getCategory"
+                                    title="{{ __('Category') }}"></span>
+                                <span class="badge badge-soft-success mb-0" id="getGender"></span>
+                                <span class=" mb-0" id="getCode"></span>
                             </div>
                         </div>
-                    </div>
-                    <!-- wizard-tab -->
+                        <div class="mt-3 pt-1">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="text-muted mb-0 mr-10"><i
+                                            class="mdi mdi-phone-classic font-size-15 align-middle pe-2 text-primary"
+                                            title="{{ __('Phone') }}"></i>
+                                        <a href="#" id="getPhone"></a>
+                                    </p>
+                                    <p class="text-muted mb-0 mt-2"><i
+                                            class ="mdi mdi-email font-size-15 align-middle pe-2 text-primary"
+                                            title="{{ __('Email') }}">
+                                        </i><a href="#" id="getMail"></a>
+                                    </p>
+                                    <p class="text-muted mb-0 mt-2"><i
+                                            class ="mdi mdi-google-maps font-size-15 align-middle pe-2 text-primary"
+                                            title="{{ __('Country') }}">
+                                        </i><span id="getCountry"></span>
+                                    </p>
+                                    <p class="text-muted mb-0 mt-2"><i
+                                            class ="mdi mdi-google-maps font-size-15 align-middle pe-2 text-primary"
+                                            title="{{ __('Municipality') }}">
+                                        </i><span id="getMunicipality"></span>
+                                    </p>
+                                    <p class="text-muted mb-0 mt-2"><i
+                                            class ="mdi mdi-google-maps font-size-15 align-middle pe-2 text-primary"
+                                            title="{{ __('City') }}">
+                                        </i><span id="getCity"></span>
+                                    </p>
+                                    <p class="text-muted mb-0 mt-2"><i
+                                            class ="mdi mdi-human-capacity-decrease font-size-15 align-middle pe-2 text-primary"
+                                            title="{{ __('Role') }}">
+                                        </i><span id="getRole"></span>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="text-muted mb-0 ml-3 justify-content-end"><i
+                                            class="mdi mdi-cellphone font-size-15 align-middle pe-2 text-primary"
+                                            title="{{ __('Phone Alt.') }}"></i>
+                                        <a href="#" id="getPhoneAlt"></a>
+                                    </p>
+                                    <p class="text-muted mb-0 mt-2"><i
+                                            class ="mdi mdi-email font-size-15 align-middle pe-2 text-primary"
+                                            title="{{ __('Email Alt.') }}">
+                                        </i><a href="#" id="getMailAlt"></a>
+                                    </p>
+                                    <p class="text-muted mb-0 mt-2 ml-3 justify-content-end"><i
+                                            class="mdi mdi-credit-card font-size-15 align-middle pe-2 text-primary"
+                                            title="{{ __('Identification') }}"></i>
+                                        <span id="getID"></span>
+                                    </p>
+                                    <p class="text-muted mb-0 mt-2"><i
+                                            class ="mdi mdi-google-maps font-size-15 align-middle pe-2 text-primary"
+                                            title="{{ __('State') }}">
+                                        </i><span id="getState"></span>
+                                    </p>
+                                    <p class="text-muted mb-0 mt-2"><i
+                                            class ="mdi mdi-google-maps font-size-15 align-middle pe-2 text-primary"
+                                            title="{{ __('Parish') }}">
+                                        </i><span id="getParish"></span>
+                                    </p>
+                                    <p class="text-muted mb-0 mt-2"><i
+                                            class ="mdi mdi-cellphone-link font-size-15 align-middle pe-2 text-primary"
+                                            title="{{ __('Social Media') }}">
+                                        </i><span id="getSocialMedia"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="text-muted mb-0 mt-2"><i
+                                            class="mdi mdi-map font-size-15 align-middle pe-2 text-primary"
+                                            title="{{ __('Address') }}"></i>
+                                        <span id="getAddress"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="d-flex align-items-start gap-3 mt-4">
-                        <button type="button" class="btn btn-primary w-sm" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                        <button type="button" class="btn btn-primary w-sm ms-auto" id="nextBtn" onclick="nextPrev(1)">Next</button>
-                        <button type="submit" class="btn btn-primary w-sm ms-auto" id="submitBtn" style="display: none">Submit</button>
+                        <div class="d-flex gap-2 pt-4">
+                            <button type="button" class="btn btn-soft-primary btn-sm w-50"><i
+                                    class="bx bx-user me-1"></i>
+                                Profile</button>
+                            <button type="button" class="btn btn-primary btn-sm w-50"><i
+                                    class="bx bx-message-square-dots me-1"></i> Contact</button>
+                        </div>
+
+
                     </div>
-                </div>
-            </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
         </div>
+        <!-- /.modal -->
     </div>
 </div>
-<!-- end modal -->

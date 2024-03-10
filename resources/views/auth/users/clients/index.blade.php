@@ -28,6 +28,7 @@
             <h4 class="card-title">{{ __('Clients_Table') }}</h4>
         </div>
     </div>
+    @include('auth.users.clients.partials.modal')
     <div class="table-responsive">
         <table class="table align-middle project-list-table table-nowrap table-hover data-table" style="width:100%"
             id="dataTable">
@@ -52,6 +53,7 @@
             </tbody>
         </table>
     </div>
+
 </div>
 <!-- end row -->
 
@@ -149,9 +151,6 @@
                     action: function(e, dt, node, config) {
                         window.location = "{{ route('client.create') }}";
                     },
-                    // action: function(e, dt, node, config) {
-                    //     $("#addInvoiceModal").modal('show');
-                    // },
                     className: 'btn-info btn-add',
                 },
                 {
@@ -278,6 +277,154 @@
                 $('.buttons-colvis').html('<i class="fas fa-eye" title="Visibilidad" /></div>')
             }
         });
+
+        $('.data-table tbody').on('click', '.show-btn', function() {
+            //var data = table.row($(this).parents('tr')).data();
+            var route = $(this).data("route");
+            $.ajax({
+                type: "GET",
+                url: route,
+                //dataType: "json",
+                success: function(response) {
+                    var name = response.client.name + ' ' + response.client.second_name +
+                        ' ' +
+                        response.client.last_name + ' ' + response.client.second_last_name;
+
+                    $(".getName").text(name);
+                    if (response.client.status == 1) {
+                        $("#getStatus").addClass('badge badge-soft-success');
+                        $("#getStatus").text('Activo');
+                    } else {
+                        $("#getStatus").addClass('badge badge-soft-danger');
+                        $("#getStatus").text('Inactivo');
+                    }
+                    $("#getCode").html('<small>Codigo: ' + response.client.code +
+                        '</small>');
+                    $("#getCategory").text(response.category);
+                    if (response.client.gender == 'F') {
+                        $("#getGender").html(
+                            '<i class="bx bx-female-sign bx-xm text-danger" title="Femenino"></i>'
+                        );
+                    } else {
+                        $("#getGender").html(
+                            '<i class="bx bx-male-sign bx-xm text-info" title="Masculino"></i>'
+                        );
+                    }
+                    $("#getPhone").text(response.client.phone_one);
+                    $("#getPhone").attr('href', `Tel:${response.client.phone_one}`);
+                    if (response.client.phone_alt) {
+                        $("#getPhoneAlt").text(response.client.phone_alt);
+                        $("#getPhoneAlt").attr('href', `Tel:${response.client.phone_alt}`);
+                    } else {
+                        $("#getPhoneAlt").text('N/A');
+                        $("#getPhoneAlt").css('color', '#7f838b');
+                    }
+
+                    $("#getMail").text(response.client.email);
+                    $("#getMail").attr('href', `mailto:${response.client.email}`);
+                    if (response.client.email_alt) {
+                        $("#getMailAlt").text(
+                            jQuery.trim(response.client.email_alt).substring(0, 20)
+                            .trim(this) + "..."
+                        );
+                        $("#getMailAlt").attr('href',
+                            `mailto:${response.client.email_alt}`);
+                    } else {
+                        $("#getMailAlt").text('N/A');
+                        $("#getMailAlt").css('color', '#7f838b');
+                    }
+                    $("#getAddress").text(response.client.address);
+                    $("#getCountry").text(response.country);
+                    $("#getState").text(response.state);
+                    $("#getMunicipality").text(response.municipality);
+                    $("#getParish").text(response.parish);
+                    $("#getCity").text(response.city);
+                    $("#getID").text(response.document.acronym + ' ' + response.client
+                        .id_number);
+                    $("#getAvatar").attr('src', '/storage/' + response.client.avatar);
+                    if (response.client.social_media) {
+                        $("#getSocialMedia").text(response.client.social_media);
+                    } else {
+                        $("#getSocialMedia").text('N/A');
+                    }
+                    $("#getRole").text(response.role);
+                    $("#client-modal").modal('show');
+
+                    //Para ir a editar desde la modal
+                    $(".dropdown-edit").click(function(e) {
+                        e.preventDefault();
+                        var url = '{{ route('client.edit', ':client') }}';
+                        url = url.replace(':client', response.client.id);
+                        $.ajax({
+                            type: "GET",
+                            url: url,
+                            data: response.client,
+                            dataType: "json",
+                            success: function(response) {
+                                window.location.href = response.html;
+                            }
+                        });
+                    });
+
+                    //Para eliminar desde la modal
+                    $(".dropdown-delete").click(function(e) {
+                        e.preventDefault();
+                        var token = $('meta[name="csrf-token"]').attr('content');
+                        var url = '{{ route('client.destroy', ':client') }}';
+                        url = url.replace(':client', response.client.id);
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'No, cancel!',
+                            confirmButtonClass: 'btn btn-success mt-2',
+                            cancelButtonClass: 'btn btn-danger ms-2 mt-2',
+                            buttonsStyling: false
+                        }).then(function(result) {
+                            if (result.value) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: url,
+                                    headers: {
+                                        'X-CSRF-Token': token
+                                    },
+                                    data: {
+                                        data: response.client,
+                                        _method: 'DELETE'
+                                    },
+                                    success: function(response) {
+                                        $('.data-table')
+                                            .DataTable().ajax
+                                            .reload();
+                                        Swal.fire({
+                                            title: 'Deleted!',
+                                            text: response
+                                                .success,
+                                            icon: 'success',
+                                            confirmButtonColor: '#038edc',
+                                        })
+                                    }
+                                });
+                            } else if (
+                                // Read more about handling dismissals
+                                result.dismiss === Swal.DismissReason.cancel
+                            ) {
+                                Swal.fire({
+                                    title: 'Cancelled',
+                                    text: 'Your imaginary file is safe :)',
+                                    icon: 'error',
+                                    confirmButtonColor: '#038edc',
+                                })
+                            }
+                        });
+                    });
+                }
+            });
+            //alert(data[0] + "'s salary is: " + data[5]);
+        });
+
     });
 </script>
 @endsection
