@@ -256,7 +256,6 @@ class ClientController extends Controller
      */
     public function destroy($client)
     {
-        return $client;
         $ids = explode(",", $client);
         Client::destroy($ids);
         DB::table('assigned_clients')->whereIn('client_id', $ids)->delete();

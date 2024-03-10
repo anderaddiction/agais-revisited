@@ -398,6 +398,8 @@
                                         $('.data-table')
                                             .DataTable().ajax
                                             .reload();
+                                        $("#client-modal")
+                                            .modal('hide');
                                         Swal.fire({
                                             title: 'Deleted!',
                                             text: response
