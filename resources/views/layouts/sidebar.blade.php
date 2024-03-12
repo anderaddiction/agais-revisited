@@ -93,6 +93,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('bank.index') }}" data-key="t-banks">@lang('translation.Banks')</a></li>
                         <li><a href="{{ route('currency.index') }}" data-key="t-currencies">@lang('translation.Currencies')</a></li>
+                        <li><a href="{{ route('urbanism.index') }}" data-key="t-urbanism">@lang('translation.Urbanism')</a></li>
                     </ul>
                 </li>
 

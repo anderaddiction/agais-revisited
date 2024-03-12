@@ -6,6 +6,7 @@ use App\Models\Codes\PhoneCode;
 use App\Models\Documents\Document;
 use App\Models\Entities\Bank;
 use App\Models\Entities\Currency;
+use App\Models\Entities\Urbanism;
 use App\Models\Users\Clients\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -42,7 +43,7 @@ class Country extends Model
      */
     public function sates(): HasMany
     {
-        return $this->hasMany(Comment::class, 'country_id', 'id');
+        return $this->hasMany(State::class, 'country_id', 'id');
     }
 
     /**
@@ -93,6 +94,16 @@ class Country extends Model
     public function clients(): HasMany
     {
         return $this->hasMany(Client::class, 'country_id', 'id');
+    }
+
+    /**
+     * Get all of the urbanism for the Country
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function urbanism(): HasMany
+    {
+        return $this->hasMany(Urbanism::class, 'country_id', 'id');
     }
 
     public function present()

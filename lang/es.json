@@ -470,5 +470,9 @@
     "Enter symbol" : "Ingrese simbología",
     "Enter ISO2": "Ingrese código ISO2",
     "Enter ISO3": "Ingrese código ISO3",
-    "Enter ISO": "Ingrese código ISO"
+    "Enter ISO": "Ingrese código ISO",
+    "Urbanism_Table" : "Tabla de Urbanismos",
+    "Back to Urbsnism List" : "Volver a la Lista de Urbanismos",
+    "Urbsnism_Table" : "Lista de Urbanismos",
+    "Urbanism_form" : "Formulario de Urbanismos"
 }

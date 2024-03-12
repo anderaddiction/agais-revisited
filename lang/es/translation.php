@@ -278,5 +278,6 @@ return [
     "Trashed" => "Papelera",
     "Events" => "Eventos",
     "Schedulings" => "Programación",
-    "Select an option" => "Seleccione una opción"
+    "Select an option" => "Seleccione una opción",
+    'Urbanism' => 'Urbanismos'
 ];

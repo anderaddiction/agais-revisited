@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Entities\BankController;
 use App\Http\Controllers\Entities\CurrencyController;
+use App\Http\Controllers\Entities\UrbanismController;
 
 //Entities
 Route::prefix('entities')->group(function () {
@@ -31,4 +32,17 @@ Route::prefix('entities')->group(function () {
     Route::resource('currencies', CurrencyController::class)
         ->parameters(['currency' => 'currency'])
         ->names('currency');
+
+    // Urbanism Trashed
+    Route::get('urbanism/trashed', [UrbanismController::class, 'trashed'])
+        ->name('urbanism.trashed');
+
+    // Urbanism Restore
+    Route::get('urbanism/trashed/{id}', [UrbanismController::class, 'restore'])
+        ->name('urbanism.restore');
+
+    //Urbanism
+    Route::resource('urbanism', UrbanismController::class)
+        ->parameters(['urbanism' => 'urbanism'])
+        ->names('urbanism');
 });

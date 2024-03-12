@@ -335,9 +335,9 @@
                             placeholder="{{ __('This is a search placeholder') }}">
                             <option value="">{{ 'Select an option' }}</option>
                             @foreach ($categories as $id => $name)
-                                <option
-                                    {{ collect(old('category_id', $client->roles->pluck('id')))->contains($id) ? 'selected' : '' }}
-                                    value="{{ $id }}">{{ $name }}</option>
+                                <option value="{{ $id }}"
+                                    {{ $id == old('category_id', $client->category_id) ? 'selected' : '' }}>
+                                    {{ $name }}</option>
                             @endforeach
                         </select>
                         <div class="pristine-error text-danger" id="category_idError">
