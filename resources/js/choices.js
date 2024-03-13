@@ -27,20 +27,26 @@ $(document).ready(function () {
     }
 
     if ($("#status").length > 0) {
-        var continentChoices = new Choices(document.getElementById("status"));
+        var statusChoices = new Choices(document.getElementById("status"));
     }
 
     if ($("#role_id").length > 0) {
-        var continentChoices = new Choices(document.getElementById("role_id"));
+        var roleChoices = new Choices(document.getElementById("role_id"));
     }
 
     if ($("#category_id").length > 0) {
-        var countryChoices = new Choices(
+        var categoryChoices = new Choices(
             document.getElementById("category_id")
         );
     }
 
     if ($("#gender").length > 0) {
-        var countryChoices = new Choices(document.getElementById("gender"));
+        var genderChoices = new Choices(document.getElementById("gender"));
+    }
+
+    if ($("#urbanism_id").length > 0) {
+        var urbanismChoices = new Choices(
+            document.getElementById("urbanism_id")
+        );
     }
 });

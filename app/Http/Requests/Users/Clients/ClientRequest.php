@@ -58,6 +58,7 @@ class ClientRequest extends FormRequest
             'note'              => 'nullable',
             'status'            => 'required',
             'password'          => 'required',
+            'urbanism_id'       => 'required',
         ];
     }
 }

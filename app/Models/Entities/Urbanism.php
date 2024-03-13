@@ -7,10 +7,12 @@ use App\Models\Territories\State;
 use App\Models\Territories\Parish;
 use App\Models\Categories\Category;
 use App\Models\Territories\Country;
+use App\Models\Users\Clients\Client;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Territories\Municipality;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Presenters\Entities\UrbanismPresenter;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -80,6 +82,16 @@ class Urbanism extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    /**
+     * Get all of the clients for the Urbanism
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function clients(): HasMany
+    {
+        return $this->hasMany(Client::class, 'urbanism_id', 'id');
     }
 
     public function present()

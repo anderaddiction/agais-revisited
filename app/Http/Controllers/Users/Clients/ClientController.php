@@ -21,10 +21,36 @@ use App\Models\Territories\Municipality;
 
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Users\Clients\ClientRequest;
+use App\Models\Entities\Urbanism;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 class ClientController extends Controller
 {
+
+    protected   $client;
+    protected   $categories;
+    protected   $countries;
+    protected   $states;
+    protected   $municipalities;
+    protected   $parishes;
+    protected   $cities;
+    protected   $roles;
+    protected   $documents;
+    protected   $urbanism;
+
+    public function __construct(Client $client)
+    {
+        $this->client           = $client          = new Client();
+        $this->categories       = $categories      = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+        $this->countries        = $countries       = Country::orderBy('name', 'ASC')->pluck('name', 'id');
+        $this->states           = $states          = State::orderBy('name', 'ASC')->pluck('name', 'id');
+        $this->municipalities   = $municipalities  = Municipality::orderBy('name', 'ASC')->pluck('name', 'id');
+        $this->parishes         = $parishes        = Parish::orderBy('name', 'ASC')->pluck('name', 'id');
+        $this->cities           = $cities          = City::orderBy('name', 'ASC')->pluck('name', 'id');
+        $this->roles            = $roles           = Role::orderBy('display_name', 'ASC')->pluck('display_name', 'id');
+        $this->documents        = $documents       = Document::orderBy('acronym', 'ASC')->pluck('acronym', 'id');
+        $this->urbanism         = $urbanism        = Urbanism::orderBy('name', 'ASC')->pluck('name', 'id');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -40,7 +66,8 @@ class ClientController extends Controller
                     'parish',
                     'city',
                     'roles',
-                    'category'
+                    'category',
+                    'urbanism'
                 )
                 ->get();
             return DataTables::of($client)
@@ -108,28 +135,19 @@ class ClientController extends Controller
      */
     public function create()
     {
-        $client          = new Client();
-        $categories      = Category::orderBy('name', 'ASC')->pluck('name', 'id');
-        $categories      = Category::orderBy('name', 'ASC')->pluck('name', 'id');
-        $countries       = Country::orderBy('name', 'ASC')->pluck('name', 'id');
-        $states          = State::orderBy('name', 'ASC')->pluck('name', 'id');
-        $municipalities  = Municipality::orderBy('name', 'ASC')->pluck('name', 'id');
-        $parishes        = Parish::orderBy('name', 'ASC')->pluck('name', 'id');
-        $cities          = City::orderBy('name', 'ASC')->pluck('name', 'id');
-        $roles           = Role::orderBy('display_name', 'ASC')->pluck('display_name', 'id');
-        $documents       = Document::orderBy('acronym', 'ASC')->pluck('acronym', 'id');
         return view('auth.users.clients.create', [
-            'client'         => $client,
-            'roles'          => $roles,
-            'categories'     => $categories,
-            'countries'      => $countries,
-            'states'         => $states,
-            'municipalities' => $municipalities,
-            'parishes'       => $parishes,
-            'parishes'       => $parishes,
-            'cities'         => $cities,
-            'categories'     => $categories,
-            'documents'      => $documents
+            'client'         => $this->client,
+            'roles'          => $this->roles,
+            'categories'     => $this->categories,
+            'countries'      => $this->countries,
+            'states'         => $this->states,
+            'municipalities' => $this->municipalities,
+            'parishes'       => $this->parishes,
+            'parishes'       => $this->parishes,
+            'cities'         => $this->cities,
+            'categories'     => $this->categories,
+            'documents'      => $this->documents,
+            'urbanism'       => $this->urbanism
         ]);
     }
 
@@ -190,17 +208,6 @@ class ClientController extends Controller
      */
     public function edit(Request $request, Client $client)
     {
-
-        $categories      = Category::orderBy('name', 'ASC')->pluck('name', 'id');
-        $categories      = Category::orderBy('name', 'ASC')->pluck('name', 'id');
-        $countries       = Country::orderBy('name', 'ASC')->pluck('name', 'id');
-        $states          = State::orderBy('name', 'ASC')->pluck('name', 'id');
-        $municipalities  = Municipality::orderBy('name', 'ASC')->pluck('name', 'id');
-        $parishes        = Parish::orderBy('name', 'ASC')->pluck('name', 'id');
-        $cities          = City::orderBy('name', 'ASC')->pluck('name', 'id');
-        $roles           = Role::orderBy('display_name', 'ASC')->pluck('display_name', 'id');
-        $documents       = Document::orderBy('acronym', 'ASC')->pluck('acronym', 'id');
-
         //En caso de que la peticion sea via ajax
         if ($request->ajax()) {
             $view = 'clients/' . $client->id . '/edit';
@@ -209,16 +216,17 @@ class ClientController extends Controller
 
         return view('auth.users.clients.edit', [
             'client'         => $client,
-            'roles'          => $roles,
-            'categories'     => $categories,
-            'countries'      => $countries,
-            'states'         => $states,
-            'municipalities' => $municipalities,
-            'parishes'       => $parishes,
-            'parishes'       => $parishes,
-            'cities'         => $cities,
-            'categories'     => $categories,
-            'documents'      => $documents
+            'roles'          => $this->roles,
+            'categories'     => $this->categories,
+            'countries'      => $this->countries,
+            'states'         => $this->states,
+            'municipalities' => $this->municipalities,
+            'parishes'       => $this->parishes,
+            'parishes'       => $this->parishes,
+            'cities'         => $this->cities,
+            'categories'     => $this->categories,
+            'documents'      => $this->documents,
+            'urbanism'       => $this->urbanism
         ]);
     }
 

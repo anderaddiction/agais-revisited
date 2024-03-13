@@ -7,6 +7,7 @@ use App\Models\Territories\City;
 use App\Models\Users\Roles\Role;
 use App\Models\Territories\State;
 use App\Models\Documents\Document;
+use App\Models\Entities\Urbanism;
 use App\Models\Territories\Parish;
 use App\Models\Territories\Country;
 use Illuminate\Database\Eloquent\Model;
@@ -106,6 +107,16 @@ class Client extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    /**
+     * Get the urbanism that owns the Client
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function urbanism(): BelongsTo
+    {
+        return $this->belongsTo(Urbanism::class, 'urbanism_id');
     }
 
     public function present()

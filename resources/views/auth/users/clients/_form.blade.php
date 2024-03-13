@@ -360,7 +360,7 @@
             </div>
             <!-- end row -->
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="mb-3">
                         <label class="form-label" for="status">{{ __('Status') }} <span
                                 class="text-danger">*</span></label>
@@ -377,8 +377,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-4">
+                    <div class="mb-3">
+                        <label for="urbanism_id" class="form-label">{{ __('Urbanism') }} <span
+                                class="text-danger">*</span></label>
+                        <select class="form-select required" data-trigger name="urbanism_id" id="urbanism_id"
+                            placeholder="{{ __('This is a search placeholder') }}">
+                            <option value="">{{ 'Select an option' }}</option>
+                            @foreach ($urbanism as $id => $name)
+                                <option value="{{ $id }}"
+                                    {{ $id == old('urbanism_id', $client->urbanism_id) ? 'selected' : '' }}>
+                                    {{ $name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="pristine-error text-danger" id="urbanism_idError">
+                            {{ $errors->first('urbanism_id') }}</div>
+                    </div>
+                </div>
                 <!-- end col -->
-                <div class="col-lg-6">
+                <!-- end col -->
+                <div class="col-lg-4">
                     <div class="mb-3">
                         <label for="social_media" class="form-label">{{ __('Social Media') }}</label>
                         <input type="text" class="form-control" placeholder="{{ __('Social Media') }}"

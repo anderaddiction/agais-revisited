@@ -37,6 +37,7 @@ return new class extends Migration
             $table->integer('status')->unsigned();
             $table->string('social_media')->nullable();
             $table->string('avatar')->nullable();
+            $table->integer('urbanism_id')->unsigned();
             $table->string('slug')->unique();
             $table->text('note')->nullable();
             $table->rememberToken();
@@ -50,6 +51,7 @@ return new class extends Migration
             $table->foreign('parish_id')->references('id')->on('parishes')->cascadeOnDelete();
             $table->foreign('city_id')->references('id')->on('cities')->cascadeOnDelete();
             $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
+            $table->foreign('urbanism_id')->references('id')->on('urbanisms')->cascadeOnDelete();
         });
     }
 
