@@ -25,24 +25,28 @@
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table align-middle project-list-table table-nowrap table-hover data-table" style="width:100%"
-            id="dataTable">
-            <thead class="text-center">
-                <tr>
-                    <th style="font-size: 12px;font-weight: bold"></th>
-                    <th>{{ __('Name') }}</th>
-                    <th>{{ __('Code') }}</th>
-                    <th>{{ __('ISO2') }}</th>
-                    <th>{{ __('ISO3') }}</th>
-                    <th>{{ __('Flag') }}</th>
-                    <th>{{ __('Continent') }}</th>
-                    <th>{{ __('Created At') }}</th>
-                    <th>{{ __('Action') }}</th>
-                </tr>
-            </thead>
-            <tbody class="text-center align-middle">
-            </tbody>
-        </table>
+        <form action="{{ route('country.import') }}" method="POST" rol="form" id="form-import"
+            enctype='multipart/form-data'>
+            @csrf
+            <table class="table align-middle project-list-table table-nowrap table-hover data-table" style="width:100%"
+                id="dataTable">
+                <thead class="text-center">
+                    <tr>
+                        <th style="font-size: 12px;font-weight: bold"></th>
+                        <th>{{ __('Name') }}</th>
+                        <th>{{ __('Code') }}</th>
+                        <th>{{ __('ISO2') }}</th>
+                        <th>{{ __('ISO3') }}</th>
+                        <th>{{ __('Flag') }}</th>
+                        <th>{{ __('Continent') }}</th>
+                        <th>{{ __('Created At') }}</th>
+                        <th>{{ __('Action') }}</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center align-middle">
+                </tbody>
+            </table>
+        </form>
     </div>
 </div>
 <!-- end row -->
@@ -117,11 +121,59 @@
                     className: 'btn-info',
                 },
                 {
+                    text: '<i class="fa fa-upload"></i>',
+                    action: function() {
+                        var fileSelector = $(
+                            '<input type="file" name="file" multiple>'
+                        );
+                        fileSelector.click();
+
+                        fileSelector.change(function(e) {
+                            e.preventDefault();
+                            var data = new FormData();
+                            $.each($(this)[0].files, function(i, file) {
+                                data.append('file', file);
+                            });
+                            var route = $("#form-import").attr('action');
+                            var token = $('meta[name="csrf-token"]').attr('content');
+
+                            $.ajax({
+                                type: "POST",
+                                url: route,
+                                headers: {
+                                    'X-CSRF-TOKEN': token
+                                },
+                                data: data,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                success: function(response) {
+                                    $('.data-table').DataTable().ajax
+                                        .reload();
+                                    Swal.fire({
+                                        title: "Felicidades",
+                                        text: response.success,
+                                        icon: "success",
+                                        confirmButtonColor: "#038edc",
+                                    });
+                                },
+                                error: function(jqXHR, textStatus,
+                                    errorThrown) {
+                                    console.log(jqXHR, textStatus,
+                                        errorThrown);
+                                }
+                            });
+                        });
+                    },
+                    className: 'btn btn-warning'
+                },
+                {
                     text: '<i class="fas fa-trash" title="Eliminar"></i>',
                     action: function(e, dt, node, config) {
                         e.preventDefault();
                         var token = $('meta[name="csrf-token"]').attr('content');
-                        var rows = $('.data-table').DataTable().column(0).checkboxes.selected();
+                        var rows = $('.data-table').DataTable().column(0).checkboxes
+                            .selected();
                         var data = [];
                         if (rows.length == 0) {
                             Swal.fire({
@@ -164,11 +216,13 @@
                                         _method: 'DELETE'
                                     },
                                     success: function(response) {
-                                        $('.data-table').DataTable().ajax
+                                        $('.data-table').DataTable()
+                                            .ajax
                                             .reload();
                                         Swal.fire({
                                             title: 'Deleted!',
-                                            text: response.success,
+                                            text: response
+                                                .success,
                                             icon: 'success',
                                             confirmButtonColor: '#038edc',
                                         })

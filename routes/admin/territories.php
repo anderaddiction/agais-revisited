@@ -5,6 +5,7 @@ use App\Http\Controllers\Territories\CityController;
 use App\Http\Controllers\Territories\StateController;
 use App\Http\Controllers\Territories\ParishController;
 use App\Http\Controllers\Territories\CountryController;
+use App\Http\Controllers\Imports\EaxcelImportController;
 use App\Http\Controllers\Territories\ContinentController;
 use App\Http\Controllers\Territories\MunicipalityController;
 
@@ -31,6 +32,10 @@ Route::prefix('territories')->group(function () {
     // Country Restore
     Route::get('/countries/trashed/{id}', [CountryController::class, 'restore'])
         ->name('country.restore');
+
+    // Country Import
+    Route::post('countries/import', [EaxcelImportController::class, 'import'])
+        ->name('country.import');
 
     //Country
     Route::resource('countries', CountryController::class)
