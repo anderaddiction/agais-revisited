@@ -150,17 +150,24 @@
                                 success: function(response) {
                                     $('.data-table').DataTable().ajax
                                         .reload();
+                                    if (response.success) {
+                                        Swal.fire({
+                                            title: "Felicidades",
+                                            text: response.success,
+                                            icon: "success",
+                                            confirmButtonColor: "#038edc",
+                                        });
+                                    }
+
+                                },
+                                error: function(xhr) {
                                     Swal.fire({
-                                        title: "Felicidades",
-                                        text: response.success,
-                                        icon: "success",
+                                        title: "Advertencia",
+                                        text: xhr.responseJSON
+                                            .errors,
+                                        icon: "warning",
                                         confirmButtonColor: "#038edc",
                                     });
-                                },
-                                error: function(jqXHR, textStatus,
-                                    errorThrown) {
-                                    console.log(jqXHR, textStatus,
-                                        errorThrown);
                                 }
                             });
                         });

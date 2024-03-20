@@ -36,8 +36,7 @@ class CountryRequest extends FormRequest
                 'required',
                 Rule::unique('countries')->ignore($this->route('country'))
             ],
-            'note'          => 'nullable',
-            'import_file' => 'nullable|mimes:xlsx,csv'
+            'note'          => 'nullable'
         ];
     }
 }
