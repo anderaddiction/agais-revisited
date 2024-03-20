@@ -20,7 +20,7 @@ class ParishController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }s
+    }
 
     /**
      * Display a listing of the resource.
@@ -78,7 +78,12 @@ class ParishController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->back()->with('success', __('Data created successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -113,15 +118,64 @@ class ParishController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->route('parish.edit', $parish)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Parish $parish)
+    public function destroy($parish)
     {
-        $parish->delete();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $parish);
+        Parish::destroy($ids);
+        return [
+            'success' => __('Data deleted successfuly')
+        ];
+    }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $parish = Parish::onlyTrashed()
+                ->orderBy('name', 'DESC')
+                ->with('municipality')
+                ->get();
+            return DataTables::of($parish)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($parish) {
+                    return $parish->present()->created_at();
+                })
+                ->addColumn('action', function ($parish) {
+                    return $parish->present()->actionButton();
+                })
+                ->addColumn('state', function ($parish) {
+                    return $parish->present()->state();
+                })
+                ->addColumn('municipality', function ($parish) {
+                    return $parish->present()->municipality();
+                })
+                ->addColumn('country', function ($parish) {
+                    return $parish->present()->flag();
+                })
+                ->rawColumns(['action', 'municipality', 'state', 'country'])
+                ->make(true);
+        }
+
+        return view('auth.territories.parishes.trashed');
+    }
+
+    public function restore($parish)
+    {
+        $ids = explode(",", $parish);
+        $parish_ids = array_map('intval', $ids);
+        Parish::whereIn('id', $parish_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
     }
 }

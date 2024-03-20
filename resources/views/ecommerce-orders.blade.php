@@ -42,7 +42,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="AddOrder-Product">Choose Product</label>
-                                <select class="form-select" id="AddOrder-Product">
+                                <select class="form-select required" id="AddOrder-Product">
                                     <option selected> Select Product </option>
                                     <option>Adidas Running Shoes</option>
                                     <option>Puma P103 Shoes</option>
@@ -53,26 +53,26 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="AddOrder-Billing-Name">Billing Name</label>
-                                <input type="text" class="form-control" placeholder="Enter Billing Name"
+                                <input type="text" class="form-control required" placeholder="Enter Billing Name"
                                     id="AddOrder-Billing-Name">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Date</label>
-                                <input type="text" class="form-control" placeholder="Select Date" id="order-date">
+                                <input type="text" class="form-control required" placeholder="Select Date" id="order-date">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="AddOrder-Total">Total</label>
-                                <input type="text" class="form-control" placeholder="$565" id="AddOrder-Total">
+                                <input type="text" class="form-control required" placeholder="$565" id="AddOrder-Total">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="AddOrder-Payment-Status">Payment Status</label>
-                                <select class="form-select" id="AddOrder-Payment-Status">
+                                <select class="form-select required" id="AddOrder-Payment-Status">
                                     <option selected> Select Card Type </option>
                                     <option>Paid</option>
                                     <option>Chargeback</option>
@@ -83,7 +83,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="AddOrder-Payment-Method">Payment Method</label>
-                                <select class="form-select" id="AddOrder-Payment-Method">
+                                <select class="form-select required" id="AddOrder-Payment-Method">
                                     <option selected> Select Payment Method </option>
                                     <option> Mastercard</option>
                                     <option>Visa</option>

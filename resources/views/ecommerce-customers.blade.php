@@ -55,38 +55,38 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="NewCustomers-Username">Username</label>
-                                <input type="text" class="form-control" placeholder="Enter Username"
+                                <input type="text" class="form-control required" placeholder="Enter Username"
                                     id="NewCustomers-Username">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="NewCustomers-Email">Email</label>
-                                <input type="text" class="form-control" placeholder="Enter Email" id="NewCustomers-Email">
+                                <input type="text" class="form-control required" placeholder="Enter Email" id="NewCustomers-Email">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="NewCustomers-Phone">Phone</label>
-                                <input type="text" class="form-control" placeholder="Enter Phone" id="NewCustomers-Phone">
+                                <input type="text" class="form-control required" placeholder="Enter Phone" id="NewCustomers-Phone">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="NewCustomers-Wallet">Wallet</label>
-                                <input type="text" class="form-control" placeholder="0" id="NewCustomers-Wallet">
+                                <input type="text" class="form-control required" placeholder="0" id="NewCustomers-Wallet">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Date</label>
-                                <input type="text" class="form-control" placeholder="Select Date" id="customers-date">
+                                <input type="text" class="form-control required" placeholder="Select Date" id="customers-date">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="NewCustomers-Address">Address</label>
-                                <input type="text" class="form-control" placeholder="Enter Address"
+                                <input type="text" class="form-control required" placeholder="Enter Address"
                                     id="NewCustomers-Address">
                             </div>
                         </div>

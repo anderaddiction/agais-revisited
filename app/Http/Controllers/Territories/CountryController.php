@@ -10,6 +10,7 @@ use App\Models\Territories\Continent;
 use Yajra\DataTables\Facades\DataTables;
 use App\DataTables\Territories\CountryDataTable;
 use App\Http\Requests\Territories\CountryRequest;
+use App\Models\Users\Clients\Client;
 
 class CountryController extends Controller
 {
@@ -28,6 +29,8 @@ class CountryController extends Controller
      */
     public function index(Request $request)
     {
+        $country    = new Country();
+        $continents  = Continent::orderBy('name', 'ASC')->pluck('name', 'id');
         if ($request->ajax()) {
             $country = Country::orderBy('countries.name', 'ASC')
                 ->with('continent')
@@ -50,7 +53,10 @@ class CountryController extends Controller
                 ->make(true);
         }
 
-        return view('auth.territories.countries.index');
+        return view('auth.territories.countries.index', [
+            'country'   => $country,
+            'continents' => $continents
+        ]);
     }
 
     /**
@@ -80,7 +86,12 @@ class CountryController extends Controller
                 + ['iso3' => upperCase($request->iso3)]
         );
 
-        return redirect()->back()->with('success', __('Data created successfuly'));
+        return response()->json(
+            [
+                'success' => 'Data created successfuly'
+            ],
+            200
+        );
     }
 
     /**
@@ -118,15 +129,61 @@ class CountryController extends Controller
                 + ['iso3' => upperCase($request->iso3)]
         );
 
-        return redirect()->route('country.edit', $country)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Country $country)
+    public function destroy($country)
     {
-        $country->delete();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $country);
+        Country::destroy($ids);
+        return [
+            'success' => __('Data deleted successfuly')
+        ];
+    }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $country = Country::orderBy('countries.name', 'ASC')
+                ->with('continent')
+                ->onlyTrashed()
+                ->get();
+            return DataTables::of($country)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($country) {
+                    return $country->present()->created_at();
+                })
+                ->addColumn('flag', function ($country) {
+                    return $country->present()->flag();
+                })
+                ->addColumn('continent', function ($country) {
+                    return $country->present()->continent();
+                })
+                ->addColumn('action', function ($country) {
+                    return $country->present()->actionButton();
+                })
+                ->rawColumns(['action', 'flag', 'continent'])
+                ->make(true);
+        }
+
+        return view('auth.territories.countries.trashed');
+    }
+
+    public function restore($country)
+    {
+        $ids = explode(",", $country);
+        $country_ids = array_map('intval', $ids);
+        Country::whereIn('id', $country_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
     }
 }

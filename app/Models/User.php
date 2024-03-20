@@ -3,8 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Users\Roles\Role;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Communications\Mail\Mail;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -53,5 +57,15 @@ class User extends Authenticatable
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'assigned_roles', 'user_id', 'role_id');
+    }
+
+    /**
+     * Get all of the mails for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mails(): HasMany
+    {
+        return $this->hasMany(Mail::class, 'email_id', 'id');
     }
 }

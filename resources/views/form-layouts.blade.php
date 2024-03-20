@@ -16,7 +16,7 @@
                     <form>
                         <div class="mb-3">
                             <label for="formrow-firstname-input" class="form-label">Enter First Name</label>
-                            <input type="text" class="form-control" placeholder="First Name" id="formrow-firstname-input">
+                            <input type="text" class="form-control required" placeholder="First Name" id="formrow-firstname-input">
                         </div>
 
                         <div class="row">
@@ -24,13 +24,13 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="formrow-email-input" class="form-label">Enter Email</label>
-                                    <input type="email" class="form-control" placeholder="Email" id="formrow-email-input">
+                                    <input type="email" class="form-control required" placeholder="Email" id="formrow-email-input">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="formrow-password-input" class="form-label">Password</label>
-                                    <input type="password" class="form-control" placeholder="Enter Password"
+                                    <input type="password" class="form-control required" placeholder="Enter Password"
                                         id="formrow-password-input">
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                             <div class="col-lg-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputCity" class="form-label">City</label>
-                                    <input type="text" class="form-control" placeholder="Enter City"
+                                    <input type="text" class="form-control required" placeholder="Enter City"
                                         id="formrow-inputCity">
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                             <div class="col-lg-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputZip" class="form-label">Zip</label>
-                                    <input type="text" class="form-control" placeholder="Enter Zip" id="formrow-inputZip">
+                                    <input type="text" class="form-control required" placeholder="Enter Zip" id="formrow-inputZip">
                                 </div>
                             </div>
                         </div>
@@ -93,21 +93,21 @@
                         <div class="row mb-4">
                             <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">First name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Enter First Name"
+                                <input type="text" class="form-control required" placeholder="Enter First Name"
                                     id="horizontal-firstname-input">
                             </div>
                         </div>
                         <div class="row mb-4">
                             <label for="horizontal-email-input" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" placeholder="Enter Email"
+                                <input type="email" class="form-control required" placeholder="Enter Email"
                                     id="horizontal-email-input">
                             </div>
                         </div>
                         <div class="row mb-4">
                             <label for="horizontal-password-input" class="col-sm-3 col-form-label">Password</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" placeholder="Enter Password"
+                                <input type="password" class="form-control required" placeholder="Enter Password"
                                     id="horizontal-password-input">
                             </div>
                         </div>
@@ -148,18 +148,18 @@
                     <form class="row gy-2 gx-3 align-items-center">
                         <div class="col-sm-auto">
                             <label class="visually-hidden" for="autoSizingInput">Name</label>
-                            <input type="text" class="form-control" id="autoSizingInput" placeholder="Jane Doe">
+                            <input type="text" class="form-control required" id="autoSizingInput" placeholder="Jane Doe">
                         </div>
                         <div class="col-sm-auto">
                             <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
                             <div class="input-group">
                                 <div class="input-group-text">@</div>
-                                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Username">
+                                <input type="text" class="form-control required" id="autoSizingInputGroup" placeholder="Username">
                             </div>
                         </div>
                         <div class="col-sm-auto">
                             <label class="visually-hidden" for="autoSizingSelect">Preference</label>
-                            <select class="form-select" id="autoSizingSelect">
+                            <select class="form-select required" id="autoSizingSelect">
                                 <option selected>Choose...</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -200,14 +200,14 @@
                             <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
                             <div class="input-group">
                                 <div class="input-group-text">@</div>
-                                <input type="text" class="form-control" id="inlineFormInputGroupUsername"
+                                <input type="text" class="form-control required" id="inlineFormInputGroupUsername"
                                     placeholder="Username">
                             </div>
                         </div>
 
                         <div class="col-12">
                             <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                            <select class="form-select" id="inlineFormSelectPref">
+                            <select class="form-select required" id="inlineFormSelectPref">
                                 <option selected>Choose...</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -248,20 +248,20 @@
 
                     <form>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter Name">
+                            <input type="text" class="form-control required" id="floatingnameInput" placeholder="Enter Name">
                             <label for="floatingnameInput">Name</label>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingemailInput"
+                                    <input type="email" class="form-control required" id="floatingemailInput"
                                         placeholder="Enter Email address">
                                     <label for="floatingemailInput">Email address</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    <select class="form-select" id="floatingSelectGrid"
+                                    <select class="form-select required" id="floatingSelectGrid"
                                         aria-label="Floating label select example">
                                         <option selected>Open this select menu</option>
                                         <option value="1">One</option>

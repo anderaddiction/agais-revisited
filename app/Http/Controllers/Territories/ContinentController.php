@@ -21,11 +21,6 @@ class ContinentController extends Controller
         $this->middleware('auth');
     }
 
-    public function __construct()
-    {
-        return $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -70,7 +65,12 @@ class ContinentController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->back()->with('success', __('Data stored successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data stored successfuly')
+            ],
+            200
+        );
     }
 
     /**
@@ -103,15 +103,54 @@ class ContinentController extends Controller
                 + ['slug' => generateUrl($request->name)]
         );
 
-        return redirect()->route('continent.edit', $continent)->with('success', __('Data updated successfuly'));
+        return response()->json(
+            [
+                'success' => __('Data updated successfuly')
+            ],
+            200
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Continent $continent)
+    public function destroy($continent)
     {
-        $continent->delete();
-        return redirect()->back()->with('success', __('Data deleted successfuly'));
+        $ids = explode(",", $continent);
+        Continent::destroy($ids);
+        return [
+            'success' => __('Data deleted successfuly')
+        ];
+    }
+
+    public function trashed(Request $request)
+    {
+        if ($request->ajax()) {
+            $continent = Continent::orderBy('name', 'DESC')
+                ->onlyTrashed()
+                ->get();
+            return DataTables::of($continent)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($continent) {
+                    return $continent->present()->created_at();
+                })
+                ->addColumn('action', function ($continent) {
+                    return $continent->present()->actionButton();
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('auth.territories.continents.trashed');
+    }
+
+    public function restore($continent)
+    {
+        $ids = explode(",", $continent);
+        $continent_ids = array_map('intval', $ids);
+        Continent::whereIn('id', $continent_ids)->withTrashed()->restore();
+        return [
+            'success' => __('Data restored successfuly')
+        ];
     }
 }

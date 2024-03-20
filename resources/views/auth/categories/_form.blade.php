@@ -2,22 +2,24 @@
 <div class="row">
     <div class="col-md-6">
         <div class="mb-3">
-            <label class="form-label" for="name">{{ __('Name') }}</label>
-            <input type="text" class="form-control" placeholder="{{ __('Enter name') }}" name="name" id="name" value="{{ old('name', $category->name) }}">
-            <div class="pristine-error text-danger">{{ $errors->first('name') }}</div>
+            <label class="form-label" for="name">{{ __('Name') }} <span class="text-danger">*</span></label>
+            <input type="text" class="form-control required" placeholder="{{ __('Enter name') }}" name="name"
+                id="name" value="{{ old('name', $category->name) }}">
+            <div class="pristine-error text-danger" id="nameError">{{ $errors->first('name') }}</div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="mb-3">
-            <label class="form-label" for="status">{{ __('Status') }}</label>
-            <select class="form-select" name="status">
+            <label class="form-label" for="status">{{ __('Status') }} <span class="text-danger">*</span></label>
+            <select class="form-control required" id="status" name="status"
+                placeholder="This is a search placeholder">
                 <option value=" ">{{ __('Select an option') }}</option>
                 <option value="1" {{ old('status', $category->status) == '1' ? 'selected' : '' }}>@lang('Active')
                 </option>
                 <option value="0" {{ old('status', $category->status) == '0' ? 'selected' : '' }}>@lang('Inactive')
                 </option>
             </select>
-            <div class="pristine-error text-danger">{{ $errors->first('status') }}</div>
+            <div class="pristine-error text-danger" id="statusError">{{ $errors->first('status') }}</div>
         </div>
     </div>
 </div>
@@ -28,8 +30,4 @@
             <textarea class="form-control" name="note" id="note" cols="30" rows="5">{{ old('note', $category->note) }}</textarea>
         </div>
     </div>
-</div>
-
-<div class="mt-4">
-    <button type="submit" class="btn btn-primary w-md">{{ $btnText }}</button>
 </div>

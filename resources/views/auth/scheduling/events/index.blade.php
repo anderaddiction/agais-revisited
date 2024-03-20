@@ -1,11 +1,15 @@
 @extends('layouts.master')
-@section('title') @lang('translation.Calendars') @endsection
+@section('title')
+    @lang('translation.Calendars')
+@endsection
 @section('css')
     <link href="{{ URL::asset('/assets/libs/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('/assets/libs/choices.js/choices.js.min.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-@section('pagetitle')Calendar @endsection
+@section('pagetitle')
+    Calendar
+@endsection
 <div class="row">
     <div class="col-12">
         <div class="row">
@@ -57,8 +61,7 @@
                     <div class="modal-header py-3 px-4 border-bottom-0">
                         <h5 class="modal-title" id="modal-title">Event</h5>
 
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-hidden="true"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
 
                     </div>
                     <div class="modal-body p-4">
@@ -67,25 +70,30 @@
                                 <div class="col-4">
                                     <div class="mb-3">
                                         <label class="form-label">{{ __('Event Name') }}</label>
-                                        <input class="form-control" placeholder="Insert Event Name" type="text"
-                                            name="name" id="name" required value="" />
-                                        <div class="pristine-error text-danger">{{ $errors->first('name') }}</div>
+                                        <input class="form-control required" placeholder="Insert Event Name"
+                                            type="text" name="name" id="name" required value="" />
+                                        <div class="pristine-error text-danger" id="nameError">
+                                            {{ $errors->first('name') }}</div>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="mb-3">
                                         <label class="form-label">{{ __('Event Start At') }}</label>
-                                        <input class="form-control" placeholder="Insert Event Date Start" type="text" name="event_start"
-                                            id="event_start" required value="" />
-                                        <div class="pristine-error text-danger">{{ $errors->first('event_start') }}</div>
+                                        <input class="form-control required" placeholder="Insert Event Date Start"
+                                            type="text" name="event_start" id="event_start" required
+                                            value="" />
+                                        <div class="pristine-error text-danger" id="Error">
+                                            {{ $errors->first('event_start') }}</div>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="mb-3">
                                         <label class="form-label">{{ __('Event Ends At') }}</label>
-                                        <input class="form-control" placeholder="{{ __('Insert Event Name') }}" type="text" name="event_end" id="event_end"
-                                            required value="{{ old('event_end', $event->event_end) }}" />
-                                        <div class="pristine-error text-danger">{{ $errors->first('event_end') }}</div>
+                                        <input class="form-control required" placeholder="{{ __('Insert Event Name') }}"
+                                            type="text" name="event_end" id="event_end" required
+                                            value="{{ old('event_end', $event->event_end) }}" />
+                                        <div class="pristine-error text-danger" id="Error">
+                                            {{ $errors->first('event_end') }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -93,14 +101,16 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="category_id">{{ __('Category') }}</label>
-                                        <select class="form-select" name="category_id" id="category_id">
+                                        <select class="form-select required" name="category_id" id="category_id">
                                             <option value="">{{ __('Select an option') }}</option>
                                             @foreach ($categories as $category)
-                                            <option {{ collect(old('category_id', $event->categories->pluck('id')))->contains($category->id) ?
-                                                'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
+                                                <option
+                                                    {{ collect(old('category_id', $event->categories->pluck('id')))->contains($category->id) ? 'selected' : '' }}
+                                                    value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
                                         </select>
-                                        <div class="pristine-error text-danger" style="margin-top: -6%">{{ $errors->first('category_id') }}</div>
+                                        <div class="pristine-error text-danger" id="Error" style="margin-top: -6%">
+                                            {{ $errors->first('category_id') }}</div>
                                     </div>
                                 </div>
                                 {{-- <div class="col-md-6">
@@ -113,20 +123,25 @@
                                                 'selected' : '' }} value="{{ $id }}">{{ $name }}</option>
                                             @endforeach
                                         </select>
-                                        <div class="pristine-error text-danger" style="margin-top: -6%">{{ $errors->first('category_id') }}</div>
+                                        <div class="pristine-error text-danger" id="Error" style="margin-top: -6%">{{ $errors->first('category_id') }}</div>
                                     </div>
                                 </div> --}}
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="status">{{ __('Status') }}</label>
-                                        <select class="form-select" name="status">
+                                        <select class="form-select required" name="status" id="status">
                                             <option value=" ">{{ __('Select an option') }}</option>
-                                            <option value="1" {{ old('status', $event->status) == '1' ? 'selected' : '' }}>@lang('Active')
+                                            <option value="1"
+                                                {{ old('status', $event->status) == '1' ? 'selected' : '' }}>
+                                                @lang('Active')
                                             </option>
-                                            <option value="0" {{ old('status', $event->status) == '0' ? 'selected' : '' }}>@lang('Inactive')
+                                            <option value="0"
+                                                {{ old('status', $event->status) == '0' ? 'selected' : '' }}>
+                                                @lang('Inactive')
                                             </option>
                                         </select>
-                                        <div class="pristine-error text-danger">{{ $errors->first('status') }}</div>
+                                        <div class="pristine-error text-danger" id="statusError">
+                                            {{ $errors->first('status') }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -134,14 +149,14 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label" for="note">{{ __('Note') }}</label>
-                                        <textarea class="form-control" name="note" id="note" cols="30"
-                                            rows="5">{{ old('note', $event->note) }}</textarea>
+                                        <textarea class="form-control required" name="note" id="note" cols="30" rows="5">{{ old('note', $event->note) }}</textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-6">
-                                    <button type="button" class="btn btn-danger" id="btn-delete-event">Delete</button>
+                                    <button type="button" class="btn btn-danger"
+                                        id="btn-delete-event">Delete</button>
                                 </div>
                                 <div class="col-6 text-end">
                                     <button type="button" class="btn btn-light me-1"
@@ -159,9 +174,9 @@
 </div>
 @endsection
 @section('script')
-    <script src="{{ URL::asset('/assets/libs/choices.js/choices.js.min.js') }}"></script>
-    <script src="{{ URL::asset('/assets/js/pages/form-advanced.init.js') }}"></script>
-    <script src="{{ URL::asset('/assets/libs/fullcalendar/fullcalendar.min.js') }}"></script>
-    <script src="{{ URL::asset('/assets/js/pages/calendar.init.js') }}"></script>
-    <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+<script src="{{ URL::asset('/assets/libs/choices.js/choices.js.min.js') }}"></script>
+<script src="{{ URL::asset('/assets/js/pages/form-advanced.init.js') }}"></script>
+<script src="{{ URL::asset('/assets/libs/fullcalendar/fullcalendar.min.js') }}"></script>
+<script src="{{ URL::asset('/assets/js/pages/calendar.init.js') }}"></script>
+<script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 @endsection

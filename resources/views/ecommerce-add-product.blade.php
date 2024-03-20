@@ -44,7 +44,7 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="productname">Product Name</label>
                                     <input id="productname" name="productname" placeholder="Enter Product Name" type="text"
-                                        class="form-control">
+                                        class="form-control required">
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
@@ -52,7 +52,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="manufacturername">Manufacturer Name</label>
                                             <input id="manufacturername" name="manufacturername"
-                                                placeholder="Enter Manufacturer Name" type="text" class="form-control">
+                                                placeholder="Enter Manufacturer Name" type="text" class="form-control required">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
@@ -60,14 +60,14 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="manufacturerbrand">Manufacturer Brand</label>
                                             <input id="manufacturerbrand" name="manufacturerbrand"
-                                                placeholder="Enter Manufacturer Brand" type="text" class="form-control">
+                                                placeholder="Enter Manufacturer Brand" type="text" class="form-control required">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label class="form-label" for="price">Price</label>
                                             <input id="price" name="price" placeholder="Enter Price" type="text"
-                                                class="form-control">
+                                                class="form-control required">
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="choices-single-category" class="form-label">Category</label>
-                                            <select class="form-control" data-trigger name="choices-single-category"
+                                            <select class="form-control required" data-trigger name="choices-single-category"
                                                 id="choices-single-category">
                                                 <option value="">Select</option>
                                                 <option value="EL">Electronic</option>
@@ -88,7 +88,7 @@
                                         <div class="mb-3">
                                             <label for="choices-single-specifications"
                                                 class="form-label">Specifications</label>
-                                            <select class="form-control" data-trigger name="choices-single-category"
+                                            <select class="form-control required" data-trigger name="choices-single-category"
                                                 id="choices-single-specifications">
                                                 <option value="HI" selected>High Quality</option>
                                                 <option value="LE">Leather</option>
@@ -102,7 +102,7 @@
 
                                 <div class="mb-0">
                                     <label class="form-label" for="productdesc">Product Description</label>
-                                    <textarea class="form-control" id="productdesc" placeholder="Enter Description"
+                                    <textarea class="form-control required" id="productdesc" placeholder="Enter Description"
                                         rows="4"></textarea>
                                 </div>
                             </form>
@@ -188,7 +188,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="metatitle">Meta Title</label>
                                             <input id="metatitle" name="metatitle" placeholder="Enter Title" type="text"
-                                                class="form-control">
+                                                class="form-control required">
                                         </div>
 
                                     </div>
@@ -197,14 +197,14 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="metakeywords">Meta Keywords</label>
                                             <input id="metakeywords" name="metakeywords" placeholder="Enter Keywords"
-                                                type="text" class="form-control">
+                                                type="text" class="form-control required">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="mb-0">
                                     <label class="form-label" for="metadescription">Meta Description</label>
-                                    <textarea class="form-control" id="metadescription" placeholder="Enter Description"
+                                    <textarea class="form-control required" id="metadescription" placeholder="Enter Description"
                                         rows="4"></textarea>
                                 </div>
                             </form>

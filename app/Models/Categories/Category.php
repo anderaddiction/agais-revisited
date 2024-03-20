@@ -2,6 +2,7 @@
 
 namespace App\Models\Categories;
 
+use App\Models\Entities\Urbanism;
 use App\Models\Scheduling\Event;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,10 +16,10 @@ class Category extends Model
 
     protected $guarded = [];
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 
     /**
      * Get all of the events for the Category
@@ -28,6 +29,16 @@ class Category extends Model
     public function events(): HasMany
     {
         return $this->hasMany(Event::class, 'event_id', 'id');
+    }
+
+    /**
+     * Get all of the urbanism for the Category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function urbanism(): HasMany
+    {
+        return $this->hasMany(Urbanism::class, 'category_id', 'id');
     }
 
     public function present()

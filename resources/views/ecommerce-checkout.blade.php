@@ -28,7 +28,7 @@
                                                     <div class="col-lg-4">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="billing-name">Name</label>
-                                                            <input type="text" class="form-control" id="billing-name"
+                                                            <input type="text" class="form-control required" id="billing-name"
                                                                 placeholder="Enter name">
                                                         </div>
                                                     </div>
@@ -36,14 +36,14 @@
                                                         <div class="mb-3">
                                                             <label class="form-label" for="billing-email-address">Email
                                                                 Address</label>
-                                                            <input type="email" class="form-control"
+                                                            <input type="email" class="form-control required"
                                                                 id="billing-email-address" placeholder="Enter email">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="billing-phone">Phone</label>
-                                                            <input type="text" class="form-control" id="billing-phone"
+                                                            <input type="text" class="form-control required" id="billing-phone"
                                                                 placeholder="Enter Phone no.">
                                                         </div>
                                                     </div>
@@ -51,7 +51,7 @@
 
                                                 <div class="mb-3">
                                                     <label class="form-label" for="billing-address">Address</label>
-                                                    <textarea class="form-control" id="billing-address" rows="3"
+                                                    <textarea class="form-control required" id="billing-address" rows="3"
                                                         placeholder="Enter full address"></textarea>
                                                 </div>
 
@@ -287,7 +287,7 @@
                                                     <div class="col-lg-4">
                                                         <div class="mb-4 mb-lg-0">
                                                             <label class="form-label" for="billing-city">City</label>
-                                                            <input type="text" class="form-control" id="billing-city"
+                                                            <input type="text" class="form-control required" id="billing-city"
                                                                 placeholder="Enter City">
                                                         </div>
                                                     </div>
@@ -296,7 +296,7 @@
                                                         <div class="mb-0">
                                                             <label class="form-label" for="zip-code">Zip / Postal
                                                                 code</label>
-                                                            <input type="text" class="form-control" id="zip-code"
+                                                            <input type="text" class="form-control required" id="zip-code"
                                                                 placeholder="Enter Postal code">
                                                         </div>
                                                     </div>

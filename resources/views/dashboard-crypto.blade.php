@@ -476,7 +476,7 @@
                                                     <div class="input-group mb-2 currency-value">
                                                         <span class="input-group-text">Bitcoin</span>
 
-                                                        <input type="text" class="form-control" placeholder="Bitcoin">
+                                                        <input type="text" class="form-control required" placeholder="Bitcoin">
                                                     </div>
                                                 </div>
 
@@ -568,7 +568,7 @@
 
                                         <div class="mb-4">
                                             <label>Email :</label>
-                                            <input type="email" placeholder="Enter Email" class="form-control">
+                                            <input type="email" placeholder="Enter Email" class="form-control required">
                                         </div>
 
                                         <div class="mb-3">
@@ -579,7 +579,7 @@
                                                     <div class="input-group mb-2 currency-value">
                                                         <span class="input-group-text">Crypto value</span>
                                                         <input type="text" placeholder="Crypto Value"
-                                                            class="form-control">
+                                                            class="form-control required">
                                                     </div>
                                                 </div>
 

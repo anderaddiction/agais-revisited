@@ -74,25 +74,32 @@ class BankPresenter
 
     public function actionButton()
     {
-        return '<div class="d-flex flex-wrap gap-2 btn-group-sm" style="display: flex; justify-content: center;" >
-                    <a href="' . route('bank.show', $this->bank) . '" class="btn btn-primary">
-                        <i class="mdi mdi-eye font-size-16 align-middle"></i>
-                    </a>
-                    <a href="' . route('bank.edit', $this->bank) . '" class="btn btn-success">
-                        <i class="bx bx-edit font-size-16 align-middle"></i>
-                    </a>
-                    <a href="' . route('bank.destroy', $this->bank) . '" class="btn btn-danger btn-delete">
-                        <i class="bx bx-trash font-size-16 align-middle"></i>
-                    </a>
-                </div>';
+        return '
+            <div class="dropdown align-self-start">
+                <a class="dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="bx bx-dots-vertical-rounded"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="' . route('bank.show', $this->bank) . '">Ver</a>
+                    <a class="dropdown-item" href="' . route('bank.edit', $this->bank) . '">Editar</a>
+                </div>
+            </div>
+        ';
     }
 
     public function showActionButton()
     {
-        return '<div class="d-flex flex-wrap gap-2 btn-group-sm" style="display: flex; justify-content: center;" >
-                    <a href="' . route('bank.edit', $this->bank) . '" class="btn btn-success">
-                        <i class="bx bx-edit font-size-16 align-middle"></i>
-                    </a>
-                </div>';
+        return '<div class="dropdown align-self-start">
+                <a class="dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="bx bx-dots-vertical-rounded"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="' . route('bank.edit', $this->bank) . '">Editar</a>
+                </div>
+            </div>';
     }
 }

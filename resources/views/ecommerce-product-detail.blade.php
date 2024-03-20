@@ -145,7 +145,7 @@
 
                                                 <div class="d-inline-flex mt-2">
                                                     <div class="input-group mb-3">
-                                                        <input type="text" class="form-control"
+                                                        <input type="text" class="form-control required"
                                                             placeholder="Enter Delivery pincode">
                                                         <button class="btn btn-primary" type="button">Check</button>
                                                     </div>
