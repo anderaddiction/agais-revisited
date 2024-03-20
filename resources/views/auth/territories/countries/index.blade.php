@@ -25,28 +25,24 @@
         </div>
     </div>
     <div class="table-responsive">
-        <form action="{{ route('country.import') }}" method="POST" rol="form" id="form-import"
-            enctype='multipart/form-data'>
-            @csrf
-            <table class="table align-middle project-list-table table-nowrap table-hover data-table" style="width:100%"
-                id="dataTable">
-                <thead class="text-center">
-                    <tr>
-                        <th style="font-size: 12px;font-weight: bold"></th>
-                        <th>{{ __('Name') }}</th>
-                        <th>{{ __('Code') }}</th>
-                        <th>{{ __('ISO2') }}</th>
-                        <th>{{ __('ISO3') }}</th>
-                        <th>{{ __('Flag') }}</th>
-                        <th>{{ __('Continent') }}</th>
-                        <th>{{ __('Created At') }}</th>
-                        <th>{{ __('Action') }}</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center align-middle">
-                </tbody>
-            </table>
-        </form>
+        <table class="table align-middle project-list-table table-nowrap table-hover data-table" style="width:100%"
+            id="dataTable">
+            <thead class="text-center">
+                <tr>
+                    <th style="font-size: 12px;font-weight: bold"></th>
+                    <th>{{ __('Name') }}</th>
+                    <th>{{ __('Code') }}</th>
+                    <th>{{ __('ISO2') }}</th>
+                    <th>{{ __('ISO3') }}</th>
+                    <th>{{ __('Flag') }}</th>
+                    <th>{{ __('Continent') }}</th>
+                    <th>{{ __('Created At') }}</th>
+                    <th>{{ __('Action') }}</th>
+                </tr>
+            </thead>
+            <tbody class="text-center align-middle">
+            </tbody>
+        </table>
     </div>
 </div>
 <!-- end row -->
@@ -121,10 +117,10 @@
                     className: 'btn-info',
                 },
                 {
-                    text: '<i class="fa fa-upload"></i>',
+                    text: '<i class="fa fa-upload" title="Importar"></i>',
                     action: function() {
                         var fileSelector = $(
-                            '<input type="file" name="file" multiple>'
+                            '<input type="file" name="file" data-route="{{ route('country.import') }}" title="Importar">'
                         );
                         fileSelector.click();
 
@@ -134,9 +130,8 @@
                             $.each($(this)[0].files, function(i, file) {
                                 data.append('file', file);
                             });
-                            var route = $("#form-import").attr('action');
+                            var route = $(this).data('route');
                             var token = $('meta[name="csrf-token"]').attr('content');
-
                             $.ajax({
                                 type: "POST",
                                 url: route,
@@ -160,11 +155,13 @@
                                     }
 
                                 },
-                                error: function(xhr) {
+                                error: function(response) {
+                                    console.log(response);
                                     Swal.fire({
                                         title: "Advertencia",
-                                        text: xhr.responseJSON
-                                            .errors,
+                                        text: 'Error ' + response
+                                            .status + ': ' +
+                                            response.statusText,
                                         icon: "warning",
                                         confirmButtonColor: "#038edc",
                                     });
@@ -259,7 +256,7 @@
                 },
                 {
                     extend: 'copyHtml5',
-                    text: '<i class="fas fa-copy" title="Agregar"></i>',
+                    text: '<i class="fas fa-copy" title="Copiar"></i>',
                     titleAttr: 'Copy'
                 },
                 {
