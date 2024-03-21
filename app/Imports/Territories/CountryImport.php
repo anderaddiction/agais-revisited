@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Imports\Imports\Territories;
+namespace App\Imports\Territories;
 
-use Illuminate\Validation\Rule;
+
 use App\Models\Territories\Country;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class CountriesImport implements ToModel
+class CountryImport implements ToModel
 {
     /**
      * @param array $row
@@ -34,6 +34,8 @@ class CountriesImport implements ToModel
             'name'  => 'unique:countries,name',
             'iso2'  => 'unique:countries,iso2',
             'iso3'  => 'unique:countries,iso3',
+            'slug'  => 'unique:countries,slug',
+            'note'  => 'nullable',
         ];
     }
 }
