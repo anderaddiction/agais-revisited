@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name', 255);
             $table->integer('capital_type')->nullable();
             $table->integer('bank_type')->nullable();
-            $table->string('slug', 255)->unique();
+            $table->string('slug', 255);
             $table->integer('status');
             $table->text('note')->nullable();
             $table->softDeletes();

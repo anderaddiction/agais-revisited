@@ -4,8 +4,11 @@ namespace App\Imports\Documents;
 
 use App\Models\Documents\Document;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class DocumentImport implements ToModel
+class DocumentImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyRows
 {
     /**
      * @param array $row
@@ -17,5 +20,12 @@ class DocumentImport implements ToModel
         return new Document([
             //
         ]);
+    }
+
+    public function rules(): array
+    {
+        return [
+            //
+        ];
     }
 }

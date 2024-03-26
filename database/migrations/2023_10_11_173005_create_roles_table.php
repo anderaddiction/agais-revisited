@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('code', 100)->unique();
             $table->string('name', 255)->unique();
             $table->string('display_name', 255)->unique();
-            $table->string('slug', 255)->unique();
+            $table->string('slug', 255);
             $table->integer('status')->unsigned();
             $table->text('note')->nullable();
             $table->softDeletes();

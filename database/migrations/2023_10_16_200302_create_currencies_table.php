@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('symbol', 20)->nullable();
             $table->string('iso', 20);
             $table->integer('status')->unsigned();
-            $table->string('slug', 255)->unique();
+            $table->string('slug', 255);
             $table->text('note', 255)->nullable();
             $table->softDeletes();
             $table->timestamps();

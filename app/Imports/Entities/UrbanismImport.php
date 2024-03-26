@@ -4,8 +4,11 @@ namespace App\Imports\Entities;
 
 use App\Models\Entities\Urbanism;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class UrbanismImport implements ToModel
+class UrbanismImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyRows
 {
     /**
      * @param array $row
@@ -17,5 +20,12 @@ class UrbanismImport implements ToModel
         return new Urbanism([
             //
         ]);
+    }
+
+    public function rules(): array
+    {
+        return [
+            //
+        ];
     }
 }

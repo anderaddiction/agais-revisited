@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('code', 100)->unique();
             $table->string('name', 255);
             $table->integer('state_id');
-            $table->string('slug', 255)->unique();
+            $table->string('slug', 255);
             $table->text('note')->nullable();
             $table->softDeletes();
             $table->timestamps();

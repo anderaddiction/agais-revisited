@@ -3,9 +3,12 @@
 namespace App\Imports\Territories;
 
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 use App\Models\Territories\Municipality;
 
-class MunicipalityImport implements ToModel
+class MunicipalityImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyRows
 {
     /**
      * @param array $row
@@ -17,5 +20,10 @@ class MunicipalityImport implements ToModel
         return new Municipality([
             //
         ]);
+    }
+
+    public function rules(): array
+    {
+        return [];
     }
 }

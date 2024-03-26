@@ -4,8 +4,11 @@ namespace App\Imports\Users;
 
 use App\Models\Users\Roles\Role;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class RoleImport implements ToModel
+class RoleImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyRows
 {
     /**
      * @param array $row
@@ -17,5 +20,12 @@ class RoleImport implements ToModel
         return new Role([
             //
         ]);
+    }
+
+    public function rules(): array
+    {
+        return [
+            //
+        ];
     }
 }

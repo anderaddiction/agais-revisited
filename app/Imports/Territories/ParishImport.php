@@ -4,8 +4,11 @@ namespace App\Imports\Territories;
 
 use App\Models\Territories\Parish;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class ParishImport implements ToModel
+class ParishImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyRows
 {
     /**
      * @param array $row
@@ -18,4 +21,16 @@ class ParishImport implements ToModel
             //
         ]);
     }
+
+    public function rules(): array
+    {
+        return [
+            'file'     => 'mimes:xlsx,csv',
+            'code'     => 'unique:cities,code',
+            'name'     => 'required',
+            'state_id' => 'required',
+            'slug'     => 'required',
+            'note'     => 'nullable',
+        ];
+    }s
 }

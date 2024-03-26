@@ -4,8 +4,11 @@ namespace App\Imports\Categories;
 
 use App\Models\Categories\Category;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class CategoryImport implements ToModel
+class CategoryImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyRows
 {
     /**
      * @param array $row
@@ -17,5 +20,12 @@ class CategoryImport implements ToModel
         return new Category([
             //
         ]);
+    }
+
+    public function rules(): array
+    {
+        return [
+            //
+        ];
     }
 }

@@ -147,14 +147,22 @@
                                 },
                                 error: function(response) {
                                     console.log(response);
-                                    Swal.fire({
-                                        title: "Advertencia",
-                                        text: 'Error ' + response
-                                            .status + ': ' +
-                                            response.statusText,
-                                        icon: "warning",
-                                        confirmButtonColor: "#038edc",
-                                    });
+                                    var errors = response.responseJSON;
+                                    if ($.isEmptyObject(errors) == false) {
+                                        $.each(errors.errors, function(key,
+                                            value) {
+                                            Swal.fire({
+                                                title: "Advertencia",
+                                                text: 'Error ' +
+                                                    response
+                                                    .status +
+                                                    ': ' +
+                                                    value,
+                                                icon: "warning",
+                                                confirmButtonColor: "#038edc",
+                                            });
+                                        });
+                                    }
                                 }
                             });
                         });

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('event_start');
             $table->date('event_end');
             $table->integer('status')->unsigned();
-            $table->string('slug', 255)->unique();
+            $table->string('slug', 255);
             $table->text('note', 255)->nullable();
             $table->softDeletes();
             $table->timestamps();
