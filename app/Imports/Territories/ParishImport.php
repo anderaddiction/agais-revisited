@@ -25,12 +25,7 @@ class ParishImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmpt
     public function rules(): array
     {
         return [
-            'file'     => 'mimes:xlsx,csv',
-            'code'     => 'unique:cities,code',
-            'name'     => 'required',
-            'state_id' => 'required',
-            'slug'     => 'required',
-            'note'     => 'nullable',
+            //
         ];
-    }s
+    }
 }
