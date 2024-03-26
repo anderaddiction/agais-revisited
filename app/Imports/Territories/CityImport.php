@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class CityImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyRows, WithValidation, SkipsEmptyRows
+class CityImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyRows
 {
     /**
      * @param array $row
