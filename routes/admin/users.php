@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users\Roles\RoleController;
 use App\Http\Controllers\Categories\CategoryController;
+use App\Http\Controllers\Imports\ExcelImportController;
 use App\Http\Controllers\Users\Clients\ClientController;
 
 
@@ -16,6 +17,10 @@ Route::prefix('users')->group(
         // Categories Restore
         Route::get('categories/trashed/{id}', [CategoryController::class, 'restore'])
             ->name('category.restore');
+
+        // Categories Import
+        Route::post('categories/import', [ExcelImportController::class, 'categoryExcelImport'])
+            ->name('category.import');
 
         //Categories
         Route::resource('categories', CategoryController::class)

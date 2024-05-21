@@ -18,14 +18,23 @@ class PhoneCodeImport implements ToModel, WithHeadingRow, WithValidation, SkipsE
     public function model(array $row)
     {
         return new PhoneCode([
-            //
+            'code'         => uniqueCode(),
+            'phone_code'   => $row['phone_code'],
+            //'country_id'   => $row['country_id'],
+            'status'       => $row['status'],
+            'slug'         => generateUrl($row['phone_code']),
+            'note'         => $row['note'],
         ]);
     }
 
     public function rules(): array
     {
         return [
-            //
+            'file'        => 'mimes:xlsx,csv',
+            'phone_code'  => 'required|unique:phone_codes,phone_code',
+            'status'      => 'required',
+            //'country_id'  => 'required',
+            'note'        => 'nullable',
         ];
     }
 }

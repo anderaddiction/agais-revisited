@@ -18,10 +18,10 @@ class CityImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyR
     public function model(array $row)
     {
         return new City([
-            'code'     => $row['code'],
+            'code'     => uniqueCode(),
             'name'     => $row['name'],
             'state_id' => $row['state_id'],
-            'slug'     => generateUrl($row['slug']),
+            'slug'     => generateUrl($row['name']),
             'note'     => $row['note'],
         ]);
     }
@@ -32,10 +32,8 @@ class CityImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyR
     {
         return [
             'file'     => 'mimes:xlsx,csv',
-            'code'     => 'unique:cities,code',
             'name'     => 'required',
             'state_id' => 'required',
-            'slug'     => 'required',
             'note'     => 'nullable',
         ];
     }

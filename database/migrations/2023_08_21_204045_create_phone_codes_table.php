@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('phone_codes', function (Blueprint $table) {
             $table->id();
             $table->string('code', 255)->unique();
-            $table->string('phone_code', 255)->unique();
+            $table->string('phone_code', 255);
             $table->string('slug', 255);
             $table->integer('status')->unsigned();
             $table->text('note')->nullable();

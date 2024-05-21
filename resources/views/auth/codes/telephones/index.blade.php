@@ -113,6 +113,69 @@
                     className: 'btn-info',
                 },
                 {
+                    text: '<i class="fa fa-upload" title="Importar"></i>',
+                    action: function() {
+                        var fileSelector = $(
+                            '<input type="file" name="file" data-route="{{ route('phone.import') }}" title="Importar">'
+                        );
+                        fileSelector.click();
+
+                        fileSelector.change(function(e) {
+                            e.preventDefault();
+                            var data = new FormData();
+                            $.each($(this)[0].files, function(i, file) {
+                                data.append('file', file);
+                            });
+                            var route = $(this).data('route');
+                            var token = $('meta[name="csrf-token"]').attr('content');
+                            $.ajax({
+                                type: "POST",
+                                url: route,
+                                headers: {
+                                    'X-CSRF-TOKEN': token
+                                },
+                                data: data,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                success: function(response) {
+                                    $('.data-table').DataTable().ajax
+                                        .reload();
+                                    if (response.success) {
+                                        Swal.fire({
+                                            title: "Felicidades",
+                                            text: response.success,
+                                            icon: "success",
+                                            confirmButtonColor: "#038edc",
+                                        });
+                                    }
+
+                                },
+                                error: function(response) {
+                                    console.log(response);
+                                    var errors = response.responseJSON;
+                                    if ($.isEmptyObject(errors) == false) {
+                                        $.each(errors.errors, function(key,
+                                            value) {
+                                            Swal.fire({
+                                                title: "Advertencia",
+                                                text: 'Error ' +
+                                                    response
+                                                    .status +
+                                                    ': ' +
+                                                    value,
+                                                icon: "warning",
+                                                confirmButtonColor: "#038edc",
+                                            });
+                                        });
+                                    }
+                                }
+                            });
+                        });
+                    },
+                    className: 'btn btn-warning'
+                },
+                {
                     text: '<i class="fas fa-trash" title="Eliminar"></i>',
                     action: function(e, dt, node, config) {
                         e.preventDefault();
