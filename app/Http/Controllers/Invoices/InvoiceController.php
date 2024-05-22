@@ -40,7 +40,7 @@ class InvoiceController extends Controller
         }
 
 
-        return view('auth.documents.invoices.invoices-list');
+        return view('auth.documents.invoices.index');
     }
 
     /**

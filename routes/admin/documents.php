@@ -20,6 +20,12 @@ Route::prefix('documents')->group(function () {
         ->names('document');
 
     //Invoices
+
+    // Invoice Trashed
+    Route::get('invoices/trashed', [InvoiceController::class, 'trashed'])
+        ->name('invoice.trashed');
+
+    // Invoices
     Route::resource('invoices', InvoiceController::class)
         ->parameters(['invoice' => 'invoice'])
         ->names('invoice');
