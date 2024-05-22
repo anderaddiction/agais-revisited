@@ -39,7 +39,6 @@ class InvoiceController extends Controller
                 ->make(true);
         }
 
-
         return view('auth.documents.invoices.index');
     }
 
