@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Imports;
 
 use Illuminate\Http\Request;
 use App\Models\Codes\PhoneCode;
+use App\Imports\Taxes\TaxImport;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -108,7 +109,18 @@ class ExcelImportController extends Controller
     // City Import
     public function cityExcelImport(Request $request)
     {
+
         Excel::import(new CityImport, $request->file('file')->store('temp'));
+
+        return response()->json([
+            'success' => __('Data import successfully')
+        ], 200);
+    }
+
+    // Tax Import
+    public function taxExcelImport(Request $request)
+    {
+        Excel::import(new TaxImport, $request->file('file')->store('temp'));
 
         return response()->json([
             'success' => __('Data import successfully')

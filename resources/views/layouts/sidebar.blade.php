@@ -108,6 +108,15 @@
                     </ul>
                 </li>
 
+                {{-- Categories --}}
+                <li>
+                    <a href="{{ route('tax.index') }}">
+                        <i class="icon nav-icon" data-eva="percent-outline"></i>
+                        <span class="menu-item" data-key="t-taxes">@lang('translation.Taxes')</span>
+                        <span class="badge rounded-pill badge-soft-danger" data-key="t-hot">Hot</span>
+                    </a>
+                </li>
+
                 {{-- Territories --}}
                 <li>
                     <a href="javascript: void(0);">

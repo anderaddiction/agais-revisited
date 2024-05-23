@@ -279,5 +279,7 @@ return [
     "Events" => "Eventos",
     "Schedulings" => "Programación",
     "Select an option" => "Seleccione una opción",
-    'Urbanism' => 'Urbanismos'
+    'Urbanism' => 'Urbanismos',
+    "Taxes" => 'Impuestos',
+
 ];

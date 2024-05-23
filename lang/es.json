@@ -474,5 +474,10 @@
     "Urbanism_Table" : "Tabla de Urbanismos",
     "Back to Urbsnism List" : "Volver a la Lista de Urbanismos",
     "Urbsnism_Table" : "Lista de Urbanismos",
-    "Urbanism_form" : "Formulario de Urbanismos"
+    "Urbanism_form" : "Formulario de Urbanismos",
+    "Taxes_Table" : "Tabla de Impuestos",
+    "Taxes_form" : "Formulario de Impuestos",
+    "Back to Taxes List" :  "Volver a la lista de impuestos",
+    "Percent" : "Porcentaje",
+    "Enter percent" : "Ingrese el Porcentaje"
 }

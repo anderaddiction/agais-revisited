@@ -89,6 +89,7 @@ return [
         'file'    => 'El tamaño del archivo debe ser al menos de :min kilobytes.',
         'string'  => 'El texto debe ser al menos de :min caracteres.',
         'array'   => 'El contenido debe tener al menos :min elementos.',
+        'percent'   => 'El contenido debe tener al menos :min elementos.',
     ],
     'multiple_of'          => 'Este valor debe ser múltiplo de :value',
     'not_in'               => 'El valor seleccionado es inválido.',

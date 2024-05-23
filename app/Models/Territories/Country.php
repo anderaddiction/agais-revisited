@@ -2,15 +2,17 @@
 
 namespace App\Models\Territories;
 
-use App\Models\Codes\PhoneCode;
-use App\Models\Documents\Document;
+use App\Models\Tax\Tax;
 use App\Models\Entities\Bank;
+use App\Models\Codes\PhoneCode;
 use App\Models\Entities\Currency;
 use App\Models\Entities\Urbanism;
+use App\Models\Documents\Document;
 use App\Models\Users\Clients\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Presenters\Territories\CountryPresenter;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -104,6 +106,15 @@ class Country extends Model
     public function urbanism(): HasMany
     {
         return $this->hasMany(Urbanism::class, 'country_id', 'id');
+    }
+    /**
+     * Get the Tax associated with the Country
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function tax(): HasOne
+    {
+        return $this->hasOne(Tax::class, 'country_id', 'id');
     }
 
     public function present()
