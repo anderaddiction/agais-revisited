@@ -97,6 +97,26 @@
                     </ul>
                 </li>
 
+                {{-- Gallery --}}
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="icon nav-icon" data-eva="image-outline"></i>
+                        <span class="menu-item" data-key="t-gallery">@lang('translation.Gallery')</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('image.index') }}" data-key="t-image">@lang('translation.Images')</a>
+                        </li>
+                        {{-- <li><a href="{{ route('country.index') }}" data-key="t-countries-list">@lang('translation.Countries')</a>
+                        </li>
+                        <li><a href="{{ route('state.index') }}" data-key="t-states-list">@lang('translation.States')</a>
+                        </li>
+                        <li><a href="{{ route('municipality.index') }}"
+                                data-key="t-municipalities-list">@lang('translation.Municipalities')</a>
+                        <li><a href="{{ route('parish.index') }}" data-key="t-parishes-list">@lang('translation.Parishes')</a>
+                        <li><a href="{{ route('city.index') }}" data-key="t-cities-list">@lang('translation.Cities')</a> --}}
+                    </ul>
+                </li>
+
                 {{-- Scheduling --}}
                 <li>
                     <a href="javascript: void(0);">

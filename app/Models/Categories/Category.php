@@ -3,6 +3,7 @@
 namespace App\Models\Categories;
 
 use App\Models\Entities\Urbanism;
+use App\Models\Images\Image;
 use App\Models\Scheduling\Event;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -39,6 +40,16 @@ class Category extends Model
     public function urbanism(): HasMany
     {
         return $this->hasMany(Urbanism::class, 'category_id', 'id');
+    }
+
+    /**
+     * Get all of the images for the Category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function images(): HasMany
+    {
+        return $this->hasMany(Image::class, 'category_id', 'id');
     }
 
     public function present()

@@ -479,5 +479,13 @@
     "Taxes_form" : "Formulario de Impuestos",
     "Back to Taxes List" :  "Volver a la lista de impuestos",
     "Percent" : "Porcentaje",
-    "Enter percent" : "Ingrese el Porcentaje"
+    "Enter percent" : "Ingrese el Porcentaje",
+    "Images_Table" : "Tabla de Imagenes",
+    "Image" : "Imagen",
+    "Images_form" : "Formulario de Imagenes",
+    "Back to Images List" : "Volver a la lista de imagenes",
+    "Width" : "Ancho",
+    "Height" : "Alto",
+    "Enter width" : "Ingrese el ancho de la imagen",
+    "Enter height" : "Ingrese el alto de la imagen"
 }

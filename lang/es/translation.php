@@ -281,5 +281,6 @@ return [
     "Select an option" => "Seleccione una opción",
     'Urbanism' => 'Urbanismos',
     "Taxes" => 'Impuestos',
-
+    "Images" => 'Imagenes',
+    "Gallery" => 'Galería'
 ];
