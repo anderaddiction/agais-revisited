@@ -23,7 +23,9 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'   => [
+            'name'   => 'required',
+            'subcategory'
+            => [
                 'required',
                 Rule::unique('categories')->ignore($this->route('category'))
             ],

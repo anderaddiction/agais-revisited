@@ -30,8 +30,9 @@
             <thead class="text-center">
                 <tr>
                     <th style="font-size: 12px;font-weight: bold"></th>
-                    <th>{{ __('Name') }}</th>
                     <th>{{ __('Code') }}</th>
+                    <th>{{ __('Name') }}</th>
+                    <th>{{ __('Subcategory') }}</th>
                     <th>{{ __('Status') }}</th>
                     <th>{{ __('Note') }}</th>
                     <th>{{ __('Created At') }}</th>
@@ -66,13 +67,18 @@
                     'class': 'col-2'
                 },
                 {
+                    data: 'code',
+                    name: 'code'
+                },
+                {
                     data: 'name',
                     name: 'name',
                     'class': 'col-3'
                 },
                 {
-                    data: 'code',
-                    name: 'code'
+                    data: 'subcategory',
+                    name: 'subcategory',
+                    'class': 'col-3'
                 },
                 {
                     data: 'status',
@@ -211,7 +217,7 @@
                 {
                     text: '<i class="fas fa-backward " title="Volver al listado de países"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('country.index') }}";
+                        window.location = "{{ route('category.index') }}";
                     },
                     className: 'btn-primary',
                 },

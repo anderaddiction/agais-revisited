@@ -9,6 +9,7 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/js/agais.js",
                 "resources/js/forms.js",
+                "resources/js/crud.js",
                 "resources/js/dropdowns.js",
                 "resources/js/choices.js",
                 "resources/js/yajra.js",

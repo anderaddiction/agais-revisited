@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->integer('urbanism_id')->unsigned();
-            $table->timestamps('date');
-            $table->id('tax_id')->unsigned();
+            $table->date('date');
+            $table->integer('tax_id')->unsigned();
             $table->text('note');
             $table->integer('payment_method_id')->unsigned();
-            $table->$table->softDeletes();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

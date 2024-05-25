@@ -38,7 +38,10 @@ class CategoryController extends Controller
                 ->addColumn('status', function ($category) {
                     return $category->present()->status();
                 })
-                ->rawColumns(['action', 'created_at', 'status'])
+                ->addColumn('subcategory', function ($category) {
+                    return $category->present()->subcategory();
+                })
+                ->rawColumns(['action', 'created_at', 'status', 'subcategory'])
                 ->make(true);
         }
 
@@ -80,9 +83,10 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('auth.categories.show', [
-            'category' => $category
-        ]);
+        // return view('auth.categories.show', [
+        //     'category' => $category
+        // ]);
+        return response()->json(['data' => $category], 200);
     }
 
     /**

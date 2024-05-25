@@ -16,27 +16,29 @@
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-datatables-checkboxes@1.2.11/js/dataTables.checkboxes.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-@vite(['resources/js/agais.js', 'resources/js/forms.js'])
+@vite(['resources/js/agais.js', 'resources/js/forms.js', 'resources/js/crud.js'])
 <script>
-    $(document).ready(function () {
-        $("#red-marked").click(function (e) {
+    $(document).ready(function() {
+        $("#red-marked").click(function(e) {
             e.preventDefault();
             var route = $(this).attr('href');
-            var id    = $(this).data('id');
+            var id = $(this).data('id');
             const container = document.querySelector('#red-marked');
             $.ajax({
                 type: "PUT",
                 url: route,
-                headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
                 data: id,
                 processData: false,
                 contentType: false,
-                success: function (response) {
+                success: function(response) {
                     if (response > 0) {
                         $(".rounded-pill").html(response);
                         //clearHTML(container);
                         location.reload();
-                    }else if (response == 0){
+                    } else if (response == 0) {
                         $(".rounded-pill").hide();
                         clearHTML(container);
                     }
@@ -45,7 +47,7 @@
             });
             //functions
             function clearHTML(container) {
-                while(container.firstChild) {
+                while (container.firstChild) {
                     container.removeChild(container.firstChild);
                 }
             }

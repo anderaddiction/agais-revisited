@@ -30,8 +30,9 @@
             <thead class="text-center">
                 <tr>
                     <th style="font-size: 12px;font-weight: bold"></th>
-                    <th>{{ __('Name') }}</th>
                     <th>{{ __('Code') }}</th>
+                    <th>{{ __('Name') }}</th>
+                    <th>{{ __('Subcategory') }}</th>
                     <th>{{ __('Status') }}</th>
                     <th>{{ __('Note') }}</th>
                     <th>{{ __('Created At') }}</th>
@@ -46,10 +47,10 @@
 <!-- end col -->
 </div>
 <!-- end row -->
+@include('auth.categories.partials.show')
 @endsection
 @section('script')
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
-{{-- {{ $dataTable->scripts() }} --}}
 <script type="text/javascript">
     $(function() {
         var table = $('.data-table').DataTable({
@@ -66,13 +67,18 @@
                     'class': 'col-2'
                 },
                 {
+                    data: 'code',
+                    name: 'code'
+                },
+                {
                     data: 'name',
                     name: 'name',
                     'class': 'col-3'
                 },
                 {
-                    data: 'code',
-                    name: 'code'
+                    data: 'subcategory',
+                    name: 'subcategory',
+                    'class': 'col-3'
                 },
                 {
                     data: 'status',

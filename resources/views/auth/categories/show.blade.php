@@ -19,8 +19,10 @@
             id="dataTable">
             <thead class="text-center" style="width: 100%;">
                 <tr>
-                    <th class="col-3">{{ __('Name') }}</th>
+
                     <th>{{ __('Code') }}</th>
+                    <th class="col-3">{{ __('Name') }}</th>
+                    <th class="col-3">{{ __('Subcategory') }}</th>
                     <th>{{ __('Status') }}</th>
                     <th>{{ __('Slug') }}</th>
                     <th>{{ __('Note') }}</th>
@@ -30,8 +32,9 @@
             </thead>
             <tbody class="text-center">
                 <tr class="align-middle">
-                    <td>{{ $category->present()->name() }}</td>
                     <td>{{ $category->present()->code() }}</td>
+                    <td>{{ $category->present()->name() }}</td>
+                    <td>{{ $category->present()->subcategory() }}</td>
                     <td>{!! $category->present()->status() !!}</td>
                     <td>{{ $category->present()->slug() }}</td>
                     <td>{{ $category->present()->note() }}</td>
