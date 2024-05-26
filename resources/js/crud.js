@@ -1,7 +1,6 @@
 //Show
 $(document).on("click", ".btn-show-crud", function () {
-    var route = $(this).data(route);
-    console.log(route.route);
+    var route = $(this).attr("data-route");
     $(".bs-example-modal-xl").modal("show");
 
     var table = $(".data-table-show").DataTable({
