@@ -1,14 +1,22 @@
+// Create
+function create() {
+    $(".btn-create-crud").click(function (e) {
+        e.preventDefault();
+        alert("Hola a crear categorias");
+    });
+}
+
 //Show
 $(document).on("click", ".btn-show-crud", function () {
     var route = $(this).attr("data-route");
     $(".bs-example-modal-xl").modal("show");
-
     var table = $(".data-table-show").DataTable({
         processing: false,
         serverSide: true,
         responsive: true,
-        pageLength: 20,
-        pageLength: 20,
+        searching: false,
+        paging: false,
+        info: false,
         bDestroy: true,
         ajax: route,
         dom: "Bfrtip",

@@ -9,8 +9,8 @@
             </div>
             <div class="modal-body">
                 <div class="table-responsive">
-                    <table class="table align-middle project-list-table table-nowrap table-hover data-table-show"
-                        style="width:100%" id="dataTableShow">
+                    <table class="table align-middle project-list-table table-nowrap data-table-show" style="width:100%"
+                        id="dataTableShow">
                         <thead class="text-center">
                             <tr>
                                 <th style="font-size: 12px;font-weight: bold"></th>
