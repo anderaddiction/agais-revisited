@@ -7,10 +7,10 @@ $(document).on("click", ".btn-create", function (e) {
         url: route,
         dataType: "html",
         success: function (data) {
-            console.log(data);
-            $("#invoiceModalLabel").html("Invoice Form");
+            // console.log(data);
+            $("#myLargeModalLabel").html("Invoice Form");
             $(".modal-body").html(data);
-            $("#invoiceModal").modal("show");
+            $(".bs-example-modal-lg").modal("show");
         },
     });
 });
