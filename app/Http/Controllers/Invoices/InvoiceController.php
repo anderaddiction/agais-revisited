@@ -47,9 +47,9 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        $pdf = Pdf::loadView('auth.documents.invoices.invoice-test');
-        return $pdf->stream('invoice.pdf');
-        //return view('auth.documents.invoices.invoices-list');
+        // $pdf = Pdf::loadView('auth.documents.invoices.invoice-test');
+        // return $pdf->stream('invoice.pdf');
+        return view('auth.documents.invoices.create');
     }
 
     /**

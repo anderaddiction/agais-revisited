@@ -1,10 +1,19 @@
 // Create
-function create() {
-    $(".btn-create-crud").click(function (e) {
-        e.preventDefault();
-        alert("Hola a crear categorias");
+$(document).on("click", ".btn-create", function (e) {
+    e.preventDefault();
+    var route = $(".btn-create").data("route");
+    $.ajax({
+        type: "GET",
+        url: route,
+        dataType: "html",
+        success: function (data) {
+            console.log(data);
+            $("#invoiceModalLabel").html("Invoice Form");
+            $(".modal-body").html(data);
+            $("#invoiceModal").modal("show");
+        },
     });
-}
+});
 
 //Show
 $(document).on("click", ".btn-show-crud", function () {
