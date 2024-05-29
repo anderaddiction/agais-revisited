@@ -7,6 +7,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Invoices\Invoice;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\InvoiceRequest;
 
 class InvoiceController extends Controller
 {
@@ -49,13 +50,16 @@ class InvoiceController extends Controller
     {
         // $pdf = Pdf::loadView('auth.documents.invoices.invoice-test');
         // return $pdf->stream('invoice.pdf');
-        return view('auth.documents.invoices.create');
+        $invoice = new Invoice();
+        return view('auth.documents.invoices.create', [
+            'invoice' => $invoice
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(InvoiceRequest $request)
     {
         //
     }

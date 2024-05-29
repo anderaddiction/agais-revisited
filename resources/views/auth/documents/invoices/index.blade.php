@@ -111,6 +111,9 @@
             lengthChange: false,
             buttons: [{
                     text: '<i class="fas fa-plus" title="Agregar"></i>',
+                    action: function() {
+                        window.location = "{{ route('invoice.create') }}"
+                    },
                     attr: {
                         title: 'Agregar',
                         "data-route": "{{ route('invoice.create') }}"

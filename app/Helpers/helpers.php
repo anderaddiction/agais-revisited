@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+use App\Models\Invoices\Invoice;
 use Illuminate\Support\Facades\DB;
 
 //Unique Code
@@ -56,4 +57,18 @@ function flagGenerator($value, $country)
 function upperCase($value)
 {
     return Str::upper($value);
+}
+
+function serial()
+{
+    $last_id = Invoice::select('id')->orderBy('id', 'DESC')->latest()->first();
+    if (is_null($last_id)) {
+        $last_id = 1;
+        $serial = sprintf('%010d', $last_id);
+    } else {
+        $last = $last_id->id + 1;
+        $serial = sprintf('%010d', $last);
+    }
+
+    return $serial;
 }
