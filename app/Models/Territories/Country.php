@@ -8,6 +8,7 @@ use App\Models\Codes\PhoneCode;
 use App\Models\Entities\Currency;
 use App\Models\Entities\Urbanism;
 use App\Models\Documents\Document;
+use App\Models\Entities\PaymentGateway;
 use App\Models\Users\Clients\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -115,6 +116,16 @@ class Country extends Model
     public function tax(): HasOne
     {
         return $this->hasOne(Tax::class, 'country_id', 'id');
+    }
+
+    /**
+     * Get all of the paymentGateways for the Country
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function paymentGateways(): HasMany
+    {
+        return $this->hasMany(PaymentGateway::class, 'country_id', 'id');
     }
 
     public function present()

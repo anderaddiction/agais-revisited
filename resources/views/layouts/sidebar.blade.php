@@ -54,7 +54,8 @@
                         <span class="menu-item" data-key="t-dashboards">@lang('translation.Codes')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
-                        <li><a href="{{ route('phone.index') }}" data-key="t-telephones">@lang('translation.Telephones')</a></li>
+                        <li><a href="{{ route('phone.index') }}"
+                                data-key="t-telephones">@lang('translation.Telephones')</a></li>
                     </ul>
                 </li>
 
@@ -65,7 +66,8 @@
                         <span class="menu-item" data-key="t-ecommerce">@lang('translation.Communications')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('messenger.index') }}" data-key="t-messenger">@lang('translation.Messenger')</a></li>
+                        <li><a href="{{ route('messenger.index') }}"
+                                data-key="t-messenger">@lang('translation.Messenger')</a></li>
                         <li><a href="{{ route('mail.index') }}" data-key="t-mails">@lang('translation.Mail')</a></li>
 
                     </ul>
@@ -78,8 +80,10 @@
                         <span class="menu-item" data-key="t-dashboards">@lang('translation.Documents')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('document.index') }}" data-key="t-documents">@lang('translation.Documents')</a></li>
-                        <li><a href="{{ route('invoice.index') }}" data-key="t-invoice-list">@lang('translation.Invoice_List')</a>
+                        <li><a href="{{ route('document.index') }}"
+                                data-key="t-documents">@lang('translation.Documents')</a></li>
+                        <li><a href="{{ route('invoice.index') }}"
+                                data-key="t-invoice-list">@lang('translation.Invoice_List')</a>
                         </li>
                     </ul>
                 </li>
@@ -92,8 +96,12 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('bank.index') }}" data-key="t-banks">@lang('translation.Banks')</a></li>
-                        <li><a href="{{ route('currency.index') }}" data-key="t-currencies">@lang('translation.Currencies')</a></li>
-                        <li><a href="{{ route('urbanism.index') }}" data-key="t-urbanism">@lang('translation.Urbanism')</a></li>
+                        <li><a href="{{ route('currency.index') }}"
+                                data-key="t-currencies">@lang('translation.Currencies')</a></li>
+                        <li><a href="{{ route('payment_gateway.index') }}"
+                                data-key="t-payment_gateway">@lang('translation.Payment_Gateway')</a></li>
+                        <li><a href="{{ route('urbanism.index') }}"
+                                data-key="t-urbanism">@lang('translation.Urbanism')</a></li>
                     </ul>
                 </li>
 
@@ -106,14 +114,18 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('image.index') }}" data-key="t-image">@lang('translation.Images')</a>
                         </li>
-                        {{-- <li><a href="{{ route('country.index') }}" data-key="t-countries-list">@lang('translation.Countries')</a>
+                        {{-- <li><a href="{{ route('country.index') }}"
+                                data-key="t-countries-list">@lang('translation.Countries')</a>
                         </li>
-                        <li><a href="{{ route('state.index') }}" data-key="t-states-list">@lang('translation.States')</a>
+                        <li><a href="{{ route('state.index') }}"
+                                data-key="t-states-list">@lang('translation.States')</a>
                         </li>
                         <li><a href="{{ route('municipality.index') }}"
                                 data-key="t-municipalities-list">@lang('translation.Municipalities')</a>
-                        <li><a href="{{ route('parish.index') }}" data-key="t-parishes-list">@lang('translation.Parishes')</a>
-                        <li><a href="{{ route('city.index') }}" data-key="t-cities-list">@lang('translation.Cities')</a> --}}
+                        <li><a href="{{ route('parish.index') }}"
+                                data-key="t-parishes-list">@lang('translation.Parishes')</a>
+                        <li><a href="{{ route('city.index') }}" data-key="t-cities-list">@lang('translation.Cities')</a>
+                            --}}
                     </ul>
                 </li>
 
@@ -124,7 +136,8 @@
                         <span class="menu-item" data-key="t-dashboards">@lang('translation.Schedulings')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('event.index') }}" data-key="t-categories">@lang('translation.Events')</a></li>
+                        <li><a href="{{ route('event.index') }}" data-key="t-categories">@lang('translation.Events')</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -144,15 +157,19 @@
                         <span class="menu-item" data-key="t-territories">@lang('translation.Territories')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('continent.index') }}" data-key="t-continents">@lang('translation.Continents')</a>
+                        <li><a href="{{ route('continent.index') }}"
+                                data-key="t-continents">@lang('translation.Continents')</a>
                         </li>
-                        <li><a href="{{ route('country.index') }}" data-key="t-countries-list">@lang('translation.Countries')</a>
+                        <li><a href="{{ route('country.index') }}"
+                                data-key="t-countries-list">@lang('translation.Countries')</a>
                         </li>
-                        <li><a href="{{ route('state.index') }}" data-key="t-states-list">@lang('translation.States')</a>
+                        <li><a href="{{ route('state.index') }}"
+                                data-key="t-states-list">@lang('translation.States')</a>
                         </li>
                         <li><a href="{{ route('municipality.index') }}"
                                 data-key="t-municipalities-list">@lang('translation.Municipalities')</a>
-                        <li><a href="{{ route('parish.index') }}" data-key="t-parishes-list">@lang('translation.Parishes')</a>
+                        <li><a href="{{ route('parish.index') }}"
+                                data-key="t-parishes-list">@lang('translation.Parishes')</a>
                         <li><a href="{{ route('city.index') }}" data-key="t-cities-list">@lang('translation.Cities')</a>
                     </ul>
                 </li>
@@ -164,7 +181,8 @@
                         <span class="menu-item" data-key="t-dashboards">@lang('translation.Users')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('client.index') }}" data-key="t-clients">@lang('translation.Clients')</a></li>
+                        <li><a href="{{ route('client.index') }}" data-key="t-clients">@lang('translation.Clients')</a>
+                        </li>
                         <li><a href="{{ route('role.index') }}" data-key="t-roles">@lang('translation.Roles')</a></li>
                     </ul>
                 </li>
@@ -215,13 +233,15 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="ecommerce-products" data-key="t-products">@lang('translation.Products')</a></li>
-                        <li><a href="ecommerce-product-detail" data-key="t-product-detail">@lang('translation.Product_Detail')</a></li>
+                        <li><a href="ecommerce-product-detail"
+                                data-key="t-product-detail">@lang('translation.Product_Detail')</a></li>
                         <li><a href="ecommerce-orders" data-key="t-orders">@lang('translation.Orders')</a></li>
                         <li><a href="ecommerce-customers" data-key="t-customers">@lang('translation.Customers')</a></li>
                         <li><a href="ecommerce-cart" data-key="t-cart">@lang('translation.Cart')</a></li>
                         <li><a href="ecommerce-checkout" data-key="t-checkout">@lang('translation.Checkout')</a></li>
                         <li><a href="ecommerce-shops" data-key="t-shops">@lang('translation.Shops')</a></li>
-                        <li><a href="ecommerce-add-product" data-key="t-add-product">@lang('translation.Add_Product')</a></li>
+                        <li><a href="ecommerce-add-product"
+                                data-key="t-add-product">@lang('translation.Add_Product')</a></li>
                     </ul>
                 </li>
 
@@ -240,11 +260,14 @@
                                     data-key="t-new">@lang('translation.New')</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="email-template-basic" data-key="t-basic-action">@lang('translation.Basic_Action')</a>
+                                <li><a href="email-template-basic"
+                                        data-key="t-basic-action">@lang('translation.Basic_Action')</a>
                                 </li>
-                                <li><a href="email-template-alert" data-key="t-alert-email">@lang('translation.Alert_Email')</a>
+                                <li><a href="email-template-alert"
+                                        data-key="t-alert-email">@lang('translation.Alert_Email')</a>
                                 </li>
-                                <li><a href="email-template-billing" data-key="t-bill-email">@lang('translation.Billing_Email')</a>
+                                <li><a href="email-template-billing"
+                                        data-key="t-bill-email">@lang('translation.Billing_Email')</a>
                                 </li>
                             </ul>
                         </li>
@@ -258,7 +281,8 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="invoices-list" data-key="t-invoice-list">@lang('translation.Invoice_List')</a></li>
-                        <li><a href="invoices-detail" data-key="t-invoice-detail">@lang('translation.Invoice_Detail')</a></li>
+                        <li><a href="invoices-detail"
+                                data-key="t-invoice-detail">@lang('translation.Invoice_Detail')</a></li>
                     </ul>
                 </li>
 
@@ -306,11 +330,15 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="auth-login" data-key="t-login">@lang('translation.Login')</a></li>
                         <li><a href="auth-register" data-key="t-register">@lang('translation.Register')</a></li>
-                        <li><a href="auth-recoverpw" data-key="t-recover-password">@lang('translation.Recover_Password')</a></li>
-                        <li><a href="auth-lock-screen" data-key="t-lock-screen">@lang('translation.Lock_Screen')</a></li>
+                        <li><a href="auth-recoverpw"
+                                data-key="t-recover-password">@lang('translation.Recover_Password')</a></li>
+                        <li><a href="auth-lock-screen" data-key="t-lock-screen">@lang('translation.Lock_Screen')</a>
+                        </li>
                         <li><a href="auth-logout" data-key="t-logout">@lang('translation.Logout')</a></li>
-                        <li><a href="auth-confirm-mail" data-key="t-confirm-mail">@lang('translation.Confirm_Mail')</a></li>
-                        <li><a href="auth-email-verification" data-key="t-email-verification">@lang('translation.Email_verification')</a>
+                        <li><a href="auth-confirm-mail" data-key="t-confirm-mail">@lang('translation.Confirm_Mail')</a>
+                        </li>
+                        <li><a href="auth-email-verification"
+                                data-key="t-email-verification">@lang('translation.Email_verification')</a>
                         </li>
                         <li><a href="auth-two-step-verification"
                                 data-key="t-two-step-verification">@lang('translation.Two_step_verification')</a>
@@ -325,8 +353,10 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="pages-starter" data-key="t-starter-page">@lang('translation.Starter_Page')</a></li>
-                        <li><a href="pages-maintenance" data-key="t-maintenance">@lang('translation.Maintenance')</a></li>
-                        <li><a href="pages-comingsoon" data-key="t-coming-soon">@lang('translation.Coming_Soon')</a></li>
+                        <li><a href="pages-maintenance" data-key="t-maintenance">@lang('translation.Maintenance')</a>
+                        </li>
+                        <li><a href="pages-comingsoon" data-key="t-coming-soon">@lang('translation.Coming_Soon')</a>
+                        </li>
                         <li><a href="pages-timeline" data-key="t-timeline">@lang('translation.Timeline')</a></li>
                         <li><a href="pages-faqs" data-key="t-faqs">@lang('translation.FAQs')</a></li>
                         <li><a href="pages-pricing" data-key="t-pricing">@lang('translation.Pricing')</a></li>
@@ -353,16 +383,20 @@
                         <li><a href="ui-lightbox" data-key="t-lightbox">@lang('translation.Lightbox')</a></li>
                         <li><a href="ui-modals" data-key="t-modals">@lang('translation.Modals')</a></li>
                         <li><a href="ui-offcanvas" data-key="t-offcanvas">@lang('translation.Offcanvas')</a></li>
-                        <li><a href="ui-rangeslider" data-key="t-range-slider">@lang('translation.Range_Slider')</a></li>
-                        <li><a href="ui-progressbars" data-key="t-progress-bars">@lang('translation.Progress_Bars')</a></li>
+                        <li><a href="ui-rangeslider" data-key="t-range-slider">@lang('translation.Range_Slider')</a>
+                        </li>
+                        <li><a href="ui-progressbars" data-key="t-progress-bars">@lang('translation.Progress_Bars')</a>
+                        </li>
                         <li><a href="ui-sweet-alert" data-key="t-sweet-alert">@lang('translation.Sweet_Alert')2</a></li>
-                        <li><a href="ui-tabs-accordions" data-key="t-tabs-accordions">@lang('translation.Tabs_&_Accordions')</a></li>
+                        <li><a href="ui-tabs-accordions"
+                                data-key="t-tabs-accordions">@lang('translation.Tabs_&_Accordions')</a></li>
                         <li><a href="ui-typography" data-key="t-typography">@lang('translation.Typography')</a></li>
                         <li><a href="ui-video" data-key="t-video">@lang('translation.Video')</a></li>
                         <li><a href="ui-general" data-key="t-general">@lang('translation.General')</a></li>
                         <li><a href="ui-colors" data-key="t-colors">@lang('translation.Colors')</a></li>
                         <li><a href="ui-rating" data-key="t-rating">@lang('translation.Rating')</a></li>
-                        <li><a href="ui-notifications" data-key="t-notifications">@lang('translation.Notifications')</a></li>
+                        <li><a href="ui-notifications" data-key="t-notifications">@lang('translation.Notifications')</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -372,12 +406,16 @@
                         <span class="menu-item" data-key="t-forms">@lang('translation.Forms')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="form-elements" data-key="t-form-elements">@lang('translation.Form_Elements')</a></li>
+                        <li><a href="form-elements" data-key="t-form-elements">@lang('translation.Form_Elements')</a>
+                        </li>
                         <li><a href="form-layouts" data-key="t-form-layouts">@lang('translation.Form_Layouts')</a></li>
-                        <li><a href="form-validation" data-key="t-form-validation">@lang('translation.Form_Validation')</a></li>
-                        <li><a href="form-advanced" data-key="t-form-advanced">@lang('translation.Form_Advanced')</a></li>
+                        <li><a href="form-validation"
+                                data-key="t-form-validation">@lang('translation.Form_Validation')</a></li>
+                        <li><a href="form-advanced" data-key="t-form-advanced">@lang('translation.Form_Advanced')</a>
+                        </li>
                         <li><a href="form-editors" data-key="t-form-editors">@lang('translation.Form_Editors')</a></li>
-                        <li><a href="form-uploads" data-key="t-form-upload">@lang('translation.Form_File_Upload')</a></li>
+                        <li><a href="form-uploads" data-key="t-form-upload">@lang('translation.Form_File_Upload')</a>
+                        </li>
                         <li><a href="form-wizard" data-key="t-form-wizard">@lang('translation.Form_Wizard')</a></li>
                         <li><a href="form-mask" data-key="t-form-mask">@lang('translation.Form_Mask')</a></li>
                     </ul>
@@ -390,7 +428,8 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="tables-basic" data-key="t-basic-tables">@lang('translation.Basic_Tables')</a></li>
-                        <li><a href="tables-advanced" data-key="t-advanced-tables">@lang('translation.Advanced_Table')</a></li>
+                        <li><a href="tables-advanced"
+                                data-key="t-advanced-tables">@lang('translation.Advanced_Table')</a></li>
                     </ul>
                 </li>
 
@@ -408,21 +447,26 @@
                                 <li><a href="charts-column" data-key="t-column">@lang('translation.Column')</a></li>
                                 <li><a href="charts-bar" data-key="t-bar">@lang('translation.Bar')</a></li>
                                 <li><a href="charts-mixed" data-key="t-mixed">@lang('translation.Mixed')</a></li>
-                                <li><a href="charts-timeline" data-key="t-timeline">@lang('translation.Timeline')</a></li>
-                                <li><a href="charts-candlestick" data-key="t-candlestick">@lang('translation.Candlestick')</a></li>
+                                <li><a href="charts-timeline" data-key="t-timeline">@lang('translation.Timeline')</a>
+                                </li>
+                                <li><a href="charts-candlestick"
+                                        data-key="t-candlestick">@lang('translation.Candlestick')</a></li>
                                 <li><a href="charts-boxplot" data-key="t-boxplot">@lang('translation.Boxplot')</a></li>
                                 <li><a href="charts-bubble" data-key="t-bubble">@lang('translation.Bubble')</a></li>
                                 <li><a href="charts-scatter" data-key="t-scatter">@lang('translation.Scatter')</a></li>
                                 <li><a href="charts-heatmap" data-key="t-heatmap">@lang('translation.Heatmap')</a></li>
                                 <li><a href="charts-treemap" data-key="t-treemap">@lang('translation.Treemap')</a></li>
                                 <li><a href="charts-pie" data-key="t-pie">@lang('translation.Pie')</a></li>
-                                <li><a href="charts-radialbar" data-key="t-radialbar">@lang('translation.Radialbar')</a></li>
+                                <li><a href="charts-radialbar" data-key="t-radialbar">@lang('translation.Radialbar')</a>
+                                </li>
                                 <li><a href="charts-radar" data-key="t-radar">@lang('translation.Radar')</a></li>
-                                <li><a href="charts-polararea" data-key="t-polararea">@lang('translation.Polararea')</a></li>
+                                <li><a href="charts-polararea" data-key="t-polararea">@lang('translation.Polararea')</a>
+                                </li>
                             </ul>
                         </li>
                         <li><a href="charts-echart" data-key="t-e-charts">@lang('translation.E_Charts')</a></li>
-                        <li><a href="charts-chartjs" data-key="t-chartjs-charts">@lang('translation.Chartjs_Charts')</a></li>
+                        <li><a href="charts-chartjs" data-key="t-chartjs-charts">@lang('translation.Chartjs_Charts')</a>
+                        </li>
                         <li><a href="charts-tui" data-key="t-ui-charts">@lang('translation.Toast_UI_Charts')</a></li>
                     </ul>
                 </li>
@@ -435,8 +479,10 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="icons-evaicons" data-key="t-evaicons">@lang('translation.Eva_Icons')</a></li>
                         <li><a href="icons-boxicons" data-key="t-boxicons">@lang('translation.Boxicons')</a></li>
-                        <li><a href="icons-materialdesign" data-key="t-material-design">@lang('translation.Material_Design')</a></li>
-                        <li><a href="icons-fontawesome" data-key="t-font-awesome">@lang('translation.Font_awesome') 5</a></li>
+                        <li><a href="icons-materialdesign"
+                                data-key="t-material-design">@lang('translation.Material_Design')</a></li>
+                        <li><a href="icons-fontawesome" data-key="t-font-awesome">@lang('translation.Font_awesome')
+                                5</a></li>
                     </ul>
                 </li>
 
@@ -458,12 +504,15 @@
                         <span class="menu-item" data-key="t-multi-level">@lang('translation.Multi_Level')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
-                        <li><a href="javascript: void(0);" data-key="t-level-1.1">@lang('translation.Level_1.1')</a></li>
+                        <li><a href="javascript: void(0);" data-key="t-level-1.1">@lang('translation.Level_1.1')</a>
+                        </li>
                         <li><a href="javascript: void(0);" class="has-arrow"
                                 data-key="t-level-1.2">@lang('translation.Level_1.2')</a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="javascript: void(0);" data-key="t-level-2.1">@lang('translation.Level_2.1')</a></li>
-                                <li><a href="javascript: void(0);" data-key="t-level-2.2">@lang('translation.Level_2.2')</a></li>
+                                <li><a href="javascript: void(0);"
+                                        data-key="t-level-2.1">@lang('translation.Level_2.1')</a></li>
+                                <li><a href="javascript: void(0);"
+                                        data-key="t-level-2.2">@lang('translation.Level_2.2')</a></li>
                             </ul>
                         </li>
                     </ul>

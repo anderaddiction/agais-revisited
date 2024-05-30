@@ -487,5 +487,10 @@
     "Width" : "Ancho",
     "Height" : "Alto",
     "Enter width" : "Ingrese el ancho de la imagen",
-    "Enter height" : "Ingrese el alto de la imagen"
+    "Enter height" : "Ingrese el alto de la imagen",
+    "Payment_Gateway_Table" : "Liastado de Pasarelas de Pago",
+    "Payment_Gateway_form" : "Formulario de Pasarela de Pagos",
+    "Back to Payment List" : "Volver al listado de pasarela de pagos",
+    "Platform" : "Plataforma",
+    "Enter platform" : "Ingrese Plataforma"
 }

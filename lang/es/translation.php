@@ -282,5 +282,6 @@ return [
     'Urbanism' => 'Urbanismos',
     "Taxes" => 'Impuestos',
     "Images" => 'Imagenes',
-    "Gallery" => 'Galería'
+    "Gallery" => 'Galería',
+    "Payment_Gateway" => "Pasarela de Pagos"
 ];
