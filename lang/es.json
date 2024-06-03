@@ -492,5 +492,6 @@
     "Payment_Gateway_form" : "Formulario de Pasarela de Pagos",
     "Back to Payment List" : "Volver al listado de pasarela de pagos",
     "Platform" : "Plataforma",
-    "Enter platform" : "Ingrese Plataforma"
+    "Enter platform" : "Ingrese Plataforma",
+    "Payment_Gateway_Trashed_Table" : "Papelera de Pasarela de Pagos"
 }

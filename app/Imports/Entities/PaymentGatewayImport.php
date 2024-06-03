@@ -3,6 +3,7 @@
 namespace App\Imports\Entities;
 
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Entities\PaymentGateway;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
@@ -18,24 +19,30 @@ class PaymentGatewayImport implements ToModel, WithHeadingRow, WithValidation, S
      */
     public function model(array $row)
     {
-        return new PaymentGateway([
-            'code'         => uniqueCode(),
-            'name'         => $row['name'],
-            'country_id'   => $row['country_id'],
-            'platfom'      => $row['platfom'],
-            'status'       => 1,
-            'slug'         => generateUrl($row['name']),
-            'note'         => $row['note'],
-        ]);
+
+        $payment_gateway = PaymentGateway::create(
+            [
+                'code'         => uniqueCode(),
+                'name'         => $row['name'],
+                'platform'     => $row['platform'] ? $row['platform'] : 'N/A',
+                'status'       => 1,
+                'slug'         => generateUrl($row['name']),
+                'note'         => $row['note'] ? $row['note'] : 'N/A',
+            ]
+        );
+
+        $payment_gateway->countries()->attach($row['country_id'] ? explode(',', $row['country_id']) : null, ['payment_gateway_id' => $payment_gateway->id]);
+
+        return $payment_gateway;
     }
 
     public function rules(): array
     {
         return [
             'file'       => 'mimes:xlsx,csv',
-            'name'       => 'required|unique:countries,name',
-            'country_id' => 'required',
-            'platfom'    => 'required',
+            'name'       => 'required|unique:payment_gateways,name',
+            'country_id' => 'nullable',
+            'platform'   => 'nullable',
             'note'       => 'nullable',
         ];
     }

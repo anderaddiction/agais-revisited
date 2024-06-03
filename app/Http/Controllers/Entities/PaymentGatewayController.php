@@ -28,7 +28,7 @@ class PaymentGatewayController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $payment_gateway = PaymentGateway::orderBy('name', 'DESC')->with('countries')->get();
+            $payment_gateway = PaymentGateway::orderBy('name', 'ASC')->with('countries')->get();
             return DataTables::of($payment_gateway)
                 ->addIndexColumn()
                 ->addColumn('created_at', function ($payment_gateway) {

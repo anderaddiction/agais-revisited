@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->string('name')->unique();
-            $table->string('platform');
+            $table->string('platform')->nullable()->default('N/A');
             $table->integer('status')->unsigned();
             $table->string('slug')->unique();
-            $table->text('note')->nullable();
+            $table->text('note')->nullable()->default('N/A');
             $table->softDeletes();
             $table->timestamps();
         });
