@@ -44,7 +44,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -55,7 +55,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -66,7 +66,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -154,7 +154,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 3,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -187,7 +187,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -198,7 +198,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 3,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -253,7 +253,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -297,7 +297,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -330,7 +330,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -374,7 +374,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -506,7 +506,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 3,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -583,7 +583,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -616,7 +616,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -693,7 +693,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -704,7 +704,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -715,7 +715,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -737,7 +737,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -770,7 +770,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -792,7 +792,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -825,7 +825,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 3,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -869,7 +869,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1023,7 +1023,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1078,7 +1078,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1122,7 +1122,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1309,7 +1309,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1441,7 +1441,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1485,7 +1485,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1496,7 +1496,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1507,7 +1507,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1529,7 +1529,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1595,7 +1595,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1683,7 +1683,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1694,7 +1694,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1716,7 +1716,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1848,7 +1848,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1892,7 +1892,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -1992,7 +1992,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -2003,7 +2003,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -2025,7 +2025,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -2058,7 +2058,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -2124,7 +2124,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -2190,7 +2190,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -2278,7 +2278,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -2410,7 +2410,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -2421,7 +2421,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
@@ -2674,7 +2674,7 @@ class CountrySeederTable extends Seeder
             'slug' => Str::slug($name),
             'flag' => flagGenerator($iso2, $name),
             'note' => 'N/A',
-            'continent_id' => 5,
+            'continent_id' => 4,
         ]);
 
         Country::create([
