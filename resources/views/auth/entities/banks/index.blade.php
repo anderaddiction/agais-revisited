@@ -1,22 +1,22 @@
 @extends('layouts.master')
 @section('title')
-    @lang('translation.Banks')
+@lang('translation.Banks')
 @endsection
 @section('css')
-    <style>
-        .dataTables_info {
-            margin-top: 1%;
-            margin-bottom: 1%;
-        }
+<style>
+    .dataTables_info {
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
 
-        #dataTable_filter {
-            float: right;
-        }
-    </style>
+    #dataTable_filter {
+        float: right;
+    }
+</style>
 @endsection
 @section('content')
 @section('pagetitle')
-    @lang('translation.Banks')
+@lang('translation.Banks')
 @endsection
 <div class="row align-items-center">
     <div class="col-md-6">
@@ -131,6 +131,61 @@
                         window.location = "{{ route('bank.create') }}";
                     },
                     className: 'btn-info',
+                },
+                {
+                    text: '<i class="fa fa-upload" title="Importar"></i>',
+                    action: function() {
+                        var fileSelector = $(
+                            '<input type="file" name="file" data-route="{{ route('bank.import') }}" title="Importar">'
+                        );
+                        fileSelector.click();
+
+                        fileSelector.change(function(e) {
+                            e.preventDefault();
+                            var data = new FormData();
+                            $.each($(this)[0].files, function(i, file) {
+                                data.append('file', file);
+                            });
+                            var route = $(this).data('route');
+                            var token = $('meta[name="csrf-token"]').attr('content');
+                            $.ajax({
+                                type: "POST",
+                                url: route,
+                                headers: {
+                                    'X-CSRF-TOKEN': token
+                                },
+                                data: data,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                success: function(response) {
+                                    $('.data-table').DataTable().ajax
+                                        .reload();
+                                    if (response.success) {
+                                        Swal.fire({
+                                            title: "Felicidades",
+                                            text: response.success,
+                                            icon: "success",
+                                            confirmButtonColor: "#038edc",
+                                        });
+                                    }
+
+                                },
+                                error: function(response) {
+                                    console.log(response);
+                                    Swal.fire({
+                                        title: "Advertencia",
+                                        text: 'Error ' + response
+                                            .status + ': ' +
+                                            response.statusText,
+                                        icon: "warning",
+                                        confirmButtonColor: "#038edc",
+                                    });
+                                }
+                            });
+                        });
+                    },
+                    className: 'btn btn-warning'
                 },
                 {
                     text: '<i class="fas fa-trash" title="Eliminar"></i>',

@@ -17,15 +17,29 @@ class BankImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyR
      */
     public function model(array $row)
     {
-        return new Bank([
-            //
+        $bank =  Bank::create([
+            'code'          => uniqueCode(),
+            'name'          => $row['name'],
+            'bank_type'     => $row['bank_type'],
+            'capital_type'  => $row['capital_type'],
+            'slug'          => generateUrl($row['name']),
+            'status'        => 1,
+            'note'          => $row['note'] ? $row['note'] : 'N/A',
         ]);
+
+        $bank->countries()->attach(explode(',', $row['country_id']), ['bank_id' => $bank->id]);
+
+        return $bank;
     }
 
     public function rules(): array
     {
         return [
-            //
+            'name'          => 'required|unique:banks,name',
+            'bank_type'     => 'nullable',
+            'capital_type'  => 'nullable',
+            'country_id'    => 'required',
+            'note'          => 'nullable'
         ];
     }
 }

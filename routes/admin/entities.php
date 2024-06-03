@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Entities\BankController;
 use App\Http\Controllers\Entities\CurrencyController;
 use App\Http\Controllers\Entities\UrbanismController;
+use App\Http\Controllers\Imports\ExcelImportController;
+use App\Http\Controllers\Entities\PaymentGatewayController;
 
 //Entities
 Route::prefix('entities')->group(function () {
@@ -14,6 +16,10 @@ Route::prefix('entities')->group(function () {
     // Banks Restore
     Route::get('banks/trashed/{id}', [BankController::class, 'restore'])
         ->name('bank.restore');
+
+    // Banks Import
+    Route::post('bank/import', [ExcelImportController::class, 'bankExcelImport'])
+        ->name('bank.import');
 
     //Banks
     Route::resource('banks', BankController::class)
@@ -28,10 +34,31 @@ Route::prefix('entities')->group(function () {
     Route::get('currencies/trashed/{id}', [CurrencyController::class, 'restore'])
         ->name('currency.restore');
 
+    // Currencies Import
+    Route::post('currencies/import', [ExcelImportController::class, 'currencyExcelImport'])
+        ->name('currency.import');
+
     //Currencies
     Route::resource('currencies', CurrencyController::class)
         ->parameters(['currency' => 'currency'])
         ->names('currency');
+
+    // Payment Gateway Trashed
+    Route::get('payment_gateway/trashed', [PaymentGatewayController::class, 'trashed'])
+        ->name('payment_gateway.trashed');
+
+    // Payment Gateway Restore
+    Route::get('payment_gateway/trashed/{id}', [PaymentGatewayController::class, 'restore'])
+        ->name('payment_gateway.restore');
+
+    // Payment Gateway Import
+    Route::post('payment_gateway/import', [ExcelImportController::class, 'payamentGatewayExcelImport'])
+        ->name('payment_gateway.import');
+
+    //Payment Gateway
+    Route::resource('payment_gateway', PaymentGatewayController::class)
+        ->parameters(['payment_gateway' => 'payment_gateway'])
+        ->names('payment_gateway');
 
     // Urbanism Trashed
     Route::get('urbanism/trashed', [UrbanismController::class, 'trashed'])
