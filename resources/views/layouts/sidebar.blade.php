@@ -141,7 +141,16 @@
                     </ul>
                 </li>
 
-                {{-- Categories --}}
+                {{-- Services --}}
+                <li>
+                    <a href="{{ route('service.index') }}">
+                        <i class="icon nav-icon" data-eva="gift-outline"></i>
+                        <span class="menu-item" data-key="t-service">@lang('translation.Services')</span>
+                        <span class="badge rounded-pill badge-soft-danger" data-key="t-hot">Hot</span>
+                    </a>
+                </li>
+
+                {{-- Taxes --}}
                 <li>
                     <a href="{{ route('tax.index') }}">
                         <i class="icon nav-icon" data-eva="percent-outline"></i>

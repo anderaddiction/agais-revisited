@@ -17,6 +17,7 @@ use App\Imports\Categories\CategoryImport;
 use App\Imports\Entities\BankImport;
 use App\Imports\Entities\CurrencyImport;
 use App\Imports\Entities\PaymentGatewayImport;
+use App\Imports\Services\ServiceImport;
 use App\Imports\Territories\CountryImport;
 use App\Imports\Territories\ContinentImport;
 use App\Imports\Territories\MunicipalityImport;
@@ -134,6 +135,16 @@ class ExcelImportController extends Controller
     {
 
         Excel::import(new CityImport, $request->file('file')->store('temp'));
+
+        return response()->json([
+            'success' => __('Data import successfully')
+        ], 200);
+    }
+
+    // Service Import
+    public function serviceExcelImport(Request $request)
+    {
+        Excel::import(new ServiceImport, $request->file('file')->store('temp'));
 
         return response()->json([
             'success' => __('Data import successfully')

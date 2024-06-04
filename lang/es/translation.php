@@ -283,5 +283,6 @@ return [
     "Taxes" => 'Impuestos',
     "Images" => 'Imagenes',
     "Gallery" => 'Galería',
-    "Payment_Gateway" => "Pasarela de Pagos"
+    "Payment_Gateway" => "Pasarela de Pagos",
+    "Services" => "Servicios"
 ];
