@@ -50,7 +50,8 @@ class ContinentPresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('continent.show', $this->continent) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('continent.show', $this->continent) . '" data-url="' . route('continent.getdata', $this->continent) . '"
+                    data-urlModule="continents">Ver</a>
                     <a class="dropdown-item" href="' . route('continent.edit', $this->continent) . '">Editar</a>
                 </div>
             </div>

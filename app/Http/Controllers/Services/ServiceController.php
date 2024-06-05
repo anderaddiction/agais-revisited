@@ -98,30 +98,6 @@ class ServiceController extends Controller
         ]);
     }
 
-    public function getData($id)
-    {
-
-        $service = Service::orderBy('created_at', 'ASC')
-            ->with('categories')
-            ->where('id', $id)
-            ->get();
-        return DataTables::of($service)
-            ->addIndexColumn()
-            ->addColumn('created_at', function ($service) {
-                return $service->present()->created_at();
-            })
-            ->addColumn('status', function ($service) {
-                return $service->present()->status();
-            })
-            ->addColumn('subcategory', function ($service) {
-                return $service->present()->categories();
-            })
-            ->addColumn('action', function ($service) {
-                return $service->present()->showActionButton();
-            })
-            ->rawColumns(['action', 'status', 'subcategory'])
-            ->make(true);
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -207,5 +183,29 @@ class ServiceController extends Controller
         return [
             'success' => __('Data restored successfuly')
         ];
+    }
+
+    public function getData($id)
+    {
+        $service = Service::orderBy('created_at', 'ASC')
+            ->with('categories')
+            ->where('id', $id)
+            ->get();
+        return DataTables::of($service)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($service) {
+                return $service->present()->created_at();
+            })
+            ->addColumn('status', function ($service) {
+                return $service->present()->status();
+            })
+            ->addColumn('subcategory', function ($service) {
+                return $service->present()->categories();
+            })
+            ->addColumn('action', function ($service) {
+                return $service->present()->showActionButton();
+            })
+            ->rawColumns(['action', 'status', 'subcategory'])
+            ->make(true);
     }
 }

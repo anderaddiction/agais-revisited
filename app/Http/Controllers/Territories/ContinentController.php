@@ -153,4 +153,21 @@ class ContinentController extends Controller
             'success' => __('Data restored successfuly')
         ];
     }
+
+    public function getData($id)
+    {
+        $continent = Continent::orderBy('name', 'DESC')
+            ->where('id', $id)
+            ->get();
+        return DataTables::of($continent)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($continent) {
+                return $continent->present()->created_at();
+            })
+            ->addColumn('action', function ($continent) {
+                return $continent->present()->actionButton();
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
 }

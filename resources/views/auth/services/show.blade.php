@@ -14,6 +14,16 @@
             </tr>
         </thead>
         <tbody class="text-center align-middle">
+            <tr class="align-middle">
+                <td>{{ $service->id }}</td>
+                <td>{{ $service->present()->code() }}</td>
+                <td>{{ $service->present()->name() }}</td>
+                <td>{{ $service->present()->categories() }}</td>
+                <td>{!! $service->present()->status() !!}</td>
+                <td>{{ $service->present()->note() }}</td>
+                <td>{{ $service->present()->created_at() }}</td>
+                <td>{!! $service->present()->showActionButton() !!}</td>
+            </tr>
         </tbody>
     </table>
 </div>

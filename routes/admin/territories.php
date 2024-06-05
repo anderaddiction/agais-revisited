@@ -13,6 +13,10 @@ use App\Http\Controllers\Territories\MunicipalityController;
 //Territories
 Route::prefix('territories')->group(function () {
     //Continent
+    // Service Get data
+    Route::get('continents/get-data/{id}', [ContinentController::class, 'getData'])
+        ->name('continent.getdata');
+
     // Continent Trashed
     Route::get('continents/trashed', [ContinentController::class, 'trashed'])
         ->name('continent.trashed');
