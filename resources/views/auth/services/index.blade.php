@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-@lang('translation.Serivces')
+@lang('translation.Serivices')
 @endsection
 @section('css')
 <style>
@@ -16,12 +16,12 @@
 @endsection
 @section('content')
 @section('pagetitle')
-@lang('translation.Serivces')
+@lang('translation.Services')
 @endsection
 <div class="row align-items-center">
     <div class="col-md-6">
         <div class="mb-3">
-            <h4 class="card-title">{{ __('Serivces_Table') }}</h4>
+            <h4 class="card-title">{{ __('Services_Table') }}</h4>
         </div>
     </div>
     <div class="table-responsive">
@@ -44,6 +44,7 @@
     </div>
 </div>
 <!-- end row -->
+@include('partials.modal')
 @endsection
 @section('script')
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>

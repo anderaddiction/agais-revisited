@@ -284,5 +284,6 @@ return [
     "Images" => 'Imagenes',
     "Gallery" => 'Galería',
     "Payment_Gateway" => "Pasarela de Pagos",
-    "Services" => "Servicios"
+    "Services" => "Servicios",
+    "Serivces"
 ];

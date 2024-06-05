@@ -493,5 +493,9 @@
     "Back to Payment List" : "Volver al listado de pasarela de pagos",
     "Platform" : "Plataforma",
     "Enter platform" : "Ingrese Plataforma",
-    "Payment_Gateway_Trashed_Table" : "Papelera de Pasarela de Pagos"
+    "Payment_Gateway_Trashed_Table" : "Papelera de Pasarela de Pagos",
+    "Services_form" : "Formulario de Servicios",
+    "Back to Services List" : "Volver a la lista de servicios",
+    "Services_Table" : "Tabla de Servicios",
+    "Services_Trashed_Table" : "Papelerade Servicios"
 }

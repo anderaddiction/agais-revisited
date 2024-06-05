@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Presenters\Entities;
+namespace App\Presenters\Services;
 
-use App\Models\Entities\PaymentGateway;
 use App\Models\Services\Service;
 
 class ServicePresenter
@@ -19,7 +18,6 @@ class ServicePresenter
         return $this->service->code;
     }
 
-
     public function name()
     {
         return $this->service->name;
@@ -27,7 +25,7 @@ class ServicePresenter
 
     public function categories()
     {
-        return $this->service->categories->pluck('name')->implode(', ');
+        return $this->service->categories->pluck('subcategory')->implode(', ');
     }
 
     public function slug()
@@ -64,7 +62,8 @@ class ServicePresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('service.show', $this->service) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('service.show', $this->service) . '" data-url="' . route('service.getdata', $this->service) . '"
+                    data-urlModule="services">Ver</a>
                     <a class="dropdown-item" href="' . route('service.edit', $this->service) . '">Editar</a>
                 </div>
             </div>

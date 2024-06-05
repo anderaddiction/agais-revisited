@@ -32,9 +32,7 @@
                     <th style="font-size: 12px;font-weight: bold"></th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Code') }}</th>
-                    <th>{{ __('Bank Type') }}</th>
-                    <th>{{ __('Capital type') }}</th>
-                    <th>{{ __('Country') }}</th>
+                    <th>{{ __('Category') }}</th>
                     <th>{{ __('Status') }}</th>
                     <th>{{ __('Note') }}</th>
                     <th>{{ __('Created At') }}</th>
@@ -74,18 +72,8 @@
                     name: 'code'
                 },
                 {
-                    data: 'bank_type',
-                    name: 'bank_type',
-                    'class': 'col-2'
-                },
-                {
-                    data: 'capital_type',
-                    name: 'capital_type',
-                    'class': 'col-2'
-                },
-                {
-                    data: 'country',
-                    name: 'country',
+                    data: 'category',
+                    name: 'category',
                     'class': 'col-2'
                 },
                 {

@@ -23,13 +23,13 @@ class ServiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => [
+            'name'         => [
                 'required',
                 Rule::unique('services')->ignore($this->route('service'))
             ],
             'category_id' => 'required',
-            'status' => 'required',
-            'note' => 'nullable'
+            'status'      => 'required',
+            'note'        => 'nullable'
 
         ];
     }

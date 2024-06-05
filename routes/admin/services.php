@@ -6,6 +6,10 @@ use App\Http\Controllers\Services\ServiceController;
 
 //services
 Route::prefix('services')->group(function () {
+    // Service Get data
+    Route::get('services/get-data/{id}', [ServiceController::class, 'getData'])
+        ->name('service.getdata');
+
     // Service Trashed
     Route::get('/trashed', [ServiceController::class, 'trashed'])
         ->name('service.trashed');
@@ -15,7 +19,7 @@ Route::prefix('services')->group(function () {
         ->name('service.restore');
 
     // Service Import
-    Route::post('countries/import', [ExcelImportController::class, 'serviceExcelImport'])
+    Route::post('services/import', [ExcelImportController::class, 'serviceExcelImport'])
         ->name('service.import');
 
     //Service
