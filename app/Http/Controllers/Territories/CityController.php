@@ -172,4 +172,27 @@ class CityController extends Controller
             'success' => __('Data restored successfuly')
         ];
     }
+
+    public function getData($id)
+    {
+        $city = City::orderBy('name', 'DESC')->with('state')
+            ->where('id', $id)
+            ->get();
+        return DataTables::of($city)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($city) {
+                return $city->present()->created_at();
+            })
+            ->addColumn('state', function ($city) {
+                return $city->present()->state();
+            })
+            ->addColumn('country', function ($city) {
+                return $city->present()->flag();
+            })
+            ->addColumn('action', function ($city) {
+                return $city->present()->actionButton();
+            })
+            ->rawColumns(['action', 'country', 'state'])
+            ->make(true);
+    }
 }

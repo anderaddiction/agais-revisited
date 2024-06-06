@@ -70,7 +70,8 @@ class CountryPresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('country.show', $this->country) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('country.show', $this->country) . '" data-url="' . route('country.getdata', $this->country) . '"
+                    data-urlModule="countries">Ver</a>
                     <a class="dropdown-item" href="' . route('country.edit', $this->country) . '">Editar</a>
                 </div>
             </div>

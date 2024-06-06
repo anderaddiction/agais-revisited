@@ -82,7 +82,8 @@ class BankPresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('bank.show', $this->bank) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('bank.show', $this->bank) . '" data-url="' . route('bank.getdata', $this->bank) . '"
+                    data-urlModule="banks">Ver</a>
                     <a class="dropdown-item" href="' . route('bank.edit', $this->bank) . '">Editar</a>
                 </div>
             </div>

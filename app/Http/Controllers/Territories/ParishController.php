@@ -178,4 +178,31 @@ class ParishController extends Controller
             'success' => __('Data restored successfuly')
         ];
     }
+
+    public function getData($id)
+    {
+
+        $parish = Parish::with('municipality')
+            ->where('id', $id)
+            ->get();
+        return DataTables::of($parish)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($parish) {
+                return $parish->present()->created_at();
+            })
+            ->addColumn('action', function ($parish) {
+                return $parish->present()->actionButton();
+            })
+            ->addColumn('state', function ($parish) {
+                return $parish->present()->state();
+            })
+            ->addColumn('municipality', function ($parish) {
+                return $parish->present()->municipality();
+            })
+            ->addColumn('country', function ($parish) {
+                return $parish->present()->flag();
+            })
+            ->rawColumns(['action', 'municipality', 'state', 'country'])
+            ->make(true);
+    }
 }

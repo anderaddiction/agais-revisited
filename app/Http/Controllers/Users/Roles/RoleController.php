@@ -158,4 +158,23 @@ class RoleController extends Controller
             'success' => __('Data restored successfuly')
         ];
     }
+
+    public function getData($id)
+    {
+        $role = Role::where('id', $id)
+            ->get();
+        return DataTables::of($role)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($role) {
+                return $role->present()->created_at();
+            })
+            ->addColumn('action', function ($role) {
+                return $role->present()->actionButton();
+            })
+            ->addColumn('status', function ($role) {
+                return $role->present()->status();
+            })
+            ->rawColumns(['action', 'status',])
+            ->make(true);
+    }
 }

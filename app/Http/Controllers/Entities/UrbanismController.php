@@ -201,4 +201,39 @@ class UrbanismController extends Controller
             'success' => __('Data restored successfuly')
         ];
     }
+
+    public function getData($id)
+    {
+        $urbanism = Urbanism::with(
+            [
+                'country',
+                'state',
+                'category'
+            ]
+        )
+            ->where('id', $id)
+            ->get();
+        return DataTables::of($urbanism)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($urbanism) {
+                return $urbanism->present()->created_at();
+            })
+            ->addColumn('urbanism_type', function ($urbanism) {
+                return $urbanism->present()->urbanismType();
+            })
+            ->addColumn('country', function ($urbanism) {
+                return $urbanism->present()->flag();
+            })
+            ->addColumn('state', function ($urbanism) {
+                return $urbanism->present()->state();
+            })
+            ->addColumn('status', function ($urbanism) {
+                return $urbanism->present()->status();
+            })
+            ->addColumn('action', function ($urbanism) {
+                return $urbanism->present()->actionButton();
+            })
+            ->rawColumns(['action', 'country', 'category', 'state', 'type', 'status'])
+            ->make(true);
+    }
 }

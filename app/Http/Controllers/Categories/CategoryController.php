@@ -81,25 +81,11 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        $category = Category::where('id', $id)->get();
-        return DataTables::of($category)
-            ->addIndexColumn()
-            ->addColumn('created_at', function ($category) {
-                return $category->present()->created_at();
-            })
-            ->addColumn('action', function ($category) {
-                return $category->present()->showActionButton();
-            })
-            ->addColumn('status', function ($category) {
-                return $category->present()->status();
-            })
-            ->addColumn('subcategory', function ($category) {
-                return $category->present()->subcategory();
-            })
-            ->rawColumns(['action', 'created_at', 'status', 'subcategory'])
-            ->make(true);
+        return view('auth.categories.show', [
+            'category' => $category
+        ]);
     }
 
     /**

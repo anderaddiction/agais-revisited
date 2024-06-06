@@ -186,4 +186,28 @@ class CountryController extends Controller
             'success' => __('Data restored successfuly')
         ];
     }
+
+    public function getData($id)
+    {
+        $country = Country::orderBy('countries.name', 'ASC')
+            ->with('continent')
+            ->where('id', $id)
+            ->get();
+        return DataTables::of($country)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($country) {
+                return $country->present()->created_at();
+            })
+            ->addColumn('flag', function ($country) {
+                return $country->present()->flag();
+            })
+            ->addColumn('continent', function ($country) {
+                return $country->present()->continent();
+            })
+            ->addColumn('action', function ($country) {
+                return $country->present()->actionButton();
+            })
+            ->rawColumns(['action', 'flag', 'continent'])
+            ->make(true);
+    }
 }

@@ -215,4 +215,36 @@ class ImageController extends Controller
             'success' => __('Data restored successfuly')
         ];
     }
+
+    public function getData($id)
+    {
+        $image = Image::with('categories')
+            ->where('id', $id)
+            ->get();
+        return DataTables::of($image)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($image) {
+                return $image->present()->created_at();
+            })
+            ->addColumn('status', function ($image) {
+                return $image->present()->status();
+            })
+            ->addColumn('imagen', function ($image) {
+                return $image->present()->imagen();
+            })
+            ->addColumn('width', function ($image) {
+                return $image->present()->width();
+            })
+            ->addColumn('height', function ($image) {
+                return $image->present()->height();
+            })
+            ->addColumn('category', function ($image) {
+                return $image->present()->category();
+            })
+            ->addColumn('action', function ($image) {
+                return $image->present()->actionButton();
+            })
+            ->rawColumns(['action', 'status', 'category', 'width', 'height'])
+            ->make(true);
+    }
 }

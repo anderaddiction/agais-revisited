@@ -94,7 +94,9 @@ class PaymentGatewayController extends Controller
      */
     public function show(PaymentGateway $payment_gateway)
     {
-        //
+        return view('auth.entities.payment_gateway.show', [
+            'payment_gateway' => $payment_gateway
+        ]);
     }
 
     /**
@@ -180,5 +182,31 @@ class PaymentGatewayController extends Controller
         return [
             'success' => __('Data restored successfuly')
         ];
+    }
+
+    public function getData($id)
+    {
+        $payment_gateway = PaymentGateway::with('countries')
+            ->where('id', $id)
+            ->get();
+        return DataTables::of($payment_gateway)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($payment_gateway) {
+                return $payment_gateway->present()->created_at();
+            })
+            ->addColumn('platform', function ($payment_gateway) {
+                return $payment_gateway->present()->platform();
+            })
+            ->addColumn('country', function ($payment_gateway) {
+                return $payment_gateway->present()->flag();
+            })
+            ->addColumn('status', function ($payment_gateway) {
+                return $payment_gateway->present()->status();
+            })
+            ->addColumn('action', function ($payment_gateway) {
+                return $payment_gateway->present()->actionButton();
+            })
+            ->rawColumns(['action', 'country', 'platform', 'status'])
+            ->make(true);
     }
 }

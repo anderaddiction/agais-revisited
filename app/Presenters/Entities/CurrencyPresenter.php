@@ -72,7 +72,8 @@ class CurrencyPresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('currency.show', $this->currency) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('currency.show', $this->currency) . '" data-url="' . route('currency.getdata', $this->currency) . '"
+                    data-urlModule="currencies">Ver</a>
                     <a class="dropdown-item" href="' . route('currency.edit', $this->currency) . '">Editar</a>
                 </div>
             </div>

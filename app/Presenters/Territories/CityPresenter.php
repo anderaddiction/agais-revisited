@@ -64,7 +64,8 @@ class CityPresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('city.show', $this->city) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('city.show', $this->city) . '" data-url="' . route('city.getdata', $this->city) . '"
+                    data-urlModule="cities">Ver</a>
                     <a class="dropdown-item" href="' . route('city.edit', $this->city) . '">Editar</a>
                 </div>
             </div>

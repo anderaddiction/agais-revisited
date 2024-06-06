@@ -174,4 +174,27 @@ class MunicipalityController extends Controller
             'success' => __('Data restored successfuly')
         ];
     }
+
+    public function getData($id)
+    {
+        $municipality = Municipality::with('state')
+            ->where('id', $id)
+            ->get();
+        return DataTables::of($municipality)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($municipality) {
+                return $municipality->present()->created_at();
+            })
+            ->addColumn('action', function ($municipality) {
+                return $municipality->present()->actionButton();
+            })
+            ->addColumn('state', function ($municipality) {
+                return $municipality->present()->state();
+            })
+            ->addColumn('country', function ($municipality) {
+                return $municipality->present()->flag();
+            })
+            ->rawColumns(['action', 'flag', 'country', 'state'])
+            ->make(true);
+    }
 }

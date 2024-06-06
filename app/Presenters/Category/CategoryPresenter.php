@@ -62,7 +62,8 @@ class CategoryPresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('category.show', $this->category) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('category.show', $this->category) . '" data-url="' . route('category.getdata', $this->category) . '"
+                    data-urlModule="categories">Ver</a>
                     <a class="dropdown-item" href="' . route('category.edit', $this->category) . '">Editar</a>
                 </div>
             </div>

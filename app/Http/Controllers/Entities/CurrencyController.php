@@ -170,4 +170,25 @@ class CurrencyController extends Controller
             'success' => __('Data restored successfuly')
         ];
     }
+
+    public function getData($id)
+    {
+        $currency = Currency::orderBy('name', 'DESC')->with('countries')->get();
+        return DataTables::of($currency)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($currency) {
+                return $currency->present()->created_at();
+            })
+            ->addColumn('country', function ($currency) {
+                return $currency->present()->flag();
+            })
+            ->addColumn('status', function ($currency) {
+                return $currency->present()->status();
+            })
+            ->addColumn('action', function ($currency) {
+                return $currency->present()->actionButton();
+            })
+            ->rawColumns(['action', 'country', 'status'])
+            ->make(true);
+    }
 }

@@ -1,22 +1,22 @@
 @extends('layouts.master')
 @section('title')
-    @lang('translation.States')
+@lang('translation.States')
 @endsection
 @section('css')
-    <style>
-        .dataTables_info {
-            margin-top: 1%;
-            margin-bottom: 1%;
-        }
+<style>
+    .dataTables_info {
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
 
-        #dataTable_filter {
-            float: right;
-        }
-    </style>
+    #dataTable_filter {
+        float: right;
+    }
+</style>
 @endsection
 @section('content')
 @section('pagetitle')
-    @lang('translation.States')
+@lang('translation.States')
 @endsection
 <div class="row align-items-center">
     <div class="col-md-6">
@@ -44,6 +44,7 @@
     </div>
 </div>
 <!-- end row -->
+@include('partials.modal')
 @endsection
 @section('script')
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>

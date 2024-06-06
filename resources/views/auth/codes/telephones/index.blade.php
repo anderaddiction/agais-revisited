@@ -1,22 +1,22 @@
 @extends('layouts.master')
 @section('title')
-    @lang('translation.Telephone')
+@lang('translation.Telephone')
 @endsection
 @section('css')
-    <style>
-        .dataTables_info {
-            margin-top: 1%;
-            margin-bottom: 1%;
-        }
+<style>
+    .dataTables_info {
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
 
-        #dataTable_filter {
-            float: right;
-        }
-    </style>
+    #dataTable_filter {
+        float: right;
+    }
+</style>
 @endsection
 @section('content')
 @section('pagetitle')
-    @lang('translation.Telephone')
+@lang('translation.Telephone')
 @endsection
 <div class="row align-items-center">
     <div class="col-md-6">
@@ -25,7 +25,8 @@
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table align-middle project-list-table table-nowrap table-hover data-table" style="width:100%">
+        <table class="table align-middle project-list-table table-nowrap table-hover data-table" style="width:100%"
+            id="dataTable">
             <thead class="text-center">
                 <tr>
                     <th style="font-size: 12px;font-weight: bold"></th>
@@ -46,6 +47,7 @@
 <!-- end card body -->
 </div>
 <!-- end row -->
+@include('partials.modal')
 @endsection
 @section('script')
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>

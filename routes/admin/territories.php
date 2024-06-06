@@ -13,7 +13,7 @@ use App\Http\Controllers\Territories\MunicipalityController;
 //Territories
 Route::prefix('territories')->group(function () {
     //Continent
-    // Service Get data
+    // Continent Get data
     Route::get('continents/get-data/{id}', [ContinentController::class, 'getData'])
         ->name('continent.getdata');
 
@@ -33,6 +33,10 @@ Route::prefix('territories')->group(function () {
         ->parameters(['continent' => 'continent'])
         ->names('continent');
 
+    // Country Get data
+    Route::get('countries/get-data/{id}', [CountryController::class, 'getData'])
+        ->name('country.getdata');
+
     // Country Trashed
     Route::get('/countries/trashed', [CountryController::class, 'trashed'])
         ->name('country.trashed');
@@ -49,6 +53,10 @@ Route::prefix('territories')->group(function () {
     Route::resource('countries', CountryController::class)
         ->parameters(['country' => 'country'])
         ->names('country');
+
+    // State Get data
+    Route::get('states/get-data/{id}', [StateController::class, 'getData'])
+        ->name('state.getdata');
 
     // State Trashed
     Route::get('/states/trashed', [StateController::class, 'trashed'])
@@ -67,6 +75,10 @@ Route::prefix('territories')->group(function () {
         ->parameters(['state' => 'state'])
         ->names('state');
 
+    // Municipality Get data
+    Route::get('municipalities/get-data/{id}', [MunicipalityController::class, 'getData'])
+        ->name('municipality.getdata');
+
     // Municipality Trashed
     Route::get('/municipalities/trashed', [MunicipalityController::class, 'trashed'])
         ->name('municipality.trashed');
@@ -84,6 +96,10 @@ Route::prefix('territories')->group(function () {
         ->parameters(['municipality' => 'municipality'])
         ->names('municipality');
 
+    // Parish Get data
+    Route::get('parishes/get-data/{id}', [ParishController::class, 'getData'])
+        ->name('parish.getdata');
+
     // Parish Trashed
     Route::get('/parishes/trashed', [ParishController::class, 'trashed'])
         ->name('parish.trashed');
@@ -100,6 +116,10 @@ Route::prefix('territories')->group(function () {
     Route::resource('parishes', ParishController::class)
         ->parameters(['parish' => 'parish'])
         ->names('parish');
+
+    // City Get data
+    Route::get('cities/get-data/{id}', [CityController::class, 'getData'])
+        ->name('city.getdata');
 
     // City Trashed
     Route::get('/cities/trashed', [CityController::class, 'trashed'])

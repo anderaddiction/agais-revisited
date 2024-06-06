@@ -64,7 +64,8 @@ class StatePresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('state.show', $this->state) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('state.show', $this->state) . '" data-url="' . route('state.getdata', $this->state) . '"
+                    data-urlModule="states">Ver</a>
                     <a class="dropdown-item" href="' . route('state.edit', $this->state) . '">Editar</a>
                 </div>
             </div>

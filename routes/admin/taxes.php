@@ -7,6 +7,10 @@ use App\Http\Controllers\Imports\ExcelImportController;
 
 //Taxes
 Route::prefix('taxes')->group(function () {
+    // City Get data
+    Route::get('taxes/get-data/{id}', [TaxController::class, 'getData'])
+        ->name('tax.getdata');
+
     // Tax Trashed
     Route::get('/trashed', [TaxController::class, 'trashed'])
         ->name('tax.trashed');
@@ -16,7 +20,7 @@ Route::prefix('taxes')->group(function () {
         ->name('tax.restore');
 
     // Tax Import
-    Route::post('countries/import', [ExcelImportController::class, 'taxExcelImport'])
+    Route::post('taxes/import', [ExcelImportController::class, 'taxExcelImport'])
         ->name('tax.import');
 
     //Tax

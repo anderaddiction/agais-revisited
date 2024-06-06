@@ -7,6 +7,10 @@ use App\Http\Controllers\Imports\ExcelImportController;
 
 //Documents
 Route::prefix('documents')->group(function () {
+    // Documents Get data
+    Route::get('documents/get-data/{id}', [DocumentController::class, 'getData'])
+        ->name('document.getdata');
+
     // Documents Trashed
     Route::get('documents/trashed', [DocumentController::class, 'trashed'])
         ->name('document.trashed');

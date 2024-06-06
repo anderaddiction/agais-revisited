@@ -1,27 +1,27 @@
 @extends('layouts.master')
 @section('title')
-    @lang('translation.Municipalities')
+@lang('translation.Municipalities')
 @endsection
 @section('css')
-    <style>
-        .dataTables_info {
-            margin-top: 1%;
-            margin-bottom: 1%;
-        }
+<style>
+    .dataTables_info {
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
 
-        #dataTable_filter {
-            float: right;
-        }
-    </style>
+    #dataTable_filter {
+        float: right;
+    }
+</style>
 @endsection
 @section('content')
 @section('pagetitle')
-    @lang('translation.Municipalities')
+@lang('translation.Municipalities')
 @endsection
 <div class="row align-items-center">
     <div class="col-md-6">
         <div class="mb-3">
-            <h4 class="card-title">{{ __('Municipalities_Trashed_Trable') </h4>
+            <h4 class="card-title">{{ __('Municipalities_Trashed_Table') }} </h4>
         </div>
     </div>
     <div class="table-responsive">
@@ -35,7 +35,6 @@
                     <th>{{ __('State') }}</th>
                     <th>{{ __('Country') }}</th>
                     <th>{{ __('Created At') }}</th>
-                    <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
             <tbody class="text-center align-middle">
@@ -84,13 +83,6 @@ pageLength: 20,
                     data: 'created_at',
                     name: 'created_at',
                     'class': 'col-2'
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: true,
-                    searchable: true,
-                    'class': 'col-3'
                 },
             ],
             columnDefs: [{

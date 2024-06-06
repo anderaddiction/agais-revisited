@@ -173,4 +173,27 @@ class StateController extends Controller
             'success' => __('Data restored successfuly')
         ];
     }
+
+    public function getData($id)
+    {
+        $state = State::with('country')
+            ->where('id', $id)
+            ->get();
+        return DataTables::of($state)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($state) {
+                return $state->present()->created_at();
+            })
+            ->addColumn('action', function ($state) {
+                return $state->present()->actionButton();
+            })
+            ->addColumn('continent', function ($state) {
+                return $state->present()->continent();
+            })
+            ->addColumn('flag', function ($state) {
+                return $state->present()->flag();
+            })
+            ->rawColumns(['action', 'flag', 'continent'])
+            ->make(true);
+    }
 }

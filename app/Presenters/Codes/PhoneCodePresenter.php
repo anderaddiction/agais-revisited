@@ -62,7 +62,8 @@ class PhoneCodePresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('phone.show', $this->phone) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('phone.show', $this->phone) . '" data-url="' . route('phone.getdata', $this->phone) . '"
+                    data-urlModule="phone-codes">Ver</a>
                     <a class="dropdown-item" href="' . route('phone.edit', $this->phone) . '">Editar</a>
                 </div>
             </div>

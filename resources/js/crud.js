@@ -7,7 +7,6 @@ $(document).on("click", ".btn-create", function (e) {
         url: route,
         dataType: "html",
         success: function (data) {
-            // console.log(data);
             $("#myLargeModalLabel").html("Invoice Form");
             $(".modal-body").html(data);
             $(".bs-example-modal-lg").modal("show");

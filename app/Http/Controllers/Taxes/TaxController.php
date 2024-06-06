@@ -188,4 +188,30 @@ class TaxController extends Controller
             'success' => __('Data restored successfuly')
         ];
     }
+
+    public function getData($id)
+    {
+        $tax = Tax::with('country')
+            ->where('id', $id)
+            ->get();
+        return DataTables::of($tax)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($tax) {
+                return $tax->present()->created_at();
+            })
+            ->addColumn('flag', function ($tax) {
+                return $tax->present()->flag();
+            })
+            ->addColumn('status', function ($tax) {
+                return $tax->present()->status();
+            })
+            ->addColumn('percent', function ($tax) {
+                return $tax->present()->percent();
+            })
+            ->addColumn('action', function ($tax) {
+                return $tax->present()->actionButton();
+            })
+            ->rawColumns(['action', 'flag', 'status', 'percent'])
+            ->make(true);
+    }
 }

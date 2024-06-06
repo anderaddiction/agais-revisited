@@ -176,4 +176,27 @@ class DocumentController extends Controller
             'success' => __('Data restored successfuly')
         ];
     }
+
+    public function getData($id)
+    {
+        $document = Document::with('countries')
+            ->where('id', $id)
+            ->get();
+        return DataTables::of($document)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($document) {
+                return $document->present()->created_at();
+            })
+            ->addColumn('country', function ($document) {
+                return $document->present()->flag();
+            })
+            ->addColumn('action', function ($document) {
+                return $document->present()->actionButton();
+            })
+            ->addColumn('status', function ($document) {
+                return $document->present()->status();
+            })
+            ->rawColumns(['action', 'country', 'status'])
+            ->make(true);
+    }
 }

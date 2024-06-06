@@ -68,7 +68,8 @@ class TaxPresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('tax.show', $this->tax) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('tax.show', $this->tax) . '" data-url="' . route('tax.getdata', $this->tax) . '"
+                    data-urlModule="taxes">Ver</a>
                     <a class="dropdown-item" href="' . route('tax.edit', $this->tax) . '">Editar</a>
                 </div>
             </div>

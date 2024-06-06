@@ -174,4 +174,27 @@ class PhoneCodeController extends Controller
             'success' => __('Data restored successfuly')
         ];
     }
+
+    public function getData($id)
+    {
+        $phone = PhoneCode::with('countries')
+            ->where('id', $id)
+            ->get();
+        return DataTables::of($phone)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($phone) {
+                return $phone->present()->created_at();
+            })
+            ->addColumn('country', function ($phone) {
+                return $phone->present()->flag();
+            })
+            ->addColumn('status', function ($phone) {
+                return $phone->present()->status();
+            })
+            ->addColumn('action', function ($phone) {
+                return $phone->present()->actionButton();
+            })
+            ->rawColumns(['action', 'country', 'status'])
+            ->make(true);
+    }
 }

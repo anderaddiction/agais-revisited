@@ -46,6 +46,7 @@
     </div>
 </div>
 <!-- end row -->
+@include('partials.modal')
 @endsection
 @section('script')
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>

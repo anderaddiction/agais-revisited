@@ -9,6 +9,10 @@ use App\Http\Controllers\Entities\PaymentGatewayController;
 
 //Entities
 Route::prefix('entities')->group(function () {
+    // Banks Get data
+    Route::get('banks/get-data/{id}', [BankController::class, 'getData'])
+        ->name('bank.getdata');
+
     // Banks Trashed
     Route::get('banks/trashed', [BankController::class, 'trashed'])
         ->name('bank.trashed');
@@ -25,6 +29,10 @@ Route::prefix('entities')->group(function () {
     Route::resource('banks', BankController::class)
         ->parameters(['bank' => 'bank'])
         ->names('bank');
+
+    // Currencies Get data
+    Route::get('currencies/get-data/{id}', [CurrencyController::class, 'getData'])
+        ->name('currency.getdata');
 
     // Currencies Trashed
     Route::get('currencies/trashed', [CurrencyController::class, 'trashed'])
@@ -43,6 +51,10 @@ Route::prefix('entities')->group(function () {
         ->parameters(['currency' => 'currency'])
         ->names('currency');
 
+    // Payment Gateway Get data
+    Route::get('payment_gateway/get-data/{id}', [PaymentGatewayController::class, 'getData'])
+        ->name('payment_gateway.getdata');
+
     // Payment Gateway Trashed
     Route::get('payment_gateway/trashed', [PaymentGatewayController::class, 'trashed'])
         ->name('payment_gateway.trashed');
@@ -59,6 +71,10 @@ Route::prefix('entities')->group(function () {
     Route::resource('payment_gateway', PaymentGatewayController::class)
         ->parameters(['payment_gateway' => 'payment_gateway'])
         ->names('payment_gateway');
+
+    // Urbanism Get data
+    Route::get('urbanism/get-data/{id}', [UrbanismController::class, 'getData'])
+        ->name('urbanism.getdata');
 
     // Urbanism Trashed
     Route::get('urbanism/trashed', [UrbanismController::class, 'trashed'])

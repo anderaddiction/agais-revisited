@@ -69,7 +69,8 @@ class ParishPresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('parish.show', $this->parish) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('parish.show', $this->parish) . '" data-url="' . route('parish.getdata', $this->parish) . '"
+                    data-urlModule="parishes">Ver</a>
                     <a class="dropdown-item" href="' . route('parish.edit', $this->parish) . '">Editar</a>
                 </div>
             </div>

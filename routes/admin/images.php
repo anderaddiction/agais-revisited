@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 
 //Images
 Route::prefix('images')->group(function () {
+    // Image Get data
+    Route::get('images/get-data/{id}', [ImageController::class, 'getData'])
+        ->name('image.getdata');
+
     // Image Trashed
     Route::get('/trashed', [ImageController::class, 'trashed'])
         ->name('image.trashed');

@@ -10,6 +10,10 @@ use App\Http\Controllers\Users\Clients\ClientController;
 //Users
 Route::prefix('users')->group(
     function () {
+        // Categories Get data
+        Route::get('categories/get-data/{id}', [CategoryController::class, 'getData'])
+            ->name('category.getdata');
+
         // Categories Trashed
         Route::get('categories/trashed', [CategoryController::class, 'trashed'])
             ->name('category.trashed');
@@ -26,6 +30,10 @@ Route::prefix('users')->group(
         Route::resource('categories', CategoryController::class)
             ->parameters(['category' => 'category'])
             ->names('category');
+
+        // Clients Get data
+        Route::get('clients/get-data/{id}', [ClientController::class, 'getData'])
+            ->name('client.getdata');
 
         // Clients Trashed
         Route::get('clients/trashed', [ClientController::class, 'trashed'])
@@ -44,7 +52,11 @@ Route::prefix('users')->group(
         Route::get('roles/trashed', [RoleController::class, 'trashed'])
             ->name('role.trashed');
 
-        // roles Restore
+        // Roles Get data
+        Route::get('roles/get-data/{id}', [RoleController::class, 'getData'])
+            ->name('role.getdata');
+
+        // Roles Restore
         Route::get('roles/trashed/{id}', [RoleController::class, 'restore'])
             ->name('role.restore');
 

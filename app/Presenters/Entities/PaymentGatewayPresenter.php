@@ -68,7 +68,8 @@ class PaymentGatewayPresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('payment_gateway.show', $this->payment_gateway) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('payment_gateway.show', $this->payment_gateway) . '" data-url="' . route('payment_gateway.getdata', $this->payment_gateway) . '"
+                    data-urlModule="payment_gateway">Ver</a>
                     <a class="dropdown-item" href="' . route('payment_gateway.edit', $this->payment_gateway) . '">Editar</a>
                 </div>
             </div>

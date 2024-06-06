@@ -63,7 +63,8 @@ class RolePresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('role.show', $this->role) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('role.show', $this->role) . '" data-url="' . route('role.getdata', $this->role) . '"
+                    data-urlModule="roles">Ver</a>
                     <a class="dropdown-item" href="' . route('role.edit', $this->role) . '">Editar</a>
                 </div>
             </div>

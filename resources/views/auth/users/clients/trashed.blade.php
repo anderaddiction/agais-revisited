@@ -1,26 +1,26 @@
 @extends('layouts.master')
 @section('title')
-    @lang('translation.Clients')
+@lang('translation.Clients')
 @endsection
 @section('css')
-    <link href="{{ URL::asset('assets/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/libs/choices.js/choices.js.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/libs/@simonwep/@simonwep.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet">
-    <style>
-        .dataTables_info {
-            margin-top: 1%;
-            margin-bottom: 1%;
-        }
+<link href="{{ URL::asset('assets/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet">
+<link href="{{ URL::asset('assets/libs/choices.js/choices.js.min.css') }}" rel="stylesheet">
+<link href="{{ URL::asset('assets/libs/@simonwep/@simonwep.min.css') }}" rel="stylesheet">
+<link href="{{ URL::asset('assets/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet">
+<style>
+    .dataTables_info {
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
 
-        #dataTable_filter {
-            float: right;
-        }
-    </style>
+    #dataTable_filter {
+        float: right;
+    }
+</style>
 @endsection
 @section('content')
 @section('pagetitle')
-    @lang('translation.Clients')
+@lang('translation.Clients')
 @endsection
 <div class="row align-items-center">
     <div class="col-md-6">
@@ -45,7 +45,6 @@
                     <th scope="col">{{ __('Role') }}</th>
                     <th scope="col">{{ __('Category') }}</th>
                     <th scope="col">{{ __('Created At') }}</th>
-                    <th scope="col">{{ __('Action') }}</th>
                 </tr>
             </thead>
             <tbody class="text-center align-middle">
@@ -115,12 +114,6 @@
                 {
                     data: 'created_at',
                     name: 'created_at',
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: true,
-                    searchable: true,
                 },
             ],
             "autoWidth": false,

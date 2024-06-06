@@ -1,22 +1,22 @@
 @extends('layouts.master')
 @section('title')
-    @lang('translation.Telephone')
+@lang('translation.Telephone')
 @endsection
 @section('css')
-    <style>
-        .dataTables_info {
-            margin-top: 1%;
-            margin-bottom: 1%;
-        }
+<style>
+    .dataTables_info {
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
 
-        #dataTable_filter {
-            float: right;
-        }
-    </style>
+    #dataTable_filter {
+        float: right;
+    }
+</style>
 @endsection
 @section('content')
 @section('pagetitle')
-    @lang('translation.Telephone')
+@lang('translation.Telephone')
 @endsection
 <div class="row align-items-center">
     <div class="col-md-6">
@@ -35,7 +35,6 @@
                     <th>{{ __('Status') }}</th>
                     <th>{{ __('Note') }}</th>
                     <th>{{ __('Created At') }}</th>
-                    <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
             <tbody class="text-center align-middle">
@@ -89,13 +88,6 @@
                     data: 'created_at',
                     name: 'created_at',
                     'class': 'col-2'
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: true,
-                    searchable: true,
-                    'class': 'col-3'
                 },
             ],
             columnDefs: [{

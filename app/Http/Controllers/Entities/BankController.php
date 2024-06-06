@@ -193,4 +193,33 @@ class BankController extends Controller
             'success' => __('Data restored successfuly')
         ];
     }
+
+    public function getData($id)
+    {
+        $bank = Bank::with('countries')
+            ->where('id', $id)
+            ->get();
+        return DataTables::of($bank)
+            ->addIndexColumn()
+            ->addColumn('created_at', function ($bank) {
+                return $bank->present()->created_at();
+            })
+            ->addColumn('capital_type', function ($bank) {
+                return $bank->present()->capitalType();
+            })
+            ->addColumn('bank_type', function ($bank) {
+                return $bank->present()->bankType();
+            })
+            ->addColumn('country', function ($bank) {
+                return $bank->present()->flag();
+            })
+            ->addColumn('status', function ($bank) {
+                return $bank->present()->status();
+            })
+            ->addColumn('action', function ($bank) {
+                return $bank->present()->actionButton();
+            })
+            ->rawColumns(['action', 'country', 'capital_type', 'bank_type', 'status'])
+            ->make(true);
+    }
 }

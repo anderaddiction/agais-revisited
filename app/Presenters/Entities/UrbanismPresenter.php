@@ -123,7 +123,8 @@ class UrbanismPresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('urbanism.show', $this->urbanism) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('urbanism.show', $this->urbanism) . '" data-url="' . route('urbanism.getdata', $this->urbanism) . '"
+                    data-urlModule="urbanism">Ver</a>
                     <a class="dropdown-item" href="' . route('urbanism.edit', $this->urbanism) . '">Editar</a>
                 </div>
             </div>

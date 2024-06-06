@@ -1,22 +1,22 @@
 @extends('layouts.master')
 @section('title')
-    @lang('translation.Categories')
+@lang('translation.Categories')
 @endsection
 @section('css')
-    <style>
-        .dataTables_info {
-            margin-top: 1%;
-            margin-bottom: 1%;
-        }
+<style>
+    .dataTables_info {
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
 
-        #dataTable_filter {
-            float: right;
-        }
-    </style>
+    #dataTable_filter {
+        float: right;
+    }
+</style>
 @endsection
 @section('content')
 @section('pagetitle')
-    @lang('translation.Categories')
+@lang('translation.Categories')
 @endsection
 <div class="row align-items-center">
     <div class="col-md-6">
@@ -47,7 +47,7 @@
 <!-- end col -->
 </div>
 <!-- end row -->
-@include('auth.categories.partials.show')
+@include('partials.modal')
 @endsection
 @section('script')
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>

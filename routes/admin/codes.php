@@ -6,6 +6,10 @@ use App\Http\Controllers\Imports\ExcelImportController;
 
 //Codes
 Route::prefix('codes')->group(function () {
+    // Phone Get data
+    Route::get('phone-codes/get-data/{id}', [PhoneCodeController::class, 'getData'])
+        ->name('phone.getdata');
+
     // Phone Trashed
     Route::get('phone-codes/trashed', [PhoneCodeController::class, 'trashed'])
         ->name('phone.trashed');

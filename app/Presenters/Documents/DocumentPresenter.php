@@ -67,7 +67,8 @@ class DocumentPresenter
                     <i class="bx bx-dots-vertical-rounded"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="' . route('document.show', $this->document) . '">Ver</a>
+                    <a class="dropdown-item btn-show-crud" href="#" data-route="' . route('document.show', $this->document) . '" data-url="' . route('document.getdata', $this->document) . '"
+                    data-urlModule="documents">Ver</a>
                     <a class="dropdown-item" href="' . route('document.edit', $this->document) . '">Editar</a>
                 </div>
             </div>
