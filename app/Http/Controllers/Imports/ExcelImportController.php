@@ -14,6 +14,7 @@ use App\Imports\Territories\CityImport;
 use App\Imports\Territories\StateImport;
 use App\Imports\Territories\ParishImport;
 use App\Imports\Categories\CategoryImport;
+use App\Imports\Documents\DocumentImport;
 use App\Imports\Entities\BankImport;
 use App\Imports\Entities\CurrencyImport;
 use App\Imports\Entities\PaymentGatewayImport;
@@ -21,6 +22,7 @@ use App\Imports\Services\ServiceImport;
 use App\Imports\Territories\CountryImport;
 use App\Imports\Territories\ContinentImport;
 use App\Imports\Territories\MunicipalityImport;
+use App\Imports\Users\RoleImport;
 
 class ExcelImportController extends Controller
 {
@@ -54,6 +56,17 @@ class ExcelImportController extends Controller
         ], 200);
     }
 
+    // Document Import
+    public function documentExcelImport(Request $request)
+    {
+        Excel::import(new DocumentImport, $request->file('file')->store('temp'));
+
+        return response()->json([
+            'success' => __('Data import successfully')
+        ], 200);
+    }
+
+    //Phone Codes Import
     public function phoneCodeExcelImport(Request $request, Collection $rows)
     {
         $sepultura = Excel::toCollection(new PhoneCodeImport(), $request->file('file'));
@@ -135,6 +148,16 @@ class ExcelImportController extends Controller
     {
 
         Excel::import(new CityImport, $request->file('file')->store('temp'));
+
+        return response()->json([
+            'success' => __('Data import successfully')
+        ], 200);
+    }
+
+    // Country Import
+    public function roleExcelImport(Request $request)
+    {
+        Excel::import(new RoleImport, $request->file('file')->store('temp'));
 
         return response()->json([
             'success' => __('Data import successfully')

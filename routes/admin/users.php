@@ -52,6 +52,10 @@ Route::prefix('users')->group(
         Route::get('roles/trashed', [RoleController::class, 'trashed'])
             ->name('role.trashed');
 
+        // Roles Import
+        Route::post('/roles/import', [ExcelImportController::class, 'roleExcelImport'])
+            ->name('role.import');
+
         // Roles Get data
         Route::get('roles/get-data/{id}', [RoleController::class, 'getData'])
             ->name('role.getdata');

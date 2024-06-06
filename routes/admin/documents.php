@@ -19,6 +19,10 @@ Route::prefix('documents')->group(function () {
     Route::get('documents/trashed/{id}', [DocumentController::class, 'restore'])
         ->name('document.restore');
 
+    // Documents Import
+    Route::post('/documents/import', [ExcelImportController::class, 'documentExcelImport'])
+        ->name('document.import');
+
     //Documents
     Route::resource('documents', DocumentController::class)
         ->parameters(['document' => 'document'])

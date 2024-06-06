@@ -18,14 +18,21 @@ class RoleImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyR
     public function model(array $row)
     {
         return new Role([
-            //
+            'code'         => uniqueCode(),
+            'name'         => $row['name'],
+            'display_name' => $row['display_name'],
+            'status'       => 1,
+            'slug'         => generateUrl($row['name']),
+            'note'         => $row['note'] ? $row['note'] : 'N/A',
         ]);
     }
 
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|unique:roles,name',
+            'display_name' => 'required|unique:roles,display_name',
+            'note' => 'nullable'
         ];
     }
 }

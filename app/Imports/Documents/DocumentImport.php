@@ -17,15 +17,28 @@ class DocumentImport implements ToModel, WithHeadingRow, WithValidation, SkipsEm
      */
     public function model(array $row)
     {
-        return new Document([
-            //
+        $document = Document::create([
+            'code'         => uniqueCode(),
+            'name'         => $row['name'],
+            'acronym'      => $row['acronym'],
+            'status'       => 1,
+            'slug'         => generateUrl($row['name']),
+            'note'         => $row['note'] ? $row['note'] : 'N/A',
         ]);
+
+        $document->countries()->attach(explode(',', $row['country_id']), ['document_id' => $document->id]);
+
+        return $document;
     }
 
     public function rules(): array
     {
         return [
-            //
+            'file'        => 'mimes:xlsx,csv',
+            'name'        => 'required|unique:documents,name',
+            'acronym'     => 'required',
+            'country_id'  => 'required',
+            'note'        => 'nullable',
         ];
     }
 }
