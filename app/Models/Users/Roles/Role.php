@@ -2,6 +2,7 @@
 
 namespace App\Models\Users\Roles;
 
+use App\Models\Permissions\Permission;
 use App\Models\User;
 use App\Models\Users\Clients\Client;
 use App\Presenters\Users\RolePresenter;
@@ -39,6 +40,16 @@ class Role extends Model
     public function clients(): HasMany
     {
         return $this->hasMany(Client::class, 'role_id', 'id');
+    }
+
+    /**
+     * Get all of the permisssions for the Role
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function permisssions(): HasMany
+    {
+        return $this->hasMany(Permission::class, 'role_id', 'id');
     }
 
     public function present()
