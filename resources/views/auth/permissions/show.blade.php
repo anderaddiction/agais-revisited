@@ -6,7 +6,8 @@
                 <th style="font-size: 12px;font-weight: bold"></th>
                 <th>{{ __('Code') }}</th>
                 <th>{{ __('Name') }}</th>
-                <th>{{ __('Subcategory') }}</th>
+                <th>{{ __('Level') }}</th>
+                <th>{{ __('Role') }}</th>
                 <th>{{ __('Status') }}</th>
                 <th>{{ __('Note') }}</th>
                 <th>{{ __('Created At') }}</th>
@@ -15,14 +16,15 @@
         </thead>
         <tbody class="text-center align-middle">
             <tr class="align-middle">
-                <td>{{ $service->id }}</td>
-                <td>{{ $service->present()->code() }}</td>
-                <td>{{ $service->present()->name() }}</td>
-                <td>{{ $service->present()->categories() }}</td>
-                <td>{!! $service->present()->status() !!}</td>
-                <td>{{ $service->present()->note() }}</td>
-                <td>{{ $service->present()->created_at() }}</td>
-                <td>{!! $service->present()->showActionButton() !!}</td>
+                <td>{{ $permission->id }}</td>
+                <td>{{ $permission->present()->code() }}</td>
+                <td>{{ $permission->present()->name() }}</td>
+                <td>{{ $permission->present()->level() }}</td>
+                <td>{{ $permission->present()->role() }}</td>
+                <td>{!! $permission->present()->status() !!}</td>
+                <td>{{ $permission->present()->note() }}</td>
+                <td>{{ $permission->present()->created_at() }}</td>
+                <td>{!! $permission->present()->showActionButton() !!}</td>
             </tr>
         </tbody>
     </table>

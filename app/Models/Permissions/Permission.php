@@ -3,7 +3,7 @@
 namespace App\Models\Permissions;
 
 use App\Models\Users\Roles\Role;
-use App\Presenters\permission\PermissionPresenter;
+use App\Presenters\Permissions\PermissionPresenter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,11 +22,11 @@ class Permission extends Model
      */
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class, 'assigned_permissions', 'permission_id', 'role_id');
+        return $this->belongsToMany(Role::class, 'assigned_permission', 'permission_id', 'role_id');
     }
 
     public function present()
     {
-        return PermissionPresenter($this);
+        return new PermissionPresenter($this);
     }
 }

@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Imports\Documents;
+namespace App\Imports\Permission;
 
-use App\Models\Documents\Document;
+
+use App\Models\Permissions\Permission;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class DocumentImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyRows
+class PermissionImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyRows
 {
     /**
      * @param array $row
@@ -17,27 +18,26 @@ class DocumentImport implements ToModel, WithHeadingRow, WithValidation, SkipsEm
      */
     public function model(array $row)
     {
-        $document = Document::create([
+        $permission =  Permission::create([
             'code'         => uniqueCode(),
             'name'         => $row['name'],
-            'acronym'      => $row['acronym'],
+            'level'        => $row['level'],
             'status'       => 1,
             'slug'         => generateUrl($row['name']),
             'note'         => $row['note'] ? $row['note'] : 'N/A',
         ]);
 
-        $document->countries()->attach(explode('.', $row['country_id']), ['document_id' => $document->id]);
+        $permission->roles()->attach(explode('.', $row['role_id']), ['permission_id' => $permission->id]);
 
-        return $document;
+        return $permission;
     }
 
     public function rules(): array
     {
         return [
             'file'        => 'mimes:xlsx,csv',
-            'name'        => 'required|unique:documents,name',
-            'acronym'     => 'required',
-            'country_id'  => 'required',
+            'name'        => 'required|unique:permissions,name',
+            'role_id'     => 'required',
             'note'        => 'nullable',
         ];
     }

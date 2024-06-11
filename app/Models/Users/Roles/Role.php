@@ -43,11 +43,11 @@ class Role extends Model
     }
 
     /**
-     * Get all of the permisssions for the Role
+     * Get all of the Permissions for the Role
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function permisssions(): HasMany
+    public function permissions(): HasMany
     {
         return $this->hasMany(Permission::class, 'role_id', 'id');
     }

@@ -26,7 +26,7 @@ class ServiceImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmp
             'note'         => $row['note'] ? $row['note'] : 'N/A',
         ]);
 
-        $service->categories()->attach(explode(',', $row['category_id']), ['service_id' => $service->id]);
+        $service->categories()->attach(explode('.', $row['category_id']), ['service_id' => $service->id]);
 
         return $service;
     }

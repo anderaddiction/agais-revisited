@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-@lang('translation.Services')
+@lang('translation.Permissions')
 @endsection
 @section('css')
 <style>
@@ -16,12 +16,12 @@
 @endsection
 @section('content')
 @section('pagetitle')
-@lang('translation.Services')
+@lang('translation.Permissions')
 @endsection
 <div class="row align-items-center">
     <div class="col-md-6">
         <div class="mb-3">
-            <h4 class="card-title">{{ __('Services_Trashed_Table') }}</h4>
+            <h4 class="card-title">{{ __('Permissions_Trashed_Table') }}</h4>
         </div>
     </div>
     <div class="table-responsive">
@@ -32,7 +32,8 @@
                     <th style="font-size: 12px;font-weight: bold"></th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Code') }}</th>
-                    <th>{{ __('Category') }}</th>
+                    <th>{{ __('Level') }}</th>
+                    <th>{{ __('Role') }}</th>
                     <th>{{ __('Status') }}</th>
                     <th>{{ __('Note') }}</th>
                     <th>{{ __('Created At') }}</th>
@@ -54,7 +55,7 @@
             serverSide: true,
             responsive: true,
             pageLength: 20,
-            ajax: "{{ route('service.trashed') }}",
+            ajax: "{{ route('permission.trashed') }}",
             dom: 'Bfrtip',
             columns: [{
                     data: 'id',
@@ -71,8 +72,13 @@
                     name: 'code'
                 },
                 {
-                    data: 'category',
-                    name: 'category',
+                    data: 'level',
+                    name: 'level',
+                    'class': 'col-2'
+                },
+                {
+                    data: 'role',
+                    name: 'role',
                     'class': 'col-2'
                 },
                 {
@@ -108,7 +114,7 @@
             buttons: [{
                     text: '<i class="fas fa-plus" title="Agregar"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('service.create') }}";
+                        window.location = "{{ route('permission.create') }}";
                     },
                     className: 'btn-info',
                 },
@@ -134,7 +140,7 @@
                             data.push(rowId);
                         });
 
-                        var url = "{{ route('service.restore', ':data') }}";
+                        var url = "{{ route('permission.restore', ':data') }}";
                         url = url.replace(':data', data);
 
                         Swal.fire({
@@ -208,14 +214,14 @@
                 {
                     text: '<i class="fas fa-undo" title="Recargar"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('service.trashed') }}";
+                        window.location = "{{ route('permission.trashed') }}";
                     },
                     className: 'btn-primary',
                 },
                 {
                     text: '<i class="fas fa-backward " title="Volver al listado de bancos"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('service.index') }}";
+                        window.location = "{{ route('permission.index') }}";
                     },
                     className: 'btn-primary',
                 },

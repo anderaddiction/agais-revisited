@@ -1,19 +1,19 @@
 @extends('layouts.master')
 @section('title')
-@lang('translation.Services')
+@lang('translation.Permissions')
 @endsection
 @section('css')
 <link href="{{ URL::asset('assets/libs/choices.js/choices.js.min.css') }}" rel="stylesheet">
 @endsection
 @section('content')
 @section('pagetitle')
-@lang('translation.Services')
+@lang('translation.Permissions')
 @endsection
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">{{ __('Services_form') }}</h4>
+                <h4 class="card-title">{{ __('Permissions_form') }}</h4>
             </div><!-- end card header -->
             <div class="card-body">
                 <div class="row">
@@ -24,15 +24,16 @@
                                 {{ session('success') }}
                             </div>
                             @endif
-                            <a href="{{ route('service.index') }}">
+                            <a href="{{ route('permission.index') }}">
                                 <h5 class="font-size-14 mb-4">
                                     <i class="mdi mdi-arrow-right text-primary me-1"></i>
-                                    @lang('Back to Services List')
+                                    @lang('Back to Permissions List')
                                 </h5>
                             </a>
-                            <form action="{{ route('service.update', $service) }}" method="POST" rol="form" id="form">
+                            <form action="{{ route('permission.update', $permission) }}" method="POST" rol="form"
+                                id="form">
                                 @method('PUT')
-                                @include('auth.services._form')
+                                @include('auth.permissions._form')
                                 <div class="mt-4">
                                     <button type="submit" class="btn btn-primary w-md btn-update">{{ __('Update')
                                         }}</button>

@@ -129,6 +129,18 @@
                     </ul>
                 </li>
 
+                {{-- Permissions --}}
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="icon nav-icon" data-eva="lock"></i>
+                        <span class="menu-item" data-key="t-permissions">@lang('translation.Permissions')</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a href="{{ route('permission.index') }}"
+                                data-key="t-permissions">@lang('translation.Permissions')</a></li>
+                    </ul>
+                </li>
+
                 {{-- Scheduling --}}
                 <li>
                     <a href="javascript: void(0);">

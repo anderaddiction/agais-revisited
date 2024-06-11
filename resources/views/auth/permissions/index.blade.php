@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-@lang('translation.Serivices')
+@lang('translation.Permissions')
 @endsection
 @section('css')
 <style>
@@ -16,12 +16,12 @@
 @endsection
 @section('content')
 @section('pagetitle')
-@lang('translation.Services')
+@lang('translation.Permissions')
 @endsection
 <div class="row align-items-center">
     <div class="col-md-6">
         <div class="mb-3">
-            <h4 class="card-title">{{ __('Services_Table') }}</h4>
+            <h4 class="card-title">{{ __('Permissions_Table') }}</h4>
         </div>
     </div>
     <div class="table-responsive">
@@ -32,7 +32,8 @@
                     <th style="font-size: 12px;font-weight: bold"></th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Code') }}</th>
-                    <th>{{ __('Category') }}</th>
+                    <th>{{ __('Level') }}</th>
+                    <th>{{ __('Role') }}</th>
                     <th>{{ __('Status') }}</th>
                     <th>{{ __('Note') }}</th>
                     <th>{{ __('Created At') }}</th>
@@ -56,7 +57,7 @@
             serverSide: true,
             responsive: true,
             pageLength: 20,
-            ajax: "{{ route('service.index') }}",
+            ajax: "{{ route('permission.index') }}",
             dom: 'Bfrtip',
             columns: [{
                     data: 'id',
@@ -73,8 +74,13 @@
                     name: 'code'
                 },
                 {
-                    data: 'category',
-                    name: 'category',
+                    data: 'level',
+                    name: 'level',
+                    'class': 'col-2'
+                },
+                {
+                    data: 'role',
+                    name: 'role',
                     'class': 'col-2'
                 },
                 {
@@ -117,7 +123,7 @@
             buttons: [{
                     text: '<i class="fas fa-plus" title="Agregar"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('service.create') }}";
+                        window.location = "{{ route('permission.create') }}";
                     },
                     className: 'btn-info',
                 },
@@ -125,7 +131,7 @@
                     text: '<i class="fa fa-upload" title="Importar"></i>',
                     action: function() {
                         var fileSelector = $(
-                            '<input type="file" name="file" data-route="{{ route('service.import') }}" title="Importar">'
+                            '<input type="file" name="file" data-route="{{ route('permission.import') }}" title="Importar">'
                         );
                         fileSelector.click();
 
@@ -198,7 +204,7 @@
                             data.push(rowId);
                         });
 
-                        var url = "{{ route('service.destroy', ':data') }}";
+                        var url = "{{ route('permission.destroy', ':data') }}";
                         url = url.replace(':data', data);
 
                         Swal.fire({
@@ -252,7 +258,7 @@
                 {
                     text: '<i class="fas fa-recycle" title="Papelera"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('service.trashed') }}";
+                        window.location = "{{ route('permission.trashed') }}";
                     },
                     className: 'btn-success',
                 },
@@ -279,7 +285,7 @@
                 {
                     text: '<i class="fas fa-undo" title="Recargar"></i>',
                     action: function(e, dt, node, config) {
-                        window.location = "{{ route('service.index') }}";
+                        window.location = "{{ route('permission.index') }}";
                     },
                     className: 'btn-primary',
                 },

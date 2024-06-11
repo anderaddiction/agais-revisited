@@ -27,7 +27,7 @@ class BankImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyR
             'note'          => $row['note'] ? $row['note'] : 'N/A',
         ]);
 
-        $bank->countries()->attach(explode(',', $row['country_id']), ['bank_id' => $bank->id]);
+        $bank->countries()->attach(explode('.', $row['country_id']), ['bank_id' => $bank->id]);
 
         return $bank;
     }

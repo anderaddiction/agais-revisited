@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->string('name')->unique();
-            $table->string('display_name')->nullable()->unique();
             $table->integer('level');
             $table->integer('status')->unsigned();
             $table->string('slug')->unique();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Permissions;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PermissionRequest extends FormRequest
@@ -11,7 +12,7 @@ class PermissionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,14 @@ class PermissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'         => [
+                'required',
+                Rule::unique('permissions')->ignore($this->route('permission'))
+            ],
+            'level'       => 'required',
+            'role_id'     => 'required',
+            'status'      => 'required',
+            'note'        => 'nullable'
         ];
     }
 }

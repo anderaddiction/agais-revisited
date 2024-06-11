@@ -497,5 +497,13 @@
     "Services_form" : "Formulario de Servicios",
     "Back to Services List" : "Volver a la lista de servicios",
     "Services_Table" : "Tabla de Servicios",
-    "Services_Trashed_Table" : "Papelerade Servicios"
+    "Services_Trashed_Table" : "Papelera de Servicios",
+    "Permissions_Table" : "Tabla de Permisos",
+    "Permissions_Trashed_Table" : "Papelera de Permisos",
+    "Back to Permissions List" : "Volver a la lista de permisos",
+    "Permissions_form" : "Formulario de Permisos",
+    "Level" : "Nivel",
+    "Low" : "Bajo",
+    "Medium" :  "Medio",
+    "High" : "Alto"
 }

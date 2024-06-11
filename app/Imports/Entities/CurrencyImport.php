@@ -27,7 +27,7 @@ class CurrencyImport implements ToModel, WithHeadingRow, WithValidation, SkipsEm
             'note'          => $row['note'] ? $row['note'] : 'N/A',
         ]);
 
-        $currency->countries()->attach(explode(',', $row['country_id']), ['currency_id' => $currency->id]);
+        $currency->countries()->attach(explode('.', $row['country_id']), ['currency_id' => $currency->id]);
 
         return $currency;
     }

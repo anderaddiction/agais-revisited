@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Permissions\PermissionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Imports\ExcelImportController;
+use App\Http\Controllers\Permissions\PermissionController;
 
 //Permissions
 Route::prefix('permissions')->group(function () {
@@ -17,9 +18,9 @@ Route::prefix('permissions')->group(function () {
     Route::get('/trashed/{id}', [PermissionController::class, 'restore'])
         ->name('permission.restore');
 
-    // Permission Import
-    // Route::post('countries/import', [ExcelImportController::class, 'permissionExcelImport'])
-    //     ->name('permission.import');
+    //Permission Import
+    Route::post('permissions/import', [ExcelImportController::class, 'permissionExcelImport'])
+        ->name('permission.import');
 
     //Permission
     Route::resource('permissions', PermissionController::class)

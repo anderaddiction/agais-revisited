@@ -18,6 +18,7 @@ use App\Imports\Documents\DocumentImport;
 use App\Imports\Entities\BankImport;
 use App\Imports\Entities\CurrencyImport;
 use App\Imports\Entities\PaymentGatewayImport;
+use App\Imports\Permission\PermissionImport;
 use App\Imports\Services\ServiceImport;
 use App\Imports\Territories\CountryImport;
 use App\Imports\Territories\ContinentImport;
@@ -154,7 +155,17 @@ class ExcelImportController extends Controller
         ], 200);
     }
 
-    // Country Import
+    // Permission Import
+    public function permissionExcelImport(Request $request)
+    {
+        Excel::import(new PermissionImport, $request->file('file')->store('temp'));
+
+        return response()->json([
+            'success' => __('Data import successfully')
+        ], 200);
+    }
+
+    // Role Import
     public function roleExcelImport(Request $request)
     {
         Excel::import(new RoleImport, $request->file('file')->store('temp'));

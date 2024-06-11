@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Presenters\permission;
+namespace App\Presenters\Permissions;
 
 use App\Models\Permissions\Permission;
 
@@ -23,9 +23,14 @@ class PermissionPresenter
         return $this->permission->name;
     }
 
-    public function subpermission()
+    public function level()
     {
-        return $this->permission->subpermission;
+        return $this->permission->level;
+    }
+
+    public function role()
+    {
+        return $this->permission->roles()->pluck('display_name')->implode(', ');
     }
 
     public function status()
