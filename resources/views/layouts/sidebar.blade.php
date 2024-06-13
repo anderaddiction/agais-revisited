@@ -156,7 +156,7 @@
                 {{-- Services --}}
                 <li>
                     <a href="{{ route('service.index') }}">
-                        <i class="icon nav-icon" data-eva="gift-outline"></i>
+                        <i class="icon nav-icon" data-eva="car-outline"></i>
                         <span class="menu-item" data-key="t-service">@lang('translation.Services')</span>
                         <span class="badge rounded-pill badge-soft-danger" data-key="t-hot">Hot</span>
                     </a>

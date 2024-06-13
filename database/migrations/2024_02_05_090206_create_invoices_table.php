@@ -14,9 +14,23 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
-            $table->integer('urbanism_id')->unsigned();
-            $table->date('date');
+            $table->string('name');
+            $table->string('last_name');
+            $table->char('type_id', 5);
+            $table->string('identification');
+            $table->string('tax_residence');
+            $table->string('phone');
+            $table->string('phone_alt')->nullable();
+            $table->string('email')->nullable();
+            $table->string('control_number')->unique();
+            $table->string('invoice_number')->unique();
+            $table->date('date_of_issue');
+            $table->date('date_of_assignment')->nullable();
+            $table->integer('quantity')->nullable();
+            $table->float('price');
+            $table->float('subtotal');
             $table->integer('tax_id')->unsigned();
+            $table->float('total');
             $table->text('note');
             $table->integer('payment_method_id')->unsigned();
             $table->softDeletes();
