@@ -32,6 +32,8 @@
                     <th style="font-size: 12px;font-weight: bold"></th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Code') }}</th>
+                    <th>{{ __('Bank ID Code (2 Digits)') }}</th>
+                    <th>{{ __('Bank ID Code (3 Digits)') }}</th>
                     <th>{{ __('Bank Type') }}</th>
                     <th>{{ __('Capital type') }}</th>
                     <th>{{ __('Country') }}</th>
@@ -73,6 +75,16 @@
                 {
                     data: 'code',
                     name: 'code'
+                },
+                {
+                    data: 'bank_code_min',
+                    name: 'bank_code_min',
+                    'class': 'col-2'
+                },
+                {
+                    data: 'bank_code_max',
+                    name: 'bank_code_max',
+                    'class': 'col-2'
                 },
                 {
                     data: 'bank_type',

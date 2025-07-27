@@ -6,6 +6,8 @@
                 <th style="font-size: 12px;font-weight: bold"></th>
                 <th class="col-2">{{ __('Name') }}</th>
                 <th>{{ __('Code') }}</th>
+                <th>{{ __('Bank ID Code (2 Digits)') }}</th>
+                <th>{{ __('Bank ID Code (3 Digits)') }}</th>
                 <th class="col-2">{{ __('Bank Type') }}</th>
                 <th class="col-2">{{ __('Capital type') }}</th>
                 <th class="col-2">{{ __('Country') }}</th>
@@ -21,6 +23,8 @@
                 <td>{{ $bank->id }}</td>
                 <td>{{ $bank->present()->name() }}</td>
                 <td>{{ $bank->present()->code() }}</td>
+                <td>{{ $bank->present()->bankCodeMin() }}</td>
+                <td>{{ $bank->present()->bankCodeMax() }}</td>
                 <td>{!! $bank->present()->bankType() !!}</td>
                 <td>{{ $bank->present()->capitalType() }}</td>
                 <td>{!! $bank->present()->flag() !!}</td>

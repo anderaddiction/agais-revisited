@@ -43,6 +43,12 @@ class BankController extends Controller
                 ->addColumn('bank_type', function ($bank) {
                     return $bank->present()->bankType();
                 })
+                ->addColumn('bank_code_min', function ($bank) {
+                    return $bank->present()->bankCodeMin();
+                })
+                ->addColumn('bank_code_max', function ($bank) {
+                    return $bank->present()->bankCodeMax();
+                })
                 ->addColumn('country', function ($bank) {
                     return $bank->present()->flag();
                 })
@@ -52,7 +58,7 @@ class BankController extends Controller
                 ->addColumn('action', function ($bank) {
                     return $bank->present()->actionButton();
                 })
-                ->rawColumns(['action', 'country', 'capital_type', 'bank_type', 'status'])
+                ->rawColumns(['action', 'country', 'capital_type', 'bank_type', 'bank_code_min', 'bank_code_max', 'status'])
                 ->make(true);
         }
 
@@ -82,6 +88,7 @@ class BankController extends Controller
             $request->except('country_id')
                 + ['code' => uniqueCode()]
                 + ['slug' => generateUrl($request->name)]
+                + ['bank_code_max' => '0' . $request->bank_code_min]
         );
 
         $bank->countries()->attach($request->country_id);
@@ -124,6 +131,7 @@ class BankController extends Controller
         $bank->update(
             $request->except('country_id')
                 + ['slug' => generateUrl($request->name)]
+                + ['bank_code_max' => '0' . $request->bank_code_min]
         );
 
         $bank->countries()->sync($request->country_id);

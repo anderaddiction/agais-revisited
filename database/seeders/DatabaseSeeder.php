@@ -24,6 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StateSeederTable::class);
         $this->call(MunicipalitySeederTable::class);
         $this->call(ParishSeederTable::class);
-        $this->call(BankSeederTable::class);
+        #$this->call(BankSeederTable::class);
     }
 }

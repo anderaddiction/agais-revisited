@@ -23,6 +23,16 @@ class BankPresenter
         return $this->bank->name;
     }
 
+    public function bankCodeMin()
+    {
+        return $this->bank->bank_code_min;
+    }
+
+    public function bankCodeMax()
+    {
+        return $this->bank->bank_code_max;
+    }
+
     public function flag()
     {
         return $this->bank->countries->pluck('flag')->implode(' ');

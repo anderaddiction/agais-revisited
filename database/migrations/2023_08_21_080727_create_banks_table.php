@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('code', 100)->unique();
             $table->string('name', 255);
+            $table->char('bank_code_min', 3);
+            $table->char('bank_code_max', 4);
             $table->integer('capital_type')->nullable();
             $table->integer('bank_type')->nullable();
             $table->string('slug', 255);

@@ -24,6 +24,7 @@ class BankRequest extends FormRequest
         return [
             'name'          => 'required',
             'bank_type'     => 'nullable',
+            'bank_code_min' => 'required|numeric',
             'capital_type'  => 'nullable',
             'country_id'    => 'required',
             'status'        => 'required',

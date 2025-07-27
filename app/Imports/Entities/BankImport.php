@@ -18,13 +18,15 @@ class BankImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyR
     public function model(array $row)
     {
         $bank =  Bank::create([
-            'code'          => uniqueCode(),
-            'name'          => $row['name'],
-            'bank_type'     => $row['bank_type'],
-            'capital_type'  => $row['capital_type'],
-            'slug'          => generateUrl($row['name']),
-            'status'        => 1,
-            'note'          => $row['note'] ? $row['note'] : 'N/A',
+            'code'              => uniqueCode(),
+            'name'              => $row['name'],
+            'bank_code_min'     => $row['bank_code_min'],
+            'bank_code_max'     => $row['bank_code_max'],
+            'bank_type'         => $row['bank_type'],
+            'capital_type'      => $row['capital_type'],
+            'slug'              => generateUrl($row['name']),
+            'status'            => 1,
+            'note'              => $row['note'] ? $row['note'] : 'N/A',
         ]);
 
         $bank->countries()->attach(explode('.', $row['country_id']), ['bank_id' => $bank->id]);
@@ -35,11 +37,13 @@ class BankImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmptyR
     public function rules(): array
     {
         return [
-            'name'          => 'required|unique:banks,name',
-            'bank_type'     => 'nullable',
-            'capital_type'  => 'nullable',
-            'country_id'    => 'required',
-            'note'          => 'nullable'
+            'name'              => 'required|unique:banks,name',
+            'bank_code_min'     => 'required|numeric',
+            'bank_code_max'     => 'required|numeric',
+            'bank_type'         => 'nullable',
+            'capital_type'      => 'nullable',
+            'country_id'        => 'required',
+            'note'              => 'nullable'
         ];
     }
 }
